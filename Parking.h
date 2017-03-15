@@ -6,6 +6,7 @@
 typedef struct parking Parking;
 
 struct parking{
+    //despues tengo que ver bien como hacer para poder hacer las cosas variables
     Car cars[10];
     int maxCapacity;
     int amountOfCars;
