@@ -3,5 +3,5 @@ project(CFromJava)
 
 set(CMAKE_C_STANDARD 99)
 
-set(SOURCE_FILES main.c Car.c Car.h Parking.c Parking.h)
+set(SOURCE_FILES ParkingCar/main.c ParkingCar/Car.c ParkingCar/Car.h ParkingCar/Parking.c ParkingCar/Parking.h DynamicMemory/DinamicMemory.c DynamicMemory/DinamicMemory.h)
 add_executable(CFromJava ${SOURCE_FILES})

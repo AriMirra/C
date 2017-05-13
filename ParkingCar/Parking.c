@@ -11,7 +11,7 @@ void parkCar(Parking parking, Car car){
 Car removeCar(Parking parking, int spot){
     if(parking.amountOfCars > spot){
         Car result = parking.cars[spot];
-        for (int i = 0; i<parking.amountOfCars - 1; i++){
+        for (int i = 0; i<parking.amountOfCars - 1; i++){//creo que tendría que ser desde i=spot, sinó te cambia todos los autos al pedo
             parking.cars[i] = parking.cars[i+1];
         }
         return result;
@@ -20,7 +20,10 @@ Car removeCar(Parking parking, int spot){
 }
 
 int isCarParked(Parking parking, Car car){
-
+    //todo terminar de implementar
+    for (int i = 0; i<parking.amountOfCars - 1; i++){
+        parking.cars[i] = parking.cars[i+1];
+    }
 }
 
 int getCarSpot(Parking parking, Car car){
