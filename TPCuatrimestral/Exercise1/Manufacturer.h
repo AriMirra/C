@@ -1,0 +1,8 @@
+//
+// Created by arimi on 14-May-17.
+//
+
+#ifndef CFROMJAVA_MANUFACTURER_H
+#define CFROMJAVA_MANUFACTURER_H
+
+#endif //CFROMJAVA_MANUFACTURER_H

@@ -1,0 +1,8 @@
+//
+// Created by arimi on 14-May-17.
+//
+
+#ifndef CFROMJAVA_SHOPPINGCART_H
+#define CFROMJAVA_SHOPPINGCART_H
+
+#endif //CFROMJAVA_SHOPPINGCART_H
