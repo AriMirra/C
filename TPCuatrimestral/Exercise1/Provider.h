@@ -13,4 +13,7 @@ struct provider{
     char* web;
 };
 
+//functions
+Provider* createProvider(char* name, char* description, char* address, char* city, char* telephoneNumber, char* web);
+
 #endif //CFROMJAVA_PROVIDER_H
