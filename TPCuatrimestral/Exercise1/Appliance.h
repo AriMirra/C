@@ -1,23 +1,18 @@
-//
-// Created by arimi on 14-May-17.
-//
-
 #ifndef CFROMJAVA_APPLIANCE_H
 #define CFROMJAVA_APPLIANCE_H
 
+#include <afxres.h>
 #include "Label.h"
 
-typedef struct appliance Appliance;
-
-struct appliance{
+typedef struct Appliance{
     Label* label;
     char* name;
     char* description;
-    float* price;
-};
+    int *price;
+}Appliance;
 
 // functions
-Appliance* createAppliance(char* name, char* description, float* price, Label* label);
+Appliance* createAppliance(char* name, char* description, int* price, Label* label);
 
 
 

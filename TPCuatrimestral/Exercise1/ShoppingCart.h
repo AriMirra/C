@@ -1,18 +1,12 @@
-//
-// Created by arimi on 14-May-17.
-//
-
 #ifndef CFROMJAVA_SHOPPINGCART_H
 #define CFROMJAVA_SHOPPINGCART_H
 
 #include "Invoice.h"
 
-typedef struct shoppingCart ShoppingCart;
-
-struct shoppingCart{
+typedef struct ShoppingCart{
     char* id;
     float* total;
-};
+}ShoppingCart;
 
 //functions
 ShoppingCart* createShoppingCart(char* id, float* total);

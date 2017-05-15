@@ -1,20 +1,14 @@
-//
-// Created by arimi on 14-May-17.
-//
-
 #ifndef CFROMJAVA_MANUFACTURER_H
 #define CFROMJAVA_MANUFACTURER_H
 
-typedef struct manufacturer Manufacturer;
-
-struct manufacturer{
+typedef struct Manufacturer{
     char* name;
     char* description;
     char* address;
     char* city;
     char* telephoneNumber;
     char* web;
-};
+}Manufacturer;
 
 //functions
 Manufacturer* createManufacturer(char* name, char* description, char* address, char* city, char* telephoneNumber, char* web);
