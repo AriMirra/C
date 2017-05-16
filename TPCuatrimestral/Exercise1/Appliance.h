@@ -8,11 +8,11 @@ typedef struct Appliance{
     Label* label;
     char* name;
     char* description;
-    int *price;
+    int price;
 }Appliance;
 
 // functions
-Appliance* createAppliance(char* name, char* description, int* price, Label* label);
+Appliance* createAppliance(char* name, char* description, int price, Label* label);
 
 
 

@@ -1,6 +1,6 @@
 #include "Appliance.h"
 
-Appliance *createAppliance(char* name, char* description, int* price, Label* label) {
+Appliance* createAppliance(char* name, char* description, int price, Label* label) {
     Appliance* result = malloc(sizeof(Appliance));
     result->name = malloc(sizeof(char)*strlen(name));
     result->description = malloc(sizeof(char)*strlen(description));

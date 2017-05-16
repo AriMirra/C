@@ -4,10 +4,10 @@
 
 typedef struct Invoice{
     char* id;
-    int* toPay;
+    int toPay;
 }Invoice;
 
 //functions
-Invoice* createInvoice(char* id, int* toPay);
+Invoice* createInvoice(char* id, int toPay);
 
 #endif //CFROMJAVA_INVOICE_H
