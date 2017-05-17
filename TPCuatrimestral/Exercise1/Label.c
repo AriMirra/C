@@ -7,7 +7,7 @@ Label* createLabel(char* name, char* id){
     result->name = malloc(sizeof(char)*strlen(name));
     result->id = malloc(sizeof(char)*strlen(id));
 
-    result->name = name;
-    result->id = id;
+    strcpy(result->name, name);
+    strcpy(result->id, id);
     return result;
 }

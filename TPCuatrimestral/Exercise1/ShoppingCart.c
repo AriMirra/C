@@ -1,10 +1,10 @@
 #include "ShoppingCart.h"
 
-ShoppingCart* createShoppingCart(ShoppingCart* cart, char* id){
+ShoppingCart* createShoppingCart(char* id){
     ShoppingCart* result = malloc(sizeof(ShoppingCart));
     result->id = malloc(sizeof(char)*strlen(id));
-    cart->capacity = 10;
-    result->appliances = malloc(sizeof(Appliance*)*cart->capacity);
+    result->capacity = 10;
+    result->appliances = malloc(sizeof(Appliance*)*result->capacity);
 
     result->id = id;
     result->appliancesAmount = 0;
@@ -16,10 +16,9 @@ Invoice* produceInvoice(ShoppingCart* cart, char* id, int* toPay){
     return result;
 }
 
-void addAppliance(ShoppingCart* cart, Appliance* appliance){
+void addAppliance(ShoppingCart* cart, Appliance* appliance, int amount){
     if (isFull(cart)) grow(cart);
-    //if (applianceIsOnCart(cart, appliance))
-    cart->appliances[cart->appliancesAmount] = appliance;
+    cart->appliances[cart->appliancesAmount] = createShoppingCartLine(appliance,amount);
 }
 
 int isFull(ShoppingCart* cart) {
@@ -35,7 +34,7 @@ void grow(ShoppingCart* cart) {
 int total(ShoppingCart* cart){
     int result = 0;
     for(int i = 0;i< cart->appliancesAmount;i++){
-        result += cart->appliances[i]->price;
+        result += cart->appliances[i]->appliance->price;
     }
     return result;
 }

@@ -4,12 +4,12 @@
 typedef struct InvoiceLine{
     char* id;
     char* article;
-    int* units;
+    int units;
 }InvoiceLine;
 
 
 //functions
-InvoiceLine* createInvoiceLine(char* id, char* article, int* units);
+InvoiceLine* createInvoiceLine(char* id, char* article, int units);
 
 
 #endif //CFROMJAVA_INVOICELINE_H

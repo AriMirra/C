@@ -1,13 +1,14 @@
 #ifndef CFROMJAVA_SHOPPINGCARTLINE_H
 #define CFROMJAVA_SHOPPINGCARTLINE_H
 
+#include "Appliance.h"
+
 typedef struct ShoppingCartLine{
-    char* id;
-    char* article;
-    int* units;
+    Appliance* appliance;
+    int units;
 }ShoppingCartLine;
 
 //functions
-ShoppingCartLine* createShoppingCartLine(char* id, char* article, int* units);
+ShoppingCartLine* createShoppingCartLine(Appliance* appliance, int units);
 
 #endif //CFROMJAVA_SHOPPINGCARTLINE_H
