@@ -1,15 +1,14 @@
 #ifndef CFROMJAVA_INVOICELINE_H
 #define CFROMJAVA_INVOICELINE_H
 
+#include "ShoppingCartLine.h"
+
 typedef struct InvoiceLine{
-    char* id;
-    char* article;
+    char* applianceId;
     int units;
 }InvoiceLine;
 
-
 //functions
-InvoiceLine* createInvoiceLine(char* id, char* article, int units);
-
-
+InvoiceLine* createInvoiceLine(ShoppingCartLine* cartLine);
+void destroyInvoiceLine(InvoiceLine* invoiceLine);
 #endif //CFROMJAVA_INVOICELINE_H

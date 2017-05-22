@@ -65,8 +65,8 @@ static void grow(Parking* parking){
 
 /*
     Function: amountOfCarsParked
-    Description: returns the amount of Cars parked in the given Parking
-    Returns: int represent the amount of Cars parked in the given Parking
+    Description: returns the units of Cars parked in the given Parking
+    Returns: int represent the units of Cars parked in the given Parking
 */
 
 int amountOfCarsParked(Parking* parking){

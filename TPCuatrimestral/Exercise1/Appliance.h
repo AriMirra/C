@@ -7,12 +7,13 @@
 typedef struct Appliance{
     Label* label;
     char* name;
-    char* description;
+    char* model;
     int price;
 }Appliance;
 
 // functions
-Appliance* createAppliance(char* name, char* description, int price, Label* label);
+Appliance* createAppliance(char* name, char* model, int price, char* id);
+void destroyAppliance(Appliance* appliance);
 
 
 

@@ -2,13 +2,13 @@
 #include <string.h>
 #include "InvoiceLine.h"
 
-InvoiceLine* createInvoiceLine(char* id, char* article, int units){
+InvoiceLine* createInvoiceLine(ShoppingCartLine* cartLine){
     InvoiceLine* result = malloc(sizeof(InvoiceLine));
-    result->id = malloc(sizeof(char)*strlen(id));
-    result->article = malloc(sizeof(char)*strlen(article));
+    result->applianceId = malloc(sizeof(char)*strlen(cartLine->appliance->label->id));
+    strcpy(result->applianceId, cartLine->appliance->label->id);
+    result->units = cartLine->units;
+}
 
-    strcpy(result->id, id);
-    strcpy(result->article, article);
-    result->units = units;
-    return result;
+void destroyInvoiceLine(InvoiceLine* invoiceLine){
+    free(invoiceLine);
 }

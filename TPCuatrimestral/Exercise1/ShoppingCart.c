@@ -12,7 +12,7 @@ ShoppingCart* createShoppingCart(char* id){
 }
 
 Invoice* produceInvoice(ShoppingCart* cart, char* id, int* toPay){
-    Invoice* result = createInvoice(id, total(cart));
+    Invoice* result = createInvoice(cart);
     return result;
 }
 
