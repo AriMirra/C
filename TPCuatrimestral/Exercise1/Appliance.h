@@ -15,6 +15,4 @@ typedef struct Appliance{
 Appliance* createAppliance(char* name, char* model, int price, char* id);
 void destroyAppliance(Appliance* appliance);
 
-
-
 #endif //CFROMJAVA_APPLIANCE_H

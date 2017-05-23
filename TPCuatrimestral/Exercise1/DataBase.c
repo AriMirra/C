@@ -48,10 +48,10 @@ Manufacturer* getManufacturer(char* name, DataBase* database){
     return NULL;
 }
 
-Manufacturer* getAppliance(char* name, DataBase* database){
-    for(int i = 0; i < manufacturersAmount(database->manufacturers); i++){
-        if(strcmp(name,database->manufacturers[i]->name))
-            return database->manufacturers[i];
+Appliance* getAppliance(char* name, DataBase* database){
+    for(int i = 0; i < appliancesAmount(database->appliances); i++){
+        if(strcmp(name,database->appliances[i]->name))
+            return database->appliances[i];
     }
     return NULL;
 }
