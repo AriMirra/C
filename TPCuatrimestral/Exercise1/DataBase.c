@@ -11,6 +11,7 @@ DataBase* newDatabase(){
     result->amountOfAppliances = 0;
     result->amountOfProviders = 0;
     result->amountOfManufacturers = 0;
+    result->applianceIDGenerator = 1;
     return result;
 }
 
@@ -78,4 +79,59 @@ void addAppliance(DataBase* database, Appliance* appliance, char* providerName, 
     }else{
         growAppliance(database);
     }
+}
+
+int getNextApplianceId(DataBase* database){
+    int result = database->applianceIDGenerator;
+    database->applianceIDGenerator += 1;
+    return result;
+}
+
+void removeManufacturer(DataBase* database, char* manufacturerName){
+    for(int i = 0; i < database->amountOfManufacturers; i++){
+        if(strcmp(database->manufacturers[i]->name, manufacturerName)){
+            Manufacturer* result = database->manufacturers[i];
+            for (int j = i; j < database->amountOfManufacturers; j++){
+                database->manufacturers[j] = database->manufacturers[j+1];
+            }
+            destroyManufacturer(result);
+            return;
+        }
+    }
+}
+
+void removeProvider(DataBase* database, char* providerName){
+    for(int i = 0; i < database->amountOfProviders; i++){
+        if(strcmp(database->providers[i]->name, providerName)){
+            Provider* result = database->providers[i];
+            for (int j = i; j < database->amountOfProviders; j++){
+                database->providers[j] = database->providers[j+1];
+            }
+            destroyProvider(result);
+            return;
+        }
+    }
+}
+
+void removeAppliance(DataBase* database, char* applianceName){
+    for(int i = 0; i < database->amountOfAppliances; i++){
+        if(strcmp(database->appliances[i]->name, applianceName)){
+            Appliance* result = database->appliances[i];
+            for (int j = i; j < database->amountOfAppliances; j++){
+                database->appliances[j] = database->appliances[j+1];
+            }
+            destroyAppliance(result);
+            return;
+        }
+    }
+}
+
+void destroyDataBase(DataBase* dataBase){
+    for (int i = 0; i < dataBase->amountOfManufacturers; i++)
+        destroyManufacturer(dataBase->manufacturers[i]);
+    for (int i = 0; i < dataBase->amountOfProviders; i++)
+        destroyProvider(dataBase->providers[i]);
+    for (int i = 0; i < dataBase->amountOfAppliances; i++)
+        destroyAppliance(dataBase->appliances[i]);
+    free(dataBase);
 }

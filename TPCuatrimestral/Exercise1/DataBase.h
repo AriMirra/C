@@ -32,9 +32,9 @@ int getNextApplianceId(DataBase* database);
 Manufacturer* getManufacturer(char* name, DataBase* database);
 Provider* getProvider(char* name, DataBase* database);
 Appliance* getAppliance(char* name, DataBase* database);
-void removeManufacturer(int idManufacturer, DataBase* database);
-void removeProvider(int idProvider, DataBase* database);
-void removeAppliance(int idAppliance, DataBase* database);
+void removeManufacturer(DataBase* database, char* manufacturerName);
+void removeProvider(DataBase* database, char* providerName);
+void removeAppliance(DataBase* database, char* applianceName);
 void destroyDataBase(DataBase* dataBase);
 
 

@@ -19,3 +19,12 @@ Provider* createProvider(char* name, char* description, char* address, char* cit
     strcpy(result->web, web);
     return result;
 }
+
+void destroyProvider(Provider* provider){
+    free(provider->address);
+    free(provider->web);
+    free(provider->city);
+    free(provider->description);
+    free(provider->name);
+    free(provider);
+}

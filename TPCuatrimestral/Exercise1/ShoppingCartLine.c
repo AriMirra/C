@@ -8,3 +8,8 @@ ShoppingCartLine* createShoppingCartLine(Appliance* appliance, int units){
     result->units = units;
     return result;
 }
+
+void destroyShoppingCartLine(ShoppingCartLine* shoppingCartLine){
+    destroyAppliance(shoppingCartLine->appliance);
+    free(shoppingCartLine);
+}

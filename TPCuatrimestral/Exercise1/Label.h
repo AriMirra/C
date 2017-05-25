@@ -8,5 +8,5 @@ typedef struct  Label{
 
 //functions
 Label* createLabel(char* name, char* id);
-
+void destroyLabel(Label* label);
 #endif //CFROMJAVA_LABEL_H

@@ -20,5 +20,6 @@ void addAppliance(ShoppingCart* cart, Appliance* appliance, int amount);
 int isFull(ShoppingCart *pCart);
 void grow(ShoppingCart *cart);
 int total(ShoppingCart* cart);
+void destroyShoppingCart(ShoppingCart* shoppingCart);
 
 #endif //CFROMJAVA_SHOPPINGCART_H

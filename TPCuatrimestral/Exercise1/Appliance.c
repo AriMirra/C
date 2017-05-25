@@ -15,5 +15,7 @@ Appliance* createAppliance(char* name, char* model, int price, char* id) {
 
 void destroyAppliance(Appliance* appliance) {
     free(appliance->name);
+    free(appliance->model);
+    destroyLabel(appliance->label);
     free(appliance);
 }

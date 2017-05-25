@@ -38,3 +38,7 @@ int total(ShoppingCart* cart){
     }
     return result;
 }
+
+void destroyShoppingCart(ShoppingCart* shoppingCart){
+    
+}

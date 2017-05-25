@@ -11,3 +11,9 @@ Label* createLabel(char* name, char* id){
     strcpy(result->id, id);
     return result;
 }
+
+void destroyLabel(Label* label){
+    free(label->name);
+    free(label->id);
+    free(label);
+}

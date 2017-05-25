@@ -10,5 +10,6 @@ typedef struct ShoppingCartLine{
 
 //functions
 ShoppingCartLine* createShoppingCartLine(Appliance* appliance, int units);
+void destroyShoppingCartLine(ShoppingCartLine* shoppingCartLine);
 
 #endif //CFROMJAVA_SHOPPINGCARTLINE_H

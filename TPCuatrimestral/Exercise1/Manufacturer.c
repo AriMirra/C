@@ -19,3 +19,12 @@ Manufacturer* createManufacturer(char* name, char* description, char* address, c
     strcpy(result->web, web);
     return result;
 }
+
+void destroyManufacturer(Manufacturer* manufacturer){
+    free(manufacturer->name);
+    free(manufacturer->address);
+    free(manufacturer->city);
+    free(manufacturer->description);
+    free(manufacturer->web);
+    free(manufacturer);
+}

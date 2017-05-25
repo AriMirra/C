@@ -10,5 +10,6 @@ InvoiceLine* createInvoiceLine(ShoppingCartLine* cartLine){
 }
 
 void destroyInvoiceLine(InvoiceLine* invoiceLine){
+    free(invoiceLine->applianceId);
     free(invoiceLine);
 }

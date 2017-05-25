@@ -12,6 +12,7 @@ typedef struct Manufacturer{
 
 //functions
 Manufacturer* createManufacturer(char* name, char* description, char* address, char* city, char* telephoneNumber, char* web);
+void destroyManufacturer(Manufacturer* manufacturer);
 
 
 #endif //CFROMJAVA_MANUFACTURER_H
