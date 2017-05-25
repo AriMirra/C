@@ -8,26 +8,38 @@
 typedef struct DataBase{
     Manufacturer** manufacturers;
     int amountOfManufacturers;
+    int manufacturerMaxCapacity;
 
     Provider** providers;
     int amountOfProviders;
+    int providerMaxCapacity;
 
     Appliance** appliances;
     int amountOfAppliances;
-
+    int applianceMaxCapacity;
+    int applianceIDGenerator;
 }DataBase;
 
 //functions
 DataBase* createDataBase();
+void growManufacturer(DataBase* database);
+void growProvider(DataBase* database);
+void growAppliance(DataBase* database);
+void addManufacturer(DataBase* database, Manufacturer* manufacturer);
+void addProvider(DataBase* database, Provider* provider);
+void addAppliance(DataBase* database, Appliance* appliance, char* providerName, char* ManufacturerName);
+int getNextProviderId(DataBase* database);
+int getNextApplianceId(DataBase* database);
+int getNextManufacturerId(DataBase* database);
+Manufacturer* getManufacturer(char* name, DataBase* database);
+Provider* getProvider(char* name, DataBase* database);
+Appliance* getAppliance(char* name, DataBase* database);
+void removeManufacturer(int idManufacturer, DataBase* database);
+void removeProvider(int idProvider, DataBase* database);
+void removeAppliance(int idAppliance, DataBase* database);
 int providersAmount(Provider** providers);
 int manufacturersAmount(Manufacturer** manufacturers);
 int appliancesAmount(Appliance** appliances);
-Provider* getProvider(char* name, DataBase* database);
-Manufacturer* getManufacturer(char* name, DataBase* database);
-Appliance* getAppliance(char* name, DataBase* database);
-void addProvider(Provider* provider);
-void addManufacturer(Manufacturer* manufacturer);
-void addAppliance(Appliance* appliance, char* providerName, char* ManufacturerName);
-//en el addAppliance le seteas a la appliance su id
+
 
 #endif //CFROMJAVA_DataBase_H
