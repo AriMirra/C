@@ -4,12 +4,12 @@
 
 Provider* createProvider(char* name, char* description, char* address, char* city, char* telephoneNumber, char* web){
     Provider* result = malloc(sizeof(Provider));
-    result->name = malloc(sizeof(char)*strlen(name));
-    result->description = malloc(sizeof(char)*strlen(description));
-    result->address = malloc(sizeof(char)*strlen(address));
-    result->city = malloc(sizeof(char)*strlen(city));
-    result->telephoneNumber = malloc(sizeof(char)*strlen(telephoneNumber));
-    result->web = malloc(sizeof(char)*strlen(web));
+    result->name = malloc(sizeof(char)*strlen(name)+1);
+    result->description = malloc(sizeof(char)*strlen(description)+1);
+    result->address = malloc(sizeof(char)*strlen(address)+1);
+    result->city = malloc(sizeof(char)*strlen(city)+1);
+    result->telephoneNumber = malloc(sizeof(char)*strlen(telephoneNumber)+1);
+    result->web = malloc(sizeof(char)*strlen(web)+1);
 
     strcpy(result->name, name);
     strcpy(result->description, description);

@@ -5,9 +5,6 @@ Invoice* createInvoice(ShoppingCart* cart) {
     Invoice* result = malloc(sizeof(Invoice));
     result->toPay = total(cart);
     result->invoiceLines = malloc(sizeof(InvoiceLine) * cart->appliancesAmount);
-
-
-
     return result;
 }
 

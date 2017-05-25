@@ -2,7 +2,7 @@
 
 ShoppingCart* createShoppingCart(char* id){
     ShoppingCart* result = malloc(sizeof(ShoppingCart));
-    result->id = malloc(sizeof(char)*strlen(id));
+    result->id = malloc(sizeof(char)*strlen(id)+1);
     result->capacity = 10;
     result->appliances = malloc(sizeof(Appliance*)*result->capacity);
 

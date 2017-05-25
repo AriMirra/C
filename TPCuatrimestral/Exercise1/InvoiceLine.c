@@ -4,7 +4,7 @@
 
 InvoiceLine* createInvoiceLine(ShoppingCartLine* cartLine){
     InvoiceLine* result = malloc(sizeof(InvoiceLine));
-    result->applianceId = malloc(sizeof(char)*strlen(cartLine->appliance->label->id));
+    result->applianceId = malloc(sizeof(char)*strlen(cartLine->appliance->label->id)+1);
     strcpy(result->applianceId, cartLine->appliance->label->id);
     result->units = cartLine->units;
 }

@@ -14,24 +14,24 @@ DataBase* newDatabase(){
     return result;
 }
 
-Provider* getProvider(char* name, DataBase* database){
-    for(int i = 0; i < providersAmount(database->providers); i++){
-            if(strcmp(name,database->providers[i]->name))
-                return database->providers[i];
-    }
-    return NULL;
-}
-
 Manufacturer* getManufacturer(char* name, DataBase* database){
-    for(int i = 0; i < manufacturersAmount(database->manufacturers); i++){
+    for(int i = 0; i < database->amountOfManufacturers; i++){
         if(strcmp(name,database->manufacturers[i]->name))
             return database->manufacturers[i];
     }
     return NULL;
 }
 
+Provider* getProvider(char* name, DataBase* database){
+    for(int i = 0; i < database->amountOfProviders; i++){
+            if(strcmp(name,database->providers[i]->name))
+                return database->providers[i];
+    }
+    return NULL;
+}
+
 Appliance* getAppliance(char* name, DataBase* database){
-    for(int i = 0; i < appliancesAmount(database->appliances); i++){
+    for(int i = 0; i < database->amountOfAppliances; i++){
         if(strcmp(name,database->appliances[i]->name))
             return database->appliances[i];
     }

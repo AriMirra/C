@@ -2,8 +2,8 @@
 
 Appliance* createAppliance(char* name, char* model, int price, char* id) {
     Appliance* result = malloc(sizeof(Appliance));
-    result->name = malloc(sizeof(char)*strlen(name));
-    result->model = malloc(sizeof(char)*strlen(model));
+    result->name = malloc(sizeof(char)*strlen(name)+1);
+    result->model = malloc(sizeof(char)*strlen(model)+1);
     result->label = malloc(sizeof(Label));
 
     strcpy(result->name, name);
