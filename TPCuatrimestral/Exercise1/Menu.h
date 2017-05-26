@@ -1,6 +1,0 @@
-
-#ifndef CFROMJAVA_MENU_H
-#define CFROMJAVA_MENU_H
-
-
-#endif //CFROMJAVA_MENU_H

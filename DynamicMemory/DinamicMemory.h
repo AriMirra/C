@@ -1,8 +1,0 @@
-//
-// Created by arimi on 16-Mar-17.
-//
-
-#ifndef CFROMJAVA_DINAMICMEMORY_H
-#define CFROMJAVA_DINAMICMEMORY_H
-
-#endif //CFROMJAVA_DINAMICMEMORY_H
