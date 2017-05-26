@@ -133,5 +133,8 @@ void destroyDataBase(DataBase* dataBase){
         destroyProvider(dataBase->providers[i]);
     for (int i = 0; i < dataBase->amountOfAppliances; i++)
         destroyAppliance(dataBase->appliances[i]);
+    free(dataBase->manufacturers);
+    free(dataBase->providers);
+    free(dataBase->appliances);
     free(dataBase);
 }
