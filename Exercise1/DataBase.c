@@ -15,7 +15,7 @@ DataBase* newDatabase(){
     return result;
 }
 
-Manufacturer* getManufacturer(char* name, DataBase* database){
+Manufacturer* getManufacturer(DataBase* database,char* name){
     for(int i = 0; i < database->amountOfManufacturers; i++){
         if(strcmp(name,database->manufacturers[i]->name))
             return database->manufacturers[i];
@@ -23,7 +23,7 @@ Manufacturer* getManufacturer(char* name, DataBase* database){
     return NULL;
 }
 
-Provider* getProvider(char* name, DataBase* database){
+Provider* getProvider(DataBase* database,char* name){
     for(int i = 0; i < database->amountOfProviders; i++){
             if(strcmp(name,database->providers[i]->name))
                 return database->providers[i];
@@ -31,7 +31,7 @@ Provider* getProvider(char* name, DataBase* database){
     return NULL;
 }
 
-Appliance* getAppliance(char* name, DataBase* database){
+Appliance* getAppliance(DataBase* database,char* name){
     for(int i = 0; i < database->amountOfAppliances; i++){
         if(strcmp(name,database->appliances[i]->name))
             return database->appliances[i];
@@ -72,8 +72,10 @@ void addProvider(DataBase* database, Provider* provider){
     }
 }
 
-void addAppliance(DataBase* database, Appliance* appliance, char* providerName, char* ManufacturerName){
+void addAppliance(DataBase* database, Appliance* appliance, char* manufacturerName, char* providerName){
     if(database->amountOfAppliances != database->applianceMaxCapacity){
+        setManufacturer(appliance,manufacturerName);
+        setProvider(appliance,providerName);
         database->appliances[database->amountOfAppliances] = appliance;
         database->amountOfAppliances++;
     }else{
@@ -87,7 +89,7 @@ int getNextApplianceId(DataBase* database){
     return result;
 }
 
-void removeManufacturer(char* manufacturerName, DataBase* database){
+int removeManufacturer(DataBase* database,char* manufacturerName){
     for(int i = 0; i < database->amountOfManufacturers; i++){
         if(strcmp(database->manufacturers[i]->name, manufacturerName)){
             Manufacturer* result = database->manufacturers[i];
@@ -95,12 +97,13 @@ void removeManufacturer(char* manufacturerName, DataBase* database){
                 database->manufacturers[j] = database->manufacturers[j+1];
             }
             destroyManufacturer(result);
-            return;
+            return 1;
         }
     }
+    return 0;
 }
 
-void removeProvider(char* providerName, DataBase* database){
+int removeProvider(DataBase* database,char* providerName){
     for(int i = 0; i < database->amountOfProviders; i++){
         if(strcmp(database->providers[i]->name, providerName)){
             Provider* result = database->providers[i];
@@ -108,12 +111,13 @@ void removeProvider(char* providerName, DataBase* database){
                 database->providers[j] = database->providers[j+1];
             }
             destroyProvider(result);
-            return;
+            return 1;
         }
     }
+    return 0;
 }
 
-void removeAppliance(char* applianceName, DataBase* database){
+int removeAppliance(DataBase* database,char* applianceName){
     for(int i = 0; i < database->amountOfAppliances; i++){
         if(strcmp(database->appliances[i]->name, applianceName)){
             Appliance* result = database->appliances[i];
@@ -121,9 +125,10 @@ void removeAppliance(char* applianceName, DataBase* database){
                 database->appliances[j] = database->appliances[j+1];
             }
             destroyAppliance(result);
-            return;
+            return 1;
         }
     }
+    return 0;
 }
 
 void destroyDataBase(DataBase* dataBase){

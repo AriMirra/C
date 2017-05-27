@@ -16,6 +16,16 @@ Appliance* createAppliance(char* name, char* model, int price, char* id) {
 void destroyAppliance(Appliance* appliance) {
     free(appliance->name);
     free(appliance->model);
+    free(appliance->manufacturerName);
+    free(appliance->providerName);
     destroyLabel(appliance->label);
     free(appliance);
+}
+
+void setManufacturer(Appliance* appliance, char* manufacturerName){
+    appliance->manufacturerName = manufacturerName;
+}
+
+void setProvider(Appliance* appliance, char* providerName){
+    appliance->providerName = providerName;
 }

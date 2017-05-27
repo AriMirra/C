@@ -27,14 +27,14 @@ void growProvider(DataBase* database);
 void growAppliance(DataBase* database);
 void addManufacturer(DataBase* database, Manufacturer* manufacturer);
 void addProvider(DataBase* database, Provider* provider);
-void addAppliance(DataBase* database, Appliance* appliance, char* providerName, char* ManufacturerName);
+void addAppliance(DataBase* database, Appliance* appliance, char* manufacturerName, char* providerName);
 int getNextApplianceId(DataBase* database);
-Manufacturer* getManufacturer(char* name, DataBase* database);
-Provider* getProvider(char* name, DataBase* database);
-Appliance* getAppliance(char* name, DataBase* database);
-void removeManufacturer(char* manufacturerName, DataBase* database);
-void removeProvider(char* providerName, DataBase* database);
-void removeAppliance(char* applianceName, DataBase* database);
+Manufacturer* getManufacturer(DataBase* database,char* name);
+Provider* getProvider(DataBase* database,char* name);
+Appliance* getAppliance(DataBase* database,char* name);
+int removeManufacturer(DataBase* database,char* manufacturerName);
+int removeProvider(DataBase* database,char* providerName);
+int removeAppliance(DataBase* database,char* applianceName);
 void destroyDataBase(DataBase* dataBase);
 
 
