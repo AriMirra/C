@@ -161,33 +161,23 @@ void addApplianceMenu(DataBase* database){
     printf("\n");
     //list, check and save manufacturer
     listManufacturers(database);
-    int invalidManufacturer = 1;
     char* manufacturer;
-    while (invalidManufacturer){
+    while (1){
         printf("Manufacturer:\n");
         char* manufacturerName = scanChar();
-        for(int i = 0; i < database->amountOfManufacturers; i++){
-            if(strcmp(manufacturerName,database->manufacturers[i]->name)){
-                invalidManufacturer = 0;
-                manufacturer = manufacturerName;
-                break;
-            }
+        if(manufacturerExist(database, manufacturerName)){
+            break;
         }
     }
     printf("\n");
     //list, check and save provider
     listProviders(database);
-    int invalidProvider = 1;
     char* provider;
-    while (invalidProvider){
+    while (1){
         printf("Provider:\n");
         char* providerName = scanChar();
-        for(int i = 0; i < database->amountOfProviders; i++){
-            if(strcmp(providerName,database->providers[i]->name)){
-                invalidProvider = 0;
-                provider = providerName;
-                break;
-            }
+        if(providerExist(database, providerName)){
+            break;
         }
     }
     printf("\n");

@@ -35,7 +35,8 @@ Appliance* getAppliance(DataBase* database,char* name);
 int removeManufacturer(DataBase* database,char* manufacturerName);
 int removeProvider(DataBase* database,char* providerName);
 int removeAppliance(DataBase* database,char* applianceName);
+int manufacturerExist(DataBase* database, char* manufacturerName);
+int providerExist(DataBase* database, char* providerName);
+int applianceExist(DataBase* database, char* applianceName);
 void destroyDataBase(DataBase* dataBase);
-
-
 #endif //CFROMJAVA_DataBase_H

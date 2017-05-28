@@ -131,6 +131,33 @@ int removeAppliance(DataBase* database,char* applianceName){
     return 0;
 }
 
+int manufacturerExist(DataBase* database, char* manufacturerName){
+    for(int i = 0; i < database->amountOfManufacturers; i++){
+        if(strcmp(manufacturerName,database->manufacturers[i]->name)){
+            return 1;
+        }
+    }
+    return 0;
+}
+
+int providerExist(DataBase* database, char* providerName){
+    for(int i = 0; i < database->amountOfProviders; i++){
+        if(strcmp(providerName,database->providers[i]->name)){
+            return 1;
+        }
+    }
+    return 0;
+}
+
+int applianceExist(DataBase* database, char* applianceName){
+    for(int i = 0; i < database->amountOfAppliances; i++){
+        if(strcmp(applianceName,database->appliances[i]->name)){
+            return 1;
+        }
+    }
+    return 0;
+}
+
 void destroyDataBase(DataBase* dataBase){
     for (int i = 0; i < dataBase->amountOfManufacturers; i++)
         destroyManufacturer(dataBase->manufacturers[i]);

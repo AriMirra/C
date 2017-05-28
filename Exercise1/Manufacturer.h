@@ -1,4 +1,4 @@
-#ifndef CFROMJAVA_MANUFACTURER_H
+ #ifndef CFROMJAVA_MANUFACTURER_H
 #define CFROMJAVA_MANUFACTURER_H
 
 typedef struct Manufacturer{

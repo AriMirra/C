@@ -4,7 +4,8 @@
 #include "ShoppingCartLine.h"
 
 typedef struct InvoiceLine{
-    char* applianceId;
+    char* applianceName;
+    int priceOfAppliance;
     int units;
 }InvoiceLine;
 
