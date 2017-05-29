@@ -97,6 +97,7 @@ int removeManufacturer(DataBase* database,char* manufacturerName){
                 database->manufacturers[j] = database->manufacturers[j+1];
             }
             destroyManufacturer(result);
+            database->amountOfManufacturers--;
             return 1;
         }
     }
@@ -111,6 +112,7 @@ int removeProvider(DataBase* database,char* providerName){
                 database->providers[j] = database->providers[j+1];
             }
             destroyProvider(result);
+            database->amountOfProviders--;
             return 1;
         }
     }
@@ -125,6 +127,7 @@ int removeAppliance(DataBase* database,char* applianceName){
                 database->appliances[j] = database->appliances[j+1];
             }
             destroyAppliance(result);
+            database->amountOfAppliances--;
             return 1;
         }
     }

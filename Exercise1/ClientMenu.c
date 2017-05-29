@@ -29,12 +29,14 @@ void addApplianceToCartMenu(DataBase* database, ShoppingCart* cart) {
 
 void checkout(ShoppingCart *cart) {
     Invoice* invoice = createInvoice(cart);
-    printf("Appliance name:   amount");
+    printf("Appliance name:   amount\n");
     for(int i = 0; i < invoice->amountOfLines; i++){
         printf("%s:   %d\n",invoice->invoiceLines[i]->applianceName,invoice->invoiceLines[i]->priceOfAppliance);
     }
     printf("******************\n");
     printf("Total: $%d\n",invoice->toPay);
+    printf("thank you for using our system");
+    destroyShoppingCart(cart);
 }
 
 void ManageCartMenu(ShoppingCart *cart) {
@@ -71,6 +73,8 @@ void clientMenu(DataBase* database){
                 break;
             case 3:
                 checkout(cart);
+                cart = createShoppingCart("new cart");
+                clientMenu(database);
             case -1:
                 return;
             default:

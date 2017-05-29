@@ -22,7 +22,7 @@ void removeApplianceFromCart(ShoppingCart *cart, char* applianceName){
         if(strcmp(cart->appliances[i]->appliance->name, applianceName) == 0){
             ShoppingCartLine* result = cart->appliances[i];
             for (int j = i; j < cart->appliancesAmount; j++){
-                cart->appliances[j]= cart->appliances[j+1];
+                cart->appliances[j] = cart->appliances[j+1];
             }
             destroyShoppingCartLine(result);
             applianceFoundAndRemoved = 1;
