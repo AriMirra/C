@@ -11,11 +11,6 @@ ShoppingCart* createShoppingCart(char* id){
     return result;
 }
 
-Invoice* produceInvoice(ShoppingCart* cart, char* id, int* toPay){
-    Invoice* result = createInvoice(cart);
-    return result;
-}
-
 void addApplianceToCart(ShoppingCart *cart, Appliance *appliance, int amount){
     if (isFull(cart)) grow(cart);
     cart->appliances[cart->appliancesAmount] = createShoppingCartLine(appliance,amount);
@@ -24,7 +19,7 @@ void addApplianceToCart(ShoppingCart *cart, Appliance *appliance, int amount){
 void removeApplianceFromCart(ShoppingCart *cart, char* applianceName){
     int applianceFoundAndRemoved = 0;
     for (int i = 0; i < cart->appliancesAmount; i++){
-        if(strcmp(cart->appliances[i]->appliance->name, applianceName)){
+        if(strcmp(cart->appliances[i]->appliance->name, applianceName) == 0){
             ShoppingCartLine* result = cart->appliances[i];
             for (int j = i; j < cart->appliancesAmount; j++){
                 cart->appliances[j]= cart->appliances[j+1];

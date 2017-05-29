@@ -13,11 +13,17 @@ void addApplianceToCartMenu(DataBase* database, ShoppingCart* cart) {
         printf("Manufacturer: %s\n\n", appliance->manufacturerName);
     }
     printf("Which one do you want to buy? Enter the name: \n");
-    char* applianceName = scanChar();
-    if (applianceExist(database,applianceName)){
-        printf("how many %s would you like to buy?: \n", applianceName);
-        int amount = scanInt();
-        addApplianceToCart(cart,getAppliance(database,applianceName),amount);
+    nameOfAppliance:
+    {
+        char *applianceName = scanChar();
+        if (applianceExist(database, applianceName)) {
+            printf("How many %s would you like to buy?: \n", applianceName);
+            int amount = scanInt();
+            addApplianceToCart(cart, getAppliance(database, applianceName), amount);
+        } else {
+            printf("Please enter a valid name: \n");
+            goto nameOfAppliance;
+        }
     }
 }
 

@@ -1,0 +1,5 @@
+set(SOURCE_FILES Provider.c Provider.h Manufacturer.c Manufacturer.h Appliance.c Appliance.h DataBase.c DataBase.h Invoice.c Invoice.h Label.c Label.h ShoppingCart.c ShoppingCart.h ShoppingCartLine.c ShoppingCartLine.h InvoiceLine.c InvoiceLine.h ClientMenu.c AdminMenu.c)
+add_executable(CFromJava Main1.c)
+add_library(EXERCISE1 ${SOURCE_FILES})
+target_link_libraries(CFromJava EXERCISE1)
+target_link_libraries(CFromJava Util)

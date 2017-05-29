@@ -1,5 +1,5 @@
 #include "DataBase.h"
-DataBase* newDatabase(){
+DataBase* createDataBase(){
     DataBase* result = malloc(sizeof(DataBase));
     int initialSize = 10;
     result->manufacturers = malloc(sizeof(Manufacturer*) * initialSize);
@@ -17,7 +17,7 @@ DataBase* newDatabase(){
 
 Manufacturer* getManufacturer(DataBase* database,char* name){
     for(int i = 0; i < database->amountOfManufacturers; i++){
-        if(strcmp(name,database->manufacturers[i]->name))
+        if(strcmp(name,database->manufacturers[i]->name) == 0)
             return database->manufacturers[i];
     }
     return NULL;
@@ -25,7 +25,7 @@ Manufacturer* getManufacturer(DataBase* database,char* name){
 
 Provider* getProvider(DataBase* database,char* name){
     for(int i = 0; i < database->amountOfProviders; i++){
-            if(strcmp(name,database->providers[i]->name))
+            if(strcmp(name,database->providers[i]->name) == 0)
                 return database->providers[i];
     }
     return NULL;
@@ -33,7 +33,7 @@ Provider* getProvider(DataBase* database,char* name){
 
 Appliance* getAppliance(DataBase* database,char* name){
     for(int i = 0; i < database->amountOfAppliances; i++){
-        if(strcmp(name,database->appliances[i]->name))
+        if(strcmp(name,database->appliances[i]->name) == 0)
             return database->appliances[i];
     }
     return NULL;
@@ -91,7 +91,7 @@ int getNextApplianceId(DataBase* database){
 
 int removeManufacturer(DataBase* database,char* manufacturerName){
     for(int i = 0; i < database->amountOfManufacturers; i++){
-        if(strcmp(database->manufacturers[i]->name, manufacturerName)){
+        if(strcmp(database->manufacturers[i]->name, manufacturerName) == 0){
             Manufacturer* result = database->manufacturers[i];
             for (int j = i; j < database->amountOfManufacturers; j++){
                 database->manufacturers[j] = database->manufacturers[j+1];
@@ -105,7 +105,7 @@ int removeManufacturer(DataBase* database,char* manufacturerName){
 
 int removeProvider(DataBase* database,char* providerName){
     for(int i = 0; i < database->amountOfProviders; i++){
-        if(strcmp(database->providers[i]->name, providerName)){
+        if(strcmp(database->providers[i]->name, providerName) == 0){
             Provider* result = database->providers[i];
             for (int j = i; j < database->amountOfProviders; j++){
                 database->providers[j] = database->providers[j+1];
@@ -119,7 +119,7 @@ int removeProvider(DataBase* database,char* providerName){
 
 int removeAppliance(DataBase* database,char* applianceName){
     for(int i = 0; i < database->amountOfAppliances; i++){
-        if(strcmp(database->appliances[i]->name, applianceName)){
+        if(strcmp(database->appliances[i]->name, applianceName) == 0){
             Appliance* result = database->appliances[i];
             for (int j = i; j < database->amountOfAppliances; j++){
                 database->appliances[j] = database->appliances[j+1];
@@ -133,7 +133,7 @@ int removeAppliance(DataBase* database,char* applianceName){
 
 int manufacturerExist(DataBase* database, char* manufacturerName){
     for(int i = 0; i < database->amountOfManufacturers; i++){
-        if(strcmp(manufacturerName,database->manufacturers[i]->name)){
+        if(strcmp(manufacturerName,database->manufacturers[i]->name)== 0){
             return 1;
         }
     }
@@ -142,7 +142,7 @@ int manufacturerExist(DataBase* database, char* manufacturerName){
 
 int providerExist(DataBase* database, char* providerName){
     for(int i = 0; i < database->amountOfProviders; i++){
-        if(strcmp(providerName,database->providers[i]->name)){
+        if(strcmp(providerName,database->providers[i]->name )== 0){
             return 1;
         }
     }
@@ -151,7 +151,7 @@ int providerExist(DataBase* database, char* providerName){
 
 int applianceExist(DataBase* database, char* applianceName){
     for(int i = 0; i < database->amountOfAppliances; i++){
-        if(strcmp(applianceName,database->appliances[i]->name)){
+        if(strcmp(applianceName,database->appliances[i]->name) == 0){
             return 1;
         }
     }
