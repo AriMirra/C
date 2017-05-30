@@ -18,5 +18,4 @@ Appliance* createAppliance(char* name, char* model, int price, char* id);
 void setManufacturer(Appliance* appliance, char* manufacturerName);
 void setProvider(Appliance* appliance, char* providerName);
 void destroyAppliance(Appliance* appliance);
-
 #endif //CFROMJAVA_APPLIANCE_H

@@ -13,5 +13,4 @@ typedef struct Provider{
 //functions
 Provider* createProvider(char* name, char* description, char* address, char* city, char* telephoneNumber, char* web);
 void destroyProvider(Provider* provider);
-
 #endif //CFROMJAVA_PROVIDER_H

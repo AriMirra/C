@@ -21,5 +21,4 @@ void grow(ShoppingCart *cart);
 int total(ShoppingCart* cart);
 void emptyShoppingCart(ShoppingCart* cart);
 void destroyShoppingCart(ShoppingCart* shoppingCart);
-
 #endif //CFROMJAVA_SHOPPINGCART_H
