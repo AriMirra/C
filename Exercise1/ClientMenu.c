@@ -28,11 +28,10 @@ void addApplianceToCartMenu(DataBase* database, ShoppingCart* cart) {
 
 void checkout(ShoppingCart *cart) {
     if (cart->appliancesAmount > 0) {
-
         Invoice *invoice = createInvoice(cart);
         printf("Appliance name:   amount\n");
         for (int i = 0; i < invoice->amountOfLines; i++) {
-            printf("%s:   %d\n", invoice->invoiceLines[i]->applianceName, invoice->invoiceLines[i]->priceOfAppliance);
+            printf("%s:   %d\n", invoice->invoiceLines[i]->applianceName, invoice->invoiceLines[i]->units);
         }
         printf("******************\n");
         printf("Total: $%d\n", invoice->toPay);
@@ -43,17 +42,19 @@ void checkout(ShoppingCart *cart) {
 }
 
 void ManageCartMenu(ShoppingCart *cart) {
-    printf("You have currently the following items in your cart:\n");
-    for (int i = 0; i < cart->appliancesAmount; i++){
-        printf("%d %s(s)\n", cart->appliances[i]->units, cart->appliances[i]->appliance->name);
-    }
-    printf("Would you like to remove any appliance? type 1 if you do, 0 if you don't\n");
-    int option = scanInt();
-    if (option == 1 && cart->appliancesAmount>0){
-        printf("Enter the name of the appliance you want to remove:\n");
-        removeApplianceFromCart(cart,scanChar());
-        printf("\n");
-    }else printf("You have no items in the cart");
+    if (cart->appliancesAmount > 0) {
+        printf("You have currently the following items in your cart:\n");
+        for (int i = 0; i < cart->appliancesAmount; i++) {
+            printf("%d %s(s)\n", cart->appliances[i]->units, cart->appliances[i]->appliance->name);
+        }
+        printf("Would you like to remove any appliance? type 1 if you do, 0 if you don't\n");
+        int option = scanInt();
+        if (option == 1) {
+            printf("Enter the name of the appliance you want to remove:\n");
+            removeApplianceFromCart(cart, scanChar());
+            printf("\n");
+        } else return;
+    }else printf("You have no items in your cart");
 }
 
 void clientMenu(DataBase* database){

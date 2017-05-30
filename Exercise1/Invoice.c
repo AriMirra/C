@@ -8,6 +8,7 @@ Invoice* createInvoice(ShoppingCart* cart) {
     for(int i = 0; i < cart->appliancesAmount; i++){
         result->invoiceLines[i] = createInvoiceLine(cart->appliances[i]);
     }
+    result->amountOfLines = cart->appliancesAmount;
     return result;
 }
 
