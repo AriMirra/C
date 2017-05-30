@@ -17,7 +17,6 @@ typedef struct DataBase{
     Appliance** appliances;
     int amountOfAppliances;
     int applianceMaxCapacity;
-    int applianceIDGenerator;
 }DataBase;
 
 //functions
@@ -28,7 +27,6 @@ void growAppliance(DataBase* database);
 void addManufacturer(DataBase* database, Manufacturer* manufacturer);
 void addProvider(DataBase* database, Provider* provider);
 void addAppliance(DataBase* database, Appliance* appliance, char* manufacturerName, char* providerName);
-int getNextApplianceId(DataBase* database);
 Manufacturer* getManufacturer(DataBase* database,char* name);
 Provider* getProvider(DataBase* database,char* name);
 Appliance* getAppliance(DataBase* database,char* name);

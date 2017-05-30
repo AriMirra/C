@@ -33,6 +33,7 @@ int main() {
                 adminMenu(database);
                 break;
             case -1:
+                destroyDataBase(database);
                 exit(0);
             default:
                 printf("Enter one of the options above\n");

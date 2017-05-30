@@ -11,7 +11,6 @@ DataBase* createDataBase(){
     result->amountOfAppliances = 0;
     result->amountOfProviders = 0;
     result->amountOfManufacturers = 0;
-    result->applianceIDGenerator = 1;
     return result;
 }
 
@@ -80,13 +79,8 @@ void addAppliance(DataBase* database, Appliance* appliance, char* manufacturerNa
         database->amountOfAppliances++;
     }else{
         growAppliance(database);
+        addAppliance(database,appliance,manufacturerName,providerName);
     }
-}
-
-int getNextApplianceId(DataBase* database){
-    int result = database->applianceIDGenerator;
-    database->applianceIDGenerator += 1;
-    return result;
 }
 
 int removeManufacturer(DataBase* database,char* manufacturerName){
@@ -136,7 +130,7 @@ int removeAppliance(DataBase* database,char* applianceName){
 
 int manufacturerExist(DataBase* database, char* manufacturerName){
     for(int i = 0; i < database->amountOfManufacturers; i++){
-        if(strcmp(manufacturerName,database->manufacturers[i]->name)== 0){
+        if(strcmp(manufacturerName,database->manufacturers[i]->name) == 0){
             return 1;
         }
     }
@@ -145,7 +139,7 @@ int manufacturerExist(DataBase* database, char* manufacturerName){
 
 int providerExist(DataBase* database, char* providerName){
     for(int i = 0; i < database->amountOfProviders; i++){
-        if(strcmp(providerName,database->providers[i]->name )== 0){
+        if(strcmp(providerName,database->providers[i]->name) == 0){
             return 1;
         }
     }

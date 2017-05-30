@@ -24,7 +24,6 @@ void removeApplianceFromCart(ShoppingCart *cart, char* applianceName){
             for (int j = i; j < cart->appliancesAmount; j++){
                 cart->appliances[j] = cart->appliances[j+1];
             }
-            destroyShoppingCartLine(result);
             applianceFoundAndRemoved = 1;
             break;
         }
@@ -48,6 +47,14 @@ int total(ShoppingCart* cart){
         result += ((cart->appliances[i]->appliance->price)*cart->appliances[i]->units);
     }
     return result;
+}
+
+void emptyShoppingCart(ShoppingCart* cart) {
+    int j = cart->appliancesAmount;
+    for (int i = 0; i < j; i++) {
+        destroyShoppingCartLine(cart->appliances[i]);
+        cart->appliancesAmount--;
+    }
 }
 
 void destroyShoppingCart(ShoppingCart* shoppingCart){

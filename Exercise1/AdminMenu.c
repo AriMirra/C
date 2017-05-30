@@ -163,9 +163,10 @@ void addApplianceMenu(DataBase* database){
     listManufacturers(database);
     char* manufacturer;
     while (1){
-        printf("Manufacturer:\n");
+        printf("Name of the Manufacturer:\n");
         char* manufacturerName = scanChar();
         if(manufacturerExist(database, manufacturerName)){
+            manufacturer = manufacturerName;
             break;
         }
     }
@@ -174,16 +175,17 @@ void addApplianceMenu(DataBase* database){
     listProviders(database);
     char* provider;
     while (1){
-        printf("Provider:\n");
+        printf("Name of the Provider:\n");
         char* providerName = scanChar();
         if(providerExist(database, providerName)){
+            provider = providerName;
             break;
         }
     }
     printf("\n");
     //create appliance and add it to the database
     Appliance* appliance = createAppliance(name,model,price,id);
-    addAppliance(database, appliance,manufacturer,provider);
+    addAppliance(database,appliance,manufacturer,provider);
     //free variables used
     free(name);
     free(model);

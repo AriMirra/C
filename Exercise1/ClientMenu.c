@@ -1,10 +1,9 @@
-#include <stdlib.h>
 #include <stdio.h>
 #include "Database.h"
 #include "ShoppingCart.h"
 #include "Invoice.h"
 #include "../Util/ScanUtil.h"
-
+DataBase* setup();
 void addApplianceToCartMenu(DataBase* database, ShoppingCart* cart) {
     printf("Items available: \n");
     for (int i = 0; i < database->amountOfAppliances; i++){
@@ -28,15 +27,19 @@ void addApplianceToCartMenu(DataBase* database, ShoppingCart* cart) {
 }
 
 void checkout(ShoppingCart *cart) {
-    Invoice* invoice = createInvoice(cart);
-    printf("Appliance name:   amount\n");
-    for(int i = 0; i < invoice->amountOfLines; i++){
-        printf("%s:   %d\n",invoice->invoiceLines[i]->applianceName,invoice->invoiceLines[i]->priceOfAppliance);
-    }
-    printf("******************\n");
-    printf("Total: $%d\n",invoice->toPay);
-    printf("thank you for using our system");
-    destroyShoppingCart(cart);
+    if (cart->appliancesAmount > 0) {
+
+        Invoice *invoice = createInvoice(cart);
+        printf("Appliance name:   amount\n");
+        for (int i = 0; i < invoice->amountOfLines; i++) {
+            printf("%s:   %d\n", invoice->invoiceLines[i]->applianceName, invoice->invoiceLines[i]->priceOfAppliance);
+        }
+        printf("******************\n");
+        printf("Total: $%d\n", invoice->toPay);
+        printf("thank you for using our system\n\n");
+        emptyShoppingCart(cart);
+        return;
+    }else printf("You have no items in the cart");
 }
 
 void ManageCartMenu(ShoppingCart *cart) {
@@ -44,24 +47,24 @@ void ManageCartMenu(ShoppingCart *cart) {
     for (int i = 0; i < cart->appliancesAmount; i++){
         printf("%d %s(s)\n", cart->appliances[i]->units, cart->appliances[i]->appliance->name);
     }
-    printf("Would you like to remove any appliance? type 1 if you do, 0 to checkout\n");
+    printf("Would you like to remove any appliance? type 1 if you do, 0 if you don't\n");
     int option = scanInt();
-    if (option){
+    if (option == 1 && cart->appliancesAmount>0){
         printf("Enter the name of the appliance you want to remove:\n");
         removeApplianceFromCart(cart,scanChar());
-    }else{
-        checkout(cart);
-    }
+        printf("\n");
+    }else printf("You have no items in the cart");
 }
 
 void clientMenu(DataBase* database){
-    ShoppingCart* cart = createShoppingCart("cart n1");
+    ShoppingCart* cart = createShoppingCart("Cart");
     while(1) {
         printf("\n");
         printf("********************\n");
         printf("Client Menu\n");
         printf("1. Buy Appliances\n");
-        printf("2. Manage cart and checkout\n");;
+        printf("2. Manage cart\n");
+        printf("3. Checkout\n");
         printf("-1. Exit\n");
         int choice = scanInt();
         switch (choice) {
@@ -73,9 +76,9 @@ void clientMenu(DataBase* database){
                 break;
             case 3:
                 checkout(cart);
-                cart = createShoppingCart("new cart");
-                clientMenu(database);
+                break;
             case -1:
+                destroyShoppingCart(cart);
                 return;
             default:
                 printf("Please enter one of the options\n");
