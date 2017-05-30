@@ -1,7 +1,10 @@
 #include <malloc.h>
 #include <mem.h>
 #include "Label.h"
-
+/*
+ * Description: creates a Label
+ * Returns: the Label created
+ */
 Label* createLabel(char* name, char* id){
     Label* result = malloc(sizeof(Label));
     result->name = malloc(sizeof(char)*strlen(name)+1);
@@ -12,6 +15,10 @@ Label* createLabel(char* name, char* id){
     return result;
 }
 
+/*
+ * Description: Deallocates memory assigned for a Label and all its components
+ * Return: void
+ */
 void destroyLabel(Label* label){
     free(label->name);
     free(label->id);

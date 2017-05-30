@@ -1,6 +1,9 @@
 #include <afxres.h>
 #include "Invoice.h"
-
+/*
+ * Description: creates an Invoice with the components on the ShoppingCart
+ * Returns: the Invoice created
+ */
 Invoice* createInvoice(ShoppingCart* cart) {
     Invoice* result = malloc(sizeof(Invoice));
     result->toPay = total(cart);
@@ -12,6 +15,10 @@ Invoice* createInvoice(ShoppingCart* cart) {
     return result;
 }
 
+/*
+ * Description: Deallocates memory assigned for an Invoice and all its components
+ * Return: void
+ */
 void destroyInvoice(Invoice* invoice){
     for(int i = 0; i < invoice->amountOfLines; i++){
         destroyInvoiceLine(invoice->invoiceLines[i]);

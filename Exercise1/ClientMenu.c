@@ -29,9 +29,10 @@ void addApplianceToCartMenu(DataBase* database, ShoppingCart* cart) {
 void checkout(ShoppingCart *cart) {
     if (cart->appliancesAmount > 0) {
         Invoice *invoice = createInvoice(cart);
-        printf("Appliance name:   amount\n");
+        printf("Appliance name   price    amount\n");
         for (int i = 0; i < invoice->amountOfLines; i++) {
-            printf("%s:   %d\n", invoice->invoiceLines[i]->applianceName, invoice->invoiceLines[i]->units);
+            printf("%s    %d    %d\n", invoice->invoiceLines[i]->applianceName,
+                   invoice->invoiceLines[i]->priceOfAppliance, invoice->invoiceLines[i]->units);
         }
         printf("******************\n");
         printf("Total: $%d\n", invoice->toPay);

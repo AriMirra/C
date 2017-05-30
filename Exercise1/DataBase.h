@@ -4,7 +4,10 @@
 #include "Appliance.h"
 #include "Manufacturer.h"
 #include "Provider.h"
-
+/*
+ * Description: The DataBase holds the information of the hole system,
+ *              is where manufacturers, providers and appliances are added, consulted or deleted
+ */
 typedef struct DataBase{
     Manufacturer** manufacturers;
     int amountOfManufacturers;

@@ -2,28 +2,40 @@
 #include <malloc.h>
 #include "Database.h"
 #include "../Util/ScanUtil.h"
-
+/*
+ * Description: lists the manufacturers in the database
+ * Returns: void
+ */
 void listManufacturers(DataBase* database) {
     for(int i = 0; i < database->amountOfManufacturers; i++){
         Manufacturer* manufacturer = database->manufacturers[i];
         printf("%s\n" "Description: %s\n", manufacturer->name,manufacturer->description);
     }
 }
-
+/*
+ * Description: lists the providers in the database
+ * Returns: void
+ */
 void listProviders(DataBase* database) {
     for(int i = 0; i < database->amountOfProviders; i++){
         Provider* provider = database->providers[i];
         printf("%s\n" "Description: %s\n", provider->name,provider->description);
     }
 }
-
+/*
+ * Description: lists the appliances in the database
+ * Returns: void
+ */
 void listAppliances(DataBase* database) {
     for(int i = 0; i < database->amountOfAppliances; i++){
         Appliance* appliance = database->appliances[i];
         printf("%s\n", appliance->name);
     }
 }
-
+/*
+ * Description: asks for the details of a manufacturer, creates one and adds them to the database
+ * Returns: void
+ */
 void addManufacturerMenu(DataBase* database){
     printf("Add Manufacturer:\n");
     printf("Name:\n");
@@ -48,13 +60,19 @@ void addManufacturerMenu(DataBase* database){
     free(phone);
 }
 
-
+/*
+ * Description: removes a manufacturer from the database
+ * Returns: void
+ */
 void removeManufacturerMenu(DataBase *database){
     printf("Name of the manufacturer to remove:\n");
     if(removeManufacturer(database,scanChar())) printf("Manufacturer removed successfully\n");
     else printf("Manufacturer not found\n");
 }
-
+/*
+ * Description: asks the user what he wants to do and calls a method accordingly
+ * Returns: void
+ */
 void manufacturersMenu(DataBase *database){
     while(1) {
         printf("\n");
@@ -83,6 +101,10 @@ void manufacturersMenu(DataBase *database){
     }
 }
 
+/*
+ * Description: asks the user what he wants to do and calls a method accordingly
+ * Returns: void
+ */
 void addProviderMenu(DataBase *database){
     printf("Add provider:\n");
     printf("Name:\n");

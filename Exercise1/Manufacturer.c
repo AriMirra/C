@@ -1,7 +1,10 @@
 #include <malloc.h>
 #include <mem.h>
 #include "Manufacturer.h"
-
+/*
+ * Description: creates a Manufacturer
+ * Returns: the Manufacturer created
+ */
 Manufacturer* createManufacturer(char* name, char* description, char* address, char* city, char* telephoneNumber, char* web){
     Manufacturer* result = malloc(sizeof(Manufacturer));
     result->name = malloc(sizeof(char)*strlen(name)+1);
@@ -20,6 +23,10 @@ Manufacturer* createManufacturer(char* name, char* description, char* address, c
     return result;
 }
 
+/*
+ * Description: Deallocates memory assigned for a Manufacturer and all its components
+ * Return: void
+ */
 void destroyManufacturer(Manufacturer* manufacturer){
     free(manufacturer->name);
     free(manufacturer->address);

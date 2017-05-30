@@ -1,5 +1,8 @@
 #include "Appliance.h"
-
+/*
+ * Description: creates an Appliance
+ * Returns: the Appliance created
+ */
 Appliance* createAppliance(char* name, char* model, int price, char* id) {
     Appliance* result = malloc(sizeof(Appliance));
     result->name = malloc(sizeof(char)*strlen(name)+1);
@@ -13,6 +16,26 @@ Appliance* createAppliance(char* name, char* model, int price, char* id) {
     return result;
 }
 
+/*
+ * Description: sets the Manufacturer of an Appliance
+ * Returns: void
+ */
+void setManufacturer(Appliance* appliance, char* manufacturerName){
+    appliance->manufacturerName = manufacturerName;
+}
+
+/*
+ * Description: sets the Provider of an Appliance
+ * Returns: void
+ */
+void setProvider(Appliance* appliance, char* providerName){
+    appliance->providerName = providerName;
+}
+
+/*
+ * Description: Deallocates memory assigned for an Appliance and all its components
+ * Return: void
+ */
 void destroyAppliance(Appliance* appliance) {
     free(appliance->name);
     free(appliance->model);
@@ -20,12 +43,4 @@ void destroyAppliance(Appliance* appliance) {
     free(appliance->providerName);
     destroyLabel(appliance->label);
     free(appliance);
-}
-
-void setManufacturer(Appliance* appliance, char* manufacturerName){
-    appliance->manufacturerName = manufacturerName;
-}
-
-void setProvider(Appliance* appliance, char* providerName){
-    appliance->providerName = providerName;
 }
