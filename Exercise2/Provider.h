@@ -2,19 +2,15 @@
 #define CFROMJAVA_PROVIDER_H
 
 typedef struct Provider{
-    char* cif;
     char* name;
-    char* telephone;
-    char* fax;
-    char* responsible;
+    char* description;
     char* address;
     char* city;
-    char* province;
-    char* country;
-    char* postalCode;
+    char* telephoneNumber;
+    char* web;
 }Provider;
 
 //functions
-
-
+Provider* createProvider(char* name, char* description, char* address, char* city, char* telephoneNumber, char* web);
+void destroyProvider(Provider* provider);
 #endif //CFROMJAVA_PROVIDER_H
