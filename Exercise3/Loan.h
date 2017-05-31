@@ -5,16 +5,16 @@
 
 typedef struct loan Loan;
 struct loan {
+    Person* person;
     Material* material;
-    char* code;
-    char* id;
-    char* departureDate;
-    char* arrivalDate;
+    int code;
+    int rentDays;
 };
 
-Loan* new_Loan(Material* material, char* code, char* id, char* departureDate, char* arrivalDate);
+Loan* new_Loan(Person* person, Material* material, int rentDays);
 void freeLoan(Loan* loan);
 
-void fee(Person* person);
+void fee(Loan* loan);
+void showInvoice(Loan* loan);
 
 #endif //EXERCISE3_LOAN_H

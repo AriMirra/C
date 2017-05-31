@@ -11,10 +11,10 @@ struct material {
     int isAvailable;
     char* status;
     char* editorial;
-    int costPerDay;
+    double costPerDay;
 };
 
-Material* new_Material(char* code, char* author, char* title, int year, int isBook, int isAvailable, int costPerDay);
+Material* new_Material(char* code, char* author, char* title, int year, int isBook, int isAvailable, double costPerDay);
 void freeMaterial(Material* material);
 
 void changeMaterialStatus(Material* material);

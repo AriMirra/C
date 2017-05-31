@@ -44,7 +44,7 @@ void showMyMaterials(Person* person) {
         printf("\nAuthor: %s", person->materials[i]->author);
         printf("\nYear: %i", person->materials[i]->year);
         printf("\nCode: %s", person->materials[i]->code);
-        printf("\nCost per day: %i", person->materials[i]->costPerDay);
+        printf("\nCost per day: $%.2f", person->materials[i]->costPerDay);
         printf("\nStatus: %s\n", person->materials[i]->status);
     }
 }

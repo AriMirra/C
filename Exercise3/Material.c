@@ -1,10 +1,10 @@
 #include "Material.h"
-#include "ScanUtil.h"
+#include "../Util/ScanUtil.h"
 #include <malloc.h>
 #include <memory.h>
 #include <stdio.h>
 
-Material* new_Material(char* code, char* author, char* title, int year, int isBook, int isAvailable, int costPerDay) {
+Material* new_Material(char* code, char* author, char* title, int year, int isBook, int isAvailable, double costPerDay) {
 
     Material* material = malloc(sizeof(Material));
 
@@ -74,6 +74,6 @@ void freeMaterial(Material* material) {
     free((void *) material->isAvailable);
     free(material->status);
     free(material->editorial);
-    free((void *) material->costPerDay);
+    free((void *) (int) material->costPerDay);
     free(material);
 }
