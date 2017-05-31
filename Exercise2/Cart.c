@@ -1,14 +1,13 @@
-#include "ShoppingCart.h"
+#include "Cart.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 /*
- * Description: Contains the functions related to the ShoppingCart structure
+ * Description: creates a cart
+ * Returns: the cart created
  */
-
-/*
- * Description: creates a ShoppingCart
- * Returns: the ShoppingCart created
- */
-ShoppingCart* createShoppingCart(char* id){
-    ShoppingCart* result = malloc(sizeof(ShoppingCart));
+Cart* createCart(char* id){
+    Cart* result = malloc(sizeof(Cart));
     result->id = malloc(sizeof(char)*strlen(id)+1);
     result->capacity = 10;
     result->appliances = malloc(sizeof(Appliance*)*result->capacity);
@@ -22,9 +21,9 @@ ShoppingCart* createShoppingCart(char* id){
  * Description: adds an Appliance to the cart
  * Returns: void
  */
-void addApplianceToCart(ShoppingCart *cart, Appliance *appliance, int amount){
+void addApplianceToCart(Cart *cart, Appliance *appliance, int amount){
     if (isFull(cart)) grow(cart);
-    cart->appliances[cart->appliancesAmount] = createShoppingCartLine(appliance,amount);
+    cart->appliances[cart->appliancesAmount] = createCartLine(appliance,amount);
     cart->appliancesAmount++;
 }
 
@@ -32,11 +31,11 @@ void addApplianceToCart(ShoppingCart *cart, Appliance *appliance, int amount){
  * Description: removes an Appliance from the cart
  * Returns: void
  */
-void removeApplianceFromCart(ShoppingCart *cart, char* applianceName){
+void removeApplianceFromCart(Cart *cart, char* applianceName){
     int applianceFoundAndRemoved = 0;
     for (int i = 0; i < cart->appliancesAmount; i++){
         if(strcmp(cart->appliances[i]->appliance->name, applianceName) == 0){
-            ShoppingCartLine* result = cart->appliances[i];
+            CartLine* result = cart->appliances[i];
             for (int j = i; j < cart->appliancesAmount; j++){
                 cart->appliances[j] = cart->appliances[j+1];
             }
@@ -51,16 +50,16 @@ void removeApplianceFromCart(ShoppingCart *cart, char* applianceName){
  * Description: checks if a cart is full
  * Returns: 1 if the cart is full, 0 if it's not
  */
-int isFull(ShoppingCart* cart){
+int isFull(Cart* cart){
     if(cart->appliancesAmount == sizeof(cart->appliances)) return 1;
     return 0;
 }
 
 /*
- * Description: expands the ShoppingCart capacity
+ * Description: expands the cart capacity
  * Returns: void
  */
-void grow(ShoppingCart* cart) {
+void grow(Cart* cart) {
     cart->capacity = cart->capacity*2;
     cart->appliances = realloc(cart->appliances, sizeof(Appliance*)*cart->capacity);
 }
@@ -69,7 +68,7 @@ void grow(ShoppingCart* cart) {
  * Description: sums the amount of money of every appliance inside the cart
  * Returns: the total amount of money from the appliances in the cart
  */
-int total(ShoppingCart* cart){
+int total(Cart* cart){
     int result = 0;
     for(int i = 0;i< cart->appliancesAmount;i++){
         result += ((cart->appliances[i]->appliance->price)*cart->appliances[i]->units);
@@ -78,22 +77,22 @@ int total(ShoppingCart* cart){
 }
 
 /*
- * Description: empties the cart, deletes all ShoppingCartLine inside
+ * Description: empties the cart, deletes all CartLines inside
  * Returns: void
  */
-void emptyShoppingCart(ShoppingCart* cart) {
+void emptyCart(Cart* cart) {
     int j = cart->appliancesAmount;
     for (int i = 0; i < j; i++) {
-        destroyShoppingCartLine(cart->appliances[i]);
+        destroyCartLine(cart->appliances[i]);
         cart->appliancesAmount--;
     }
 }
 
 /*
- * Description: Deallocates memory assigned for a ShoppingCart and all its components
+ * Description: Deallocates memory assigned for a Cart and all its components
  * Return: void
  */
-void destroyShoppingCart(ShoppingCart* shoppingCart){
-    emptyShoppingCart(shoppingCart);
+void destroyCart(Cart* cart){
+    emptyCart(shoppingCart);
     free(shoppingCart->id);
 }

@@ -1,7 +1,14 @@
-#include <malloc.h>
-#include <mem.h>
+#include <stdlib.h>
+#include <string.h>
 #include "Provider.h"
+/*
+ * Description: Contains the functions related to the Provider structure
+ */
 
+/*
+ * Description: creates a Provider
+ * Returns: the Provider created
+ */
 Provider* createProvider(char* name, char* description, char* address, char* city, char* telephoneNumber, char* web){
     Provider* result = malloc(sizeof(Provider));
     result->name = malloc(sizeof(char)*strlen(name)+1);
@@ -20,6 +27,10 @@ Provider* createProvider(char* name, char* description, char* address, char* cit
     return result;
 }
 
+/*
+ * Description: Deallocates memory assigned for a Provider and all its components
+ * Return: void
+ */
 void destroyProvider(Provider* provider){
     free(provider->address);
     free(provider->web);

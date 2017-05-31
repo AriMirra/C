@@ -1,5 +1,12 @@
 #include "ShoppingCartLine.h"
+/*
+ * Description: Contains the functions related to the ShoppingCartLine structure
+ */
 
+/*
+ * Description: creates a ShoppingCartLine
+ * Returns: the ShoppingCartLine created
+ */
 ShoppingCartLine* createShoppingCartLine(Appliance* appliance, int units){
     ShoppingCartLine* result = malloc(sizeof(ShoppingCartLine));
     result->appliance = malloc(sizeof(Appliance));
@@ -9,6 +16,10 @@ ShoppingCartLine* createShoppingCartLine(Appliance* appliance, int units){
     return result;
 }
 
+/*
+ * Description: Deallocates memory assigned for a ShoppingCartLine and all its components
+ * Return: void
+ */
 void destroyShoppingCartLine(ShoppingCartLine* shoppingCartLine){
     destroyAppliance(shoppingCartLine->appliance);
     free(shoppingCartLine);

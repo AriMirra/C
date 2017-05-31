@@ -1,14 +1,10 @@
 #include <afxres.h>
 #include "Invoice.h"
 /*
- * Description: Contains the functions related to the Invoice structure
- */
-
-/*
  * Description: creates an Invoice with the components on the ShoppingCart
  * Returns: the Invoice created
  */
-Invoice* createInvoice(ShoppingCart* cart) {
+Invoice* createInvoice(Cart* cart) {
     Invoice* result = malloc(sizeof(Invoice));
     result->toPay = total(cart);
     result->invoiceLines = malloc(sizeof(InvoiceLine) * cart->appliancesAmount);

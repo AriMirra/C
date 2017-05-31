@@ -1,8 +1,7 @@
 #include "DataBase.h"
-/*
- * Description: Contains the functions related to the DataBase structure
- */
-
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 /*
  * Description: creates an empty DataBase
  * Return: the DataBase created
