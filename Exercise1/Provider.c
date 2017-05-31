@@ -1,6 +1,10 @@
-#include <malloc.h>
-#include <mem.h>
+#include <stdlib.h>
+#include <string.h>
 #include "Provider.h"
+/*
+ * Description: Contains the functions related to the Provider structure
+ */
+
 /*
  * Description: creates a Provider
  * Returns: the Provider created

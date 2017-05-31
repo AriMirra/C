@@ -1,5 +1,9 @@
 #include "Appliance.h"
 /*
+ * Description: Contains the functions related to the Appliance structure
+ */
+
+/*
  * Description: creates an Appliance
  * Returns: the Appliance created
  */

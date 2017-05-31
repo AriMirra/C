@@ -1,5 +1,9 @@
 #include "ShoppingCart.h"
 /*
+ * Description: Contains the functions related to the ShoppingCart structure
+ */
+
+/*
  * Description: creates a ShoppingCart
  * Returns: the ShoppingCart created
  */

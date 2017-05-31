@@ -1,4 +1,7 @@
 #include "DataBase.h"
+/*
+ * Description: Contains the functions related to the DataBase structure
+ */
 
 /*
  * Description: creates an empty DataBase

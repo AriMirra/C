@@ -2,6 +2,10 @@
 #include <string.h>
 #include "InvoiceLine.h"
 /*
+ * Description: Contains the functions related to the InvoiceLine structure
+ */
+
+/*
  * Description: creates an InvoiceLine
  * Returns: the InvoiceLine created
  */

@@ -1,5 +1,9 @@
 #include "ShoppingCartLine.h"
 /*
+ * Description: Contains the functions related to the ShoppingCartLine structure
+ */
+
+/*
  * Description: creates a ShoppingCartLine
  * Returns: the ShoppingCartLine created
  */

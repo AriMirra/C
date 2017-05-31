@@ -1,6 +1,10 @@
 #include <afxres.h>
 #include "Invoice.h"
 /*
+ * Description: Contains the functions related to the Invoice structure
+ */
+
+/*
  * Description: creates an Invoice with the components on the ShoppingCart
  * Returns: the Invoice created
  */
