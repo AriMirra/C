@@ -26,7 +26,7 @@ typedef struct DataBase{
 DataBase* createDataBase();
 void growManufacturer(DataBase* database);
 void growProvider(DataBase* database);
-void growAppliance(DataBase* database);
+void growProduct(DataBase* database);
 void addManufacturer(DataBase* database, Manufacturer* manufacturer);
 void addProvider(DataBase* database, Provider* provider);
 void addProduct(DataBase *database, Product *appliance, char *manufacturerName, char *providerName);

@@ -79,7 +79,7 @@ void growProvider(DataBase* database){
  * Description: expands the Appliance array inside the DataBase
  * Return: void
  */
-void growAppliance(DataBase* database){
+void growProduct(DataBase* database){
     database->products = realloc(database->products, sizeof(Product*) * database->productMaxCapacity * 2);
     database->productMaxCapacity *= 2;
 }
@@ -116,21 +116,19 @@ void addProvider(DataBase* database, Provider* provider){
  * Description: adds an Appliance to the DataBase and sets it's manufacturer and provider
  * Return: void
  */
-
 // todo change to Product
-/*
 void addProduct(DataBase *database, Product *appliance, char *manufacturerName, char *providerName){
-    if(database->amountOfAppliances != database->applianceMaxCapacity){
+    if(database->amountOfProducts != database->productMaxCapacity){
         setManufacturer(appliance,manufacturerName);
         setProvider(appliance,providerName);
-        database->appliances[database->amountOfAppliances] = appliance;
-        database->amountOfAppliances++;
+        database->products[database->amountOfProducts] = appliance;
+        database->amountOfProducts++;
     }else{
         growAppliance(database);
         addProduct(database, appliance, manufacturerName, providerName);
     }
 }
-*/
+
 /*
  * Description: searches a Manufacturer on the DataBase and deletes it if found
  * Return: returns 1 if found and deleted, 0 if not found
@@ -170,26 +168,24 @@ int removeProvider(DataBase* database,char* providerName){
 }
 
 /*
- * Description: searches an Appliance on the DataBase and deletes it if found
+ * Description: searches a product on the DataBase and deletes it if found
  * Return: returns 1 if found and deleted, 0 if not found
  */
-//todo change to Product
-/*
-int removeProduct(DataBase *database, char *applianceName){
-    for(int i = 0; i < database->amountOfAppliances; i++){
-        if(strcmp(database->appliances[i]->name, applianceName) == 0){
-            Appliance* result = database->appliances[i];
-            for (int j = i; j < database->amountOfAppliances; j++){
-                database->appliances[j] = database->appliances[j+1];
+int removeProduct(DataBase *database, char *productName){
+    for(int i = 0; i < database->amountOfProducts; i++){
+        if(strcmp(database->products[i]->name, productName) == 0){
+            Product* result = database->products[i];
+            for (int j = i; j < database->amountOfProducts; j++){
+                database->products[j] = database->products[j+1];
             }
-            destroyAppliance(result);
-            database->amountOfAppliances--;
+            destroyProduct(result);
+            database->amountOfProducts--;
             return 1;
         }
     }
     return 0;
 }
-*/
+
 /*
  * Description: checks if a Manufacturer is in the DataBase
  * Return: 1 if it has been found in the DataBase, 0 if not
@@ -233,18 +229,15 @@ int productExist(DataBase *database, char *productName){
  * Description: Deallocates memory assigned for a DataBase and all its components
  * Return: void
  */
-//todo change to Product
-/*
 void destroyDataBase(DataBase* dataBase){
     for (int i = 0; i < dataBase->amountOfManufacturers; i++)
         destroyManufacturer(dataBase->manufacturers[i]);
     for (int i = 0; i < dataBase->amountOfProviders; i++)
         destroyProvider(dataBase->providers[i]);
-    for (int i = 0; i < dataBase->amountOfAppliances; i++)
-        destroyAppliance(dataBase->appliances[i]);
+    for (int i = 0; i < dataBase->amountOfProducts; i++)
+        destroyProduct(dataBase->products[i]);
     free(dataBase->manufacturers);
     free(dataBase->providers);
-    free(dataBase->appliances);
+    free(dataBase->products);
     free(dataBase);
 }
-*/
