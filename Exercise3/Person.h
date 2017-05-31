@@ -10,7 +10,6 @@ struct person {
     char* surname;
     char* mail;
     int phoneNumber;
-    int booksQuantity;
     double debt;
     int registrationNumber;
     int employeeNumber;
@@ -22,7 +21,6 @@ Person* new_Person(char* name, char* surname, char* mail, int phoneNumber, int i
 void freePerson(Person* person);
 
 void takeMaterial(Person* person, Material* material);
-void leaveMaterial(Person* person, int position);
 void showMyMaterials(Person* person);
 
 #endif //EXERCISE3_PERSON_H
