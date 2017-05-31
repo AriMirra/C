@@ -9,7 +9,7 @@ Loan* new_Loan(Person* person, Material* material, int rentDays) {
     Loan* loan = malloc(sizeof(Loan));
 
     srand((unsigned int) time(NULL));
-    int code = rand() % 1000000000;     // Random 9 digit code (numerical)
+    int code = (rand() % (1000000000 - 100000000)) + 100000000;     // Random number of 9 digits (between 100000000 and 999999999)
 
     loan->person = person;
     loan->material = material;
