@@ -278,7 +278,7 @@ void adminMenu(DataBase* database){
         printf("Admin Menu\n");
         printf("1. Manufacturers\n");
         printf("2. Providers\n");
-        printf("3. Appliances\n");
+        printf("3. Products\n");
         printf("-1. Exit\n");
         int choice = scanInt();
         switch (choice) {
