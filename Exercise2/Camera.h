@@ -1,6 +1,8 @@
 #ifndef CFROMJAVA_CAMERA_H
 #define CFROMJAVA_CAMERA_H
 
+#include "../Util/StaticList.h"
+
 /*
  * Description: Represents a camera
  */
@@ -11,12 +13,12 @@ typedef struct Camera{
     int productID;
     int megaPixels;
     int zoom;
-    int hasLCD;
+    int ldcDisplay;
     CameraType cameraType;
     StaticList* accessoryList;
 }Camera;
 
-Camera* newCamera(char* name, int megaPixels, int zoom, int hasLCD, CameraType cameraType);
+Camera* createCamera(char *name, int megaPixels, int zoom, int ldcDisplay, CameraType cameraType);
 void addCameraAccessory(Camera* camera, int accessoryID);
 void removeCameraAccessory(Camera* camera, int accessoryID);
 void destroyCamera(Camera* camera);

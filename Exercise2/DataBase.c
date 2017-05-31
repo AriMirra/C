@@ -13,17 +13,17 @@ DataBase* createDataBase(){
     result->manufacturerMaxCapacity = initialSize;
     result->providers = malloc(sizeof(Provider*) * initialSize);
     result->providerMaxCapacity = initialSize;
-    result->appliances = malloc(sizeof(Appliance*) * initialSize);
-    result->applianceMaxCapacity = initialSize;
-    result->amountOfAppliances = 0;
-    result->amountOfProviders = 0;
+    result->products = malloc(sizeof(Product*) * initialSize);
+    result->productMaxCapacity = initialSize;
     result->amountOfManufacturers = 0;
+    result->amountOfProviders = 0;
+    result->amountOfProducts = 0;
     return result;
 }
 
 /*
  * Description: searches a Manufacturer on the DataBase and returns it if found
- * Return: Manufacturer
+ * Return: Manufacturer pointer
  */
 Manufacturer* getManufacturer(DataBase* database,char* name){
     for(int i = 0; i < database->amountOfManufacturers; i++){
@@ -35,7 +35,7 @@ Manufacturer* getManufacturer(DataBase* database,char* name){
 
 /*
  * Description: searches a Provider on the DataBase and returns it if found
- * Return: Provider
+ * Return: Provider pointer
  */
 Provider* getProvider(DataBase* database,char* name){
     for(int i = 0; i < database->amountOfProviders; i++){
@@ -47,12 +47,12 @@ Provider* getProvider(DataBase* database,char* name){
 
 /*
  * Description: searches a Appliance on the DataBase and returns it if found
- * Return: Appliance
+ * Return: Product pointer
  */
-Appliance* getAppliance(DataBase* database,char* name){
-    for(int i = 0; i < database->amountOfAppliances; i++){
-        if(strcmp(name,database->appliances[i]->name) == 0)
-            return database->appliances[i];
+Product* getProduct(DataBase *database, char *name){
+    for(int i = 0; i < database->amountOfProducts; i++){
+        if(strcmp(name,database->products[i]->name) == 0)
+            return database->products[i];
     }
     return NULL;
 }
@@ -80,8 +80,8 @@ void growProvider(DataBase* database){
  * Return: void
  */
 void growAppliance(DataBase* database){
-    database->appliances = realloc(database->appliances, sizeof(Appliance*) * database->applianceMaxCapacity * 2);
-    database->applianceMaxCapacity *= 2;
+    database->products = realloc(database->products, sizeof(Product*) * database->productMaxCapacity * 2);
+    database->productMaxCapacity *= 2;
 }
 
 /*
@@ -103,7 +103,7 @@ void addManufacturer(DataBase* database, Manufacturer* manufacturer){
  * Return: void
  */
 void addProvider(DataBase* database, Provider* provider){
-    if(database->amountOfProviders != database->applianceMaxCapacity){
+    if(database->amountOfProviders != database->providerMaxCapacity){
         database->providers[database->amountOfProviders] = provider;
         database->amountOfProviders++;
     }else{
@@ -116,7 +116,10 @@ void addProvider(DataBase* database, Provider* provider){
  * Description: adds an Appliance to the DataBase and sets it's manufacturer and provider
  * Return: void
  */
-void addAppliance(DataBase* database, Appliance* appliance, char* manufacturerName, char* providerName){
+
+// todo change to Product
+/*
+void addProduct(DataBase *database, Product *appliance, char *manufacturerName, char *providerName){
     if(database->amountOfAppliances != database->applianceMaxCapacity){
         setManufacturer(appliance,manufacturerName);
         setProvider(appliance,providerName);
@@ -124,10 +127,10 @@ void addAppliance(DataBase* database, Appliance* appliance, char* manufacturerNa
         database->amountOfAppliances++;
     }else{
         growAppliance(database);
-        addAppliance(database,appliance,manufacturerName,providerName);
+        addProduct(database, appliance, manufacturerName, providerName);
     }
 }
-
+*/
 /*
  * Description: searches a Manufacturer on the DataBase and deletes it if found
  * Return: returns 1 if found and deleted, 0 if not found
@@ -170,7 +173,9 @@ int removeProvider(DataBase* database,char* providerName){
  * Description: searches an Appliance on the DataBase and deletes it if found
  * Return: returns 1 if found and deleted, 0 if not found
  */
-int removeAppliance(DataBase* database,char* applianceName){
+//todo change to Product
+/*
+int removeProduct(DataBase *database, char *applianceName){
     for(int i = 0; i < database->amountOfAppliances; i++){
         if(strcmp(database->appliances[i]->name, applianceName) == 0){
             Appliance* result = database->appliances[i];
@@ -184,7 +189,7 @@ int removeAppliance(DataBase* database,char* applianceName){
     }
     return 0;
 }
-
+*/
 /*
  * Description: checks if a Manufacturer is in the DataBase
  * Return: 1 if it has been found in the DataBase, 0 if not
@@ -215,9 +220,9 @@ int providerExist(DataBase* database, char* providerName){
  * Description: checks if an Appliance is in the DataBase
  * Return: 1 if it has been found in the DataBase, 0 if not
  */
-int applianceExist(DataBase* database, char* applianceName){
-    for(int i = 0; i < database->amountOfAppliances; i++){
-        if(strcmp(applianceName,database->appliances[i]->name) == 0){
+int productExist(DataBase *database, char *productName){
+    for(int i = 0; i < database->amountOfProducts; i++){
+        if(strcmp(productName,database->products[i]->name) == 0){
             return 1;
         }
     }
@@ -228,6 +233,8 @@ int applianceExist(DataBase* database, char* applianceName){
  * Description: Deallocates memory assigned for a DataBase and all its components
  * Return: void
  */
+//todo change to Product
+/*
 void destroyDataBase(DataBase* dataBase){
     for (int i = 0; i < dataBase->amountOfManufacturers; i++)
         destroyManufacturer(dataBase->manufacturers[i]);
@@ -240,3 +247,4 @@ void destroyDataBase(DataBase* dataBase){
     free(dataBase->appliances);
     free(dataBase);
 }
+*/

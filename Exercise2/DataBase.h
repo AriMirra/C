@@ -1,9 +1,9 @@
 #ifndef CFROMJAVA_CATALOGUE_H
 #define CFROMJAVA_CATALOGUE_H
-
-#include "Appliance.h"
 #include "Manufacturer.h"
 #include "Provider.h"
+#include "Product.h"
+
 /*
  * Description: The DataBase holds the information of the hole system,
  *              is where manufacturers, providers and appliances are added, consulted or deleted
@@ -17,9 +17,9 @@ typedef struct DataBase{
     int amountOfProviders;
     int providerMaxCapacity;
 
-    Appliance** appliances;
-    int amountOfAppliances;
-    int applianceMaxCapacity;
+    Product** products;
+    int amountOfProducts;
+    int productMaxCapacity;
 }DataBase;
 
 //functions
@@ -29,15 +29,15 @@ void growProvider(DataBase* database);
 void growAppliance(DataBase* database);
 void addManufacturer(DataBase* database, Manufacturer* manufacturer);
 void addProvider(DataBase* database, Provider* provider);
-void addAppliance(DataBase* database, Appliance* appliance, char* manufacturerName, char* providerName);
+void addProduct(DataBase *database, Product *appliance, char *manufacturerName, char *providerName);
 Manufacturer* getManufacturer(DataBase* database,char* name);
 Provider* getProvider(DataBase* database,char* name);
-Appliance* getAppliance(DataBase* database,char* name);
+Product* getProduct(DataBase *database, char *name);
 int removeManufacturer(DataBase* database,char* manufacturerName);
 int removeProvider(DataBase* database,char* providerName);
-int removeAppliance(DataBase* database,char* applianceName);
+int removeProduct(DataBase *database, char *productName);
 int manufacturerExist(DataBase* database, char* manufacturerName);
 int providerExist(DataBase* database, char* providerName);
-int applianceExist(DataBase* database, char* applianceName);
+int productExist(DataBase *database, char *productName);
 void destroyDataBase(DataBase* dataBase);
 #endif //CFROMJAVA_DataBase_H

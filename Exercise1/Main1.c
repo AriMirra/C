@@ -2,8 +2,6 @@
 #include <stdlib.h>
 #include "Database.h"
 #include "../Util/ScanUtil.h"
-
-
 void clientMenu(DataBase* database);
 void adminMenu(DataBase* database);
 
