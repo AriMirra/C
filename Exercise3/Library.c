@@ -9,7 +9,9 @@ Library* new_Library() {
 
     library->materialsCounter = 0;
     library->peopleCounter = 0;
+    library->loanCounter = 0;
     library->availableMaterials = 0;
+    library->auxIndex = 0;
 
     return library;
 }
@@ -22,7 +24,8 @@ void loadMaterial(Library* library, Material* material) {
 }
 
 void printMaterialsList(Library* library, int index) {
-    printf("\n%i.", index);
+    printf("\n#%i", library->auxIndex);
+    library->auxIndex++;
     printf("\nType: %s", library->materials[index]->materialType);
     if (strcmp(library->materials[index]->materialType, "Book") == 0) printf("\nEditorial: %s", library->materials[index]->editorial);
     printf("\nTitle: %s", library->materials[index]->title);
@@ -34,18 +37,21 @@ void printMaterialsList(Library* library, int index) {
 }
 
 void showAllMaterials(Library* library) {
+    library->auxIndex = 0;
     for (int i = 0; i < library->materialsCounter; i++) {
         printMaterialsList(library, i);
     }
 }
 
 void showAvailableMaterials(Library* library) {
+    library->auxIndex = 0;
     for (int i = 0; i < library->materialsCounter; i++) {
         if (library->materials[i]->isAvailable) printMaterialsList(library, i);
     }
 }
 
 void getAvailableMaterials(Library* library) {
+    library->availableMaterials = 0;
     for (int i = 0; i < library->materialsCounter; i++) {
         if (library->materials[i]->isAvailable) library->availableMaterials++;
     }
@@ -60,13 +66,15 @@ void deleteMaterial(Library* library, int position) {
 }
 
 void loadPerson(Library* library, Person* person) {
-    library->people[library->peopleCounter] = person;
-    library->peopleCounter++;
+    if (library->peopleCounter < sizeof(library->people) / sizeof(library->people[0])) {
+        library->people[library->peopleCounter] = person;
+        library->peopleCounter++;
+    } else printf("Max capacity reached");
 }
 
 void printPeopleList(Library* library) {
     for (int i = 0; i < library->peopleCounter; i++) {
-        printf("\n%i.", i);
+        printf("\n#%i", i);
         printf("\nName: %s", library->people[i]->name);
         printf("\nSurname: %s", library->people[i]->surname);
         printf("\nProfession: %s", library->people[i]->personType);
@@ -79,11 +87,13 @@ void printPeopleList(Library* library) {
     }
 }
 
+void loadLoan(Library* library, Loan* loan) {
+    if (library->loanCounter < sizeof(library->loan) / sizeof(library->loan[0])) {
+        library->loan[library->loanCounter] = loan;
+        library->loanCounter++;
+    } else printf("Max capacity reached");
+}
+
 void freeLibrary(Library* library) {
-    free(library->materials);
-    free(library->people);
-    free((void *) library->materialsCounter);
-    free((void *) library->peopleCounter);
-    free((void *) library->availableMaterials);
     free(library);
 }

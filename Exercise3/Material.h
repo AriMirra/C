@@ -18,6 +18,5 @@ Material* new_Material(char* code, char* author, char* title, int year, int isBo
 void freeMaterial(Material* material);
 
 void changeMaterialStatus(Material* material);
-void changeMaterialType(Material* material);
 
 #endif //EXERCISE3_MATERIAL_H

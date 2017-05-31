@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <memory.h>
 #include "Library.h"
-#include "Loan.h"
 #include "../Util/ScanUtil.h"
 
 int main() {
@@ -94,7 +93,7 @@ int main() {
                         int materialOption;
                         while (1) {
                             materialOption = scanInt();
-                            if (materialOption >= 0 || materialOption < library->materialsCounter) break;
+                            if (materialOption >= 0 && materialOption < library->materialsCounter) break;
                             else printf("\nPlease, enter a valid option.\n\n");
                         }
                         printf("\n0. Delete the material");
@@ -123,7 +122,6 @@ int main() {
                                 // continue to main menu
                             } else printf("\nPlease, enter a valid option.\n\n");
                             printf("\nOperation successful\n");
-                            printf("\nReturning to Main Menu\n");
                             canGoToMainMenu = 1;
                         }
                     }
@@ -246,7 +244,8 @@ int main() {
                     Person* loggedPerson = library->people[personLocation];
 
                     printf("\n0. Take new material");
-                    printf("\n1. Show my total debt\n\n");
+                    printf("\n1. Show my materials");
+                    printf("\n2. Show my total debt\n\n");
                     int option;
                     while (!canGoToMainMenu) {
                         option = scanInt();
@@ -269,6 +268,7 @@ int main() {
                                             days = scanInt();
                                             if (days > 0 && days <= 30) {
                                                 Loan* loan = new_Loan(loggedPerson, library->materials[materialOption], days);
+                                                loadLoan(library, loan);
                                                 fee(loan);
                                                 printf("\nDo you wish to print the invoice?");
                                                 printf("\n0. Yes");
@@ -298,6 +298,16 @@ int main() {
                             printf("\nReturning to Main Menu\n");
                             canGoToMainMenu = 1;
                         } else if (option == 1) {
+                            if (loggedPerson->materialsCounter == 0) {
+                                printf("\nYou do not have any material at the moment.\n");
+                                printf("\nReturning to Main Menu\n");
+                            } else {
+                                showMyMaterials(loggedPerson);
+                                printf("\nOperation successful\n");
+                                printf("\nReturning to Main Menu\n");
+                            }
+                            canGoToMainMenu = 1;
+                        } else if (option == 2) {
                             printf("\n$%.2f\n", loggedPerson->debt);
                             printf("\nOperation successful\n");
                             printf("\nReturning to Main Menu\n");
@@ -309,13 +319,16 @@ int main() {
                 else printf("\nPlease, enter a valid option.\n\n");
             }
         } else if (user == 2) {
-            // TODO Exit
-            /*
+            for (int i = 0; i < library->materialsCounter; i++) {
+                freeMaterial(library->materials[i]);
+            }
+            for (int i = 0; i < library->peopleCounter; i++) {
+                freePerson(library->people[i]);
+            }
+            for (int i = 0; i < library->loanCounter; i++) {
+                freeLoan(library->loan[i]);
+            }
             freeLibrary(library);
-            freePerson(person);
-            freeMaterial(material);
-            freeLoan(loan);
-             */
             printf("\nExit successful\n\n");
             break;
         } else printf("\nPlease enter a valid option\n");

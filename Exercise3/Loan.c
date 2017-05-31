@@ -47,9 +47,5 @@ void showInvoice(Loan* loan) {
 }
 
 void freeLoan(Loan* loan) {
-    free(loan->person);
-    free(loan->material);
-    free((void *) loan->code);
-    free((void *) loan->rentDays);
     free(loan);
 }
