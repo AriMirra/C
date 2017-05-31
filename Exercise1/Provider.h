@@ -1,6 +1,9 @@
 #ifndef CFROMJAVA_PROVIDER_H
 #define CFROMJAVA_PROVIDER_H
 
+/*
+ * Description: The Provider structure has the information of a provider and it's details.
+ */
 typedef struct Provider{
     char* name;
     char* description;

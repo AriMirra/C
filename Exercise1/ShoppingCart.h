@@ -1,9 +1,11 @@
 #ifndef CFROMJAVA_SHOPPINGCART_H
 #define CFROMJAVA_SHOPPINGCART_H
-
 #include "Appliance.h"
 #include "ShoppingCartLine.h"
 
+/*
+ * Description: The ShoppingCart structure has the information of a shopping cart and it's details.
+ */
 typedef struct ShoppingCart{
     ShoppingCartLine** appliances;
     char* id;

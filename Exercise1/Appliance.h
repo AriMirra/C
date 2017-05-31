@@ -1,9 +1,11 @@
 #ifndef CFROMJAVA_APPLIANCE_H
 #define CFROMJAVA_APPLIANCE_H
-
 #include <afxres.h>
 #include "Label.h"
 
+/*
+ * Description: The Appliance structure holds the information of an Appliance, its label name model manufacturer provider and price.
+ */
 typedef struct Appliance{
     Label* label;
     char* name;
