@@ -23,6 +23,14 @@ Product* createProduct(int productID, char *name, ProductType productType,
     return result;
 }
 
+void setManufacturerID(Product* product, int manufacturerID){
+    product->manufacturerID = manufacturerID;
+}
+
+void setProviderID(Product* product, int providerID){
+    product->providerID = providerID;
+}
+
 /*
  * Function: destroyProduct
  * Description: Deallocates all memory assigned to the product and all it's components.

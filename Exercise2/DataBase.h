@@ -29,7 +29,7 @@ void growProvider(DataBase* database);
 void growProduct(DataBase* database);
 void addManufacturer(DataBase* database, Manufacturer* manufacturer);
 void addProvider(DataBase* database, Provider* provider);
-void addProduct(DataBase *database, Product *appliance, char *manufacturerName, char *providerName);
+void addProduct(DataBase *database, Product *appliance, int manufacturerID, int providerID);
 Manufacturer* getManufacturer(DataBase* database,char* name);
 Provider* getProvider(DataBase* database,char* name);
 Product* getProduct(DataBase *database, char *name);

@@ -116,16 +116,15 @@ void addProvider(DataBase* database, Provider* provider){
  * Description: adds an Appliance to the DataBase and sets it's manufacturer and provider
  * Return: void
  */
-// todo change to Product
-void addProduct(DataBase *database, Product *appliance, char *manufacturerName, char *providerName){
+void addProduct(DataBase *database, Product *product, int manufacturerID, int providerID){
     if(database->amountOfProducts != database->productMaxCapacity){
-        setManufacturer(appliance,manufacturerName);
-        setProvider(appliance,providerName);
-        database->products[database->amountOfProducts] = appliance;
+        setManufacturerID(product,manufacturerID);
+        setProviderID(product, providerID);
+        database->products[database->amountOfProducts] = product;
         database->amountOfProducts++;
     }else{
-        growAppliance(database);
-        addProduct(database, appliance, manufacturerName, providerName);
+        growProduct(database);
+        //addProduct(database, appliance, manufacturerName, providerName);
     }
 }
 
