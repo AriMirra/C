@@ -309,7 +309,7 @@ int main() {
                 else printf("\nPlease, enter a valid option.\n\n");
             }
         } else if (user == 2) {
-            // Exit
+            // TODO Exit
             /*
             freeLibrary(library);
             freePerson(person);
