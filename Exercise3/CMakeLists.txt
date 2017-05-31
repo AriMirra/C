@@ -1,4 +1,4 @@
-set(SOURCE_FILES main.c Library.c Library.h Material.c Material.h Loan.c Loan.h Person.c Person.h ScanUtil.c ScanUtil.h)
+set(SOURCE_FILES main.c Library.c Library.h Material.c Material.h Loan.c Loan.h Person.c Person.h)
 add_executable(EXERCISE3_EXE main.c)
 add_library(EXERCISE3 ${SOURCE_FILES})
 target_link_libraries(EXERCISE3_EXE EXERCISE3)

@@ -3,6 +3,9 @@
 
 #include "ShoppingCartLine.h"
 
+/*
+ * Description: The InvoiceLine structure holds the information of a single type of appliance purchased and the amount purchased, an Invoice contains multiple InvoiceLines.
+ */
 typedef struct InvoiceLine{
     char* applianceName;
     int priceOfAppliance;

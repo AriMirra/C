@@ -3,8 +3,8 @@
 #include <stdlib.h>
 #include <string.h>
 /*
- * Description: creates a ShoppingCart
- * Returns: the ShoppingCart created
+ * Description: creates a cart
+ * Returns: the cart created
  */
 Cart* createCart(char* id){
     Cart* result = malloc(sizeof(Cart));
@@ -56,7 +56,7 @@ int isFull(Cart* cart){
 }
 
 /*
- * Description: expands the ShoppingCart capacity
+ * Description: expands the cart capacity
  * Returns: void
  */
 void grow(Cart* cart) {
@@ -77,7 +77,7 @@ int total(Cart* cart){
 }
 
 /*
- * Description: empties the cart, deletes all ShoppingCartLine inside
+ * Description: empties the cart, deletes all CartLines inside
  * Returns: void
  */
 void emptyCart(Cart* cart) {
@@ -89,7 +89,7 @@ void emptyCart(Cart* cart) {
 }
 
 /*
- * Description: Deallocates memory assigned for a ShoppingCart and all its components
+ * Description: Deallocates memory assigned for a Cart and all its components
  * Return: void
  */
 void destroyCart(Cart* cart){

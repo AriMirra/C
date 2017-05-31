@@ -2,6 +2,10 @@
 #include <mem.h>
 #include "Label.h"
 /*
+ * Description: Contains the functions related to the Label structure
+ */
+
+/*
  * Description: creates a Label
  * Returns: the Label created
  */

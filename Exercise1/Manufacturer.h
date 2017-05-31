@@ -1,6 +1,9 @@
- #ifndef CFROMJAVA_MANUFACTURER_H
+#ifndef CFROMJAVA_MANUFACTURER_H
 #define CFROMJAVA_MANUFACTURER_H
 
+/*
+ * Description: The Manufacturer structure has the information of a manufacturer and it's details.
+ */
 typedef struct Manufacturer{
     char* name;
     char* description;
