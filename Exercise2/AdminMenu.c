@@ -9,7 +9,8 @@
 void listManufacturers(DataBase* database) {
     for(int i = 0; i < database->amountOfManufacturers; i++){
         Manufacturer* manufacturer = database->manufacturers[i];
-        printf("%s\n" "Description: %s\n", manufacturer->name,manufacturer->description);
+        printf("%s\n" "Description: %s\n ID: %d\n\n",
+               manufacturer->name,manufacturer->description, manufacturer->manufacturerID);
     }
 }
 /*
@@ -19,17 +20,18 @@ void listManufacturers(DataBase* database) {
 void listProviders(DataBase* database) {
     for(int i = 0; i < database->amountOfProviders; i++){
         Provider* provider = database->providers[i];
-        printf("%s\n" "Description: %s\n", provider->name,provider->description);
+        printf("%s\n" "Description: %s\n ID: %d\n\n", provider->name,provider->description, provider->providerID);
     }
 }
 /*
- * Description: lists the cameras in the database
+ * Description: lists the Products in the database
  * Returns: void
  */
-void listAppliances(DataBase* database) {
+void listProducts(DataBase* database) {
     for(int i = 0; i < database->amountOfProducts; i++){
         Product* product = database->products[i];
-        printf("%s\n", product->name);
+        if (product->productType == CAMERA) printf("camera: %s\n", product->name);
+         else printf("accessory: %s\n", product->name);
     }
 }
 /*
@@ -46,17 +48,17 @@ void addManufacturerMenu(DataBase* database){
     char* address = scanChar();
     printf("City:\n");
     char* city = scanChar();
-    printf("Web:\n");
-    char* web = scanChar();
+    printf("Country:\n");
+    char* country = scanChar();
     printf("Phone:\n");
     char* phone = scanChar();
-    Manufacturer* manufacturer = createManufacturer(name, description, address, city, phone, web);
+    Manufacturer* manufacturer = createManufacturer(name, description, address, city, phone, country);
     addManufacturer(database, manufacturer);
     free(name);
     free(description);
     free(address);
     free(city);
-    free(web);
+    free(country);
     free(phone);
 }
 
@@ -169,67 +171,70 @@ void addProductMenu(DataBase* database){
     printf("Name:\n");
     char* name = scanChar();
     printf("\n");
-    //model
-    printf("Product Type: (1) for camera, (2) for accessory\n");
-    int productType = scanInt();
-    printf("\n");
     //price
     printf("Price:\n");
     int price = scanInt();
     printf("\n");
-    //id
-    printf("id:\n");
-    char* id = scanChar();
+    //type
+    productTypeRequest:
+    printf("Product Type: (1) for camera, (2) for accessory\n");
+    int productTypeEntered = scanInt();
+    ProductType productType;
+    if (productTypeEntered == 1) {
+        productType = CAMERA;
+    }
+    else if (productTypeEntered == 0) {
+        productType = ACCESSORY;
+    }
+    else goto productTypeRequest;
     printf("\n");
     //list, check and save manufacturer
     listManufacturers(database);
-    char* manufacturer;
+    int manufacturer;
     while (1){
-        printf("Name of the Manufacturer:\n");
-        char* manufacturerName = scanChar();
-        if(manufacturerExist(database, manufacturerName)){
-            manufacturer = manufacturerName;
+        printf("ID of the Manufacturer:\n");
+        int manufacturerID = scanInt();
+        if(manufacturerExist(database, manufacturerID)){
+            manufacturer = manufacturerID;
             break;
         }
     }
     printf("\n");
     //list, check and save provider
     listProviders(database);
-    char* provider;
+    int provider;
     while (1){
         printf("Name of the Provider:\n");
-        char* providerName = scanChar();
-        if(providerExist(database, providerName)){
-            provider = providerName;
+        int providerID = scanInt();
+        if(providerExist(database, providerID)){
+            provider = providerID;
             break;
         }
     }
     printf("\n");
-    //create appliance and add it to the database
-    //Product* appliance = createProduct(name,model,price,id);
-    //addProduct(database, appliance, manufacturer, provider);
+    //create the product and add it to the database
+    Product* product = createProduct(name,productType,manufacturer,provider,price);
+    addProduct(database, product, manufacturer, provider);
     //free variables used
     free(name);
-    //free(model);
-    free(id);
-    free(manufacturer);
-    free(provider);
 }
 
-void removeApplianceMenu(DataBase* database) {
-    printf("Name of the appliance to remove:\n");
-    if(removeProduct(database, scanChar())) printf("Appliance removed successfully\n");
-    else printf("Appliance not found\n");
+void removeProductMenu(DataBase* database) {
+    printf("Products in the system: \n");
+    listProducts(database);
+    printf("ID of the product you want to remove:\n");
+    if(removeProduct(database, scanInt())) printf("Appliance removed successfully\n");
+    else printf("Product not found\n");
 }
 
-void appliancesMenu(DataBase* database){
+void productsMenu(DataBase* database){
     while(1) {
         printf("\n");
         printf("----------------------\n");
-        printf("Appliances:\n");
-        printf("1. Add appliance\n");
-        printf("2. Remove appliance\n");
-        printf("3. List appliances\n");
+        printf("Products:\n");
+        printf("1. Add product\n");
+        printf("2. Remove product\n");
+        printf("3. List products\n");
         printf("-1. Exit\n");
         int choice = scanInt();
         switch (choice) {
@@ -237,10 +242,10 @@ void appliancesMenu(DataBase* database){
                 addProductMenu(database);
                 break;
             case 2:
-                removeApplianceMenu(database);
+                removeProductMenu(database);
                 break;
             case 3:
-                listAppliances(database);
+                listProducts(database);
                 break;
             case -1:
                 return;
@@ -268,7 +273,7 @@ void adminMenu(DataBase* database){
                 providersMenu(database);
                 break;
             case 3:
-                appliancesMenu(database);
+                productsMenu(database);
                 break;
             case -1:
                 return;

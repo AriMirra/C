@@ -25,9 +25,9 @@ DataBase* createDataBase(){
  * Description: searches a Manufacturer on the DataBase and returns it if found
  * Return: Manufacturer pointer
  */
-Manufacturer* getManufacturer(DataBase* database,char* name){
+Manufacturer* getManufacturer(DataBase* database, int manufacturerID){
     for(int i = 0; i < database->amountOfManufacturers; i++){
-        if(strcmp(name,database->manufacturers[i]->name) == 0)
+        if(database->manufacturers[i]->manufacturerID == manufacturerID)
             return database->manufacturers[i];
     }
     return NULL;
@@ -37,9 +37,9 @@ Manufacturer* getManufacturer(DataBase* database,char* name){
  * Description: searches a Provider on the DataBase and returns it if found
  * Return: Provider pointer
  */
-Provider* getProvider(DataBase* database,char* name){
+Provider* getProvider(DataBase* database, int providerID){
     for(int i = 0; i < database->amountOfProviders; i++){
-            if(strcmp(name,database->providers[i]->name) == 0)
+            if(database->providers[i]->providerID == providerID)
                 return database->providers[i];
     }
     return NULL;
@@ -49,9 +49,9 @@ Provider* getProvider(DataBase* database,char* name){
  * Description: searches a Appliance on the DataBase and returns it if found
  * Return: Product pointer
  */
-Product* getProduct(DataBase *database, char *name){
+Product* getProduct(DataBase *database, int productID){
     for(int i = 0; i < database->amountOfProducts; i++){
-        if(strcmp(name,database->products[i]->name) == 0)
+        if(database->products[i]->productID == productID)
             return database->products[i];
     }
     return NULL;
@@ -84,12 +84,23 @@ void growProduct(DataBase* database){
     database->productMaxCapacity *= 2;
 }
 
+int nextManufacturerID(DataBase* dataBase){
+    return dataBase->manufacturerIDGenerator++;
+}
+int nextProviderID(DataBase* dataBase){
+    return dataBase->providerIDGenerator++;
+}
+int nextProductID(DataBase* dataBase){
+    return dataBase->productIDGenerator++;
+}
+
 /*
  * Description: adds a Manufacturer to the DataBase
  * Return: void
  */
 void addManufacturer(DataBase* database, Manufacturer* manufacturer){
     if(database->amountOfManufacturers != database->manufacturerMaxCapacity){
+        manufacturer->manufacturerID = nextManufacturerID(database);
         database->manufacturers[database->amountOfManufacturers] = manufacturer;
         database->amountOfManufacturers++;
     }else{
@@ -104,6 +115,7 @@ void addManufacturer(DataBase* database, Manufacturer* manufacturer){
  */
 void addProvider(DataBase* database, Provider* provider){
     if(database->amountOfProviders != database->providerMaxCapacity){
+        provider->providerID = nextProviderID(database);
         database->providers[database->amountOfProviders] = provider;
         database->amountOfProviders++;
     }else{
@@ -118,13 +130,14 @@ void addProvider(DataBase* database, Provider* provider){
  */
 void addProduct(DataBase *database, Product *product, int manufacturerID, int providerID){
     if(database->amountOfProducts != database->productMaxCapacity){
+        product->productID = nextProductID(database);
         setManufacturerID(product,manufacturerID);
         setProviderID(product, providerID);
         database->products[database->amountOfProducts] = product;
         database->amountOfProducts++;
     }else{
         growProduct(database);
-        //addProduct(database, appliance, manufacturerName, providerName);
+        addProduct(database, product, manufacturerID, providerID);
     }
 }
 
@@ -132,9 +145,9 @@ void addProduct(DataBase *database, Product *product, int manufacturerID, int pr
  * Description: searches a Manufacturer on the DataBase and deletes it if found
  * Return: returns 1 if found and deleted, 0 if not found
  */
-int removeManufacturer(DataBase* database,char* manufacturerName){
+int removeManufacturer(DataBase* database,int manufacturerID){
     for(int i = 0; i < database->amountOfManufacturers; i++){
-        if(strcmp(database->manufacturers[i]->name, manufacturerName) == 0){
+        if(database->manufacturers[i]->manufacturerID == manufacturerID){
             Manufacturer* result = database->manufacturers[i];
             for (int j = i; j < database->amountOfManufacturers; j++){
                 database->manufacturers[j] = database->manufacturers[j+1];
@@ -151,9 +164,9 @@ int removeManufacturer(DataBase* database,char* manufacturerName){
  * Description: searches a Provider on the DataBase and deletes it if found
  * Return: returns 1 if found and deleted, 0 if not found
  */
-int removeProvider(DataBase* database,char* providerName){
+int removeProvider(DataBase* database, int providerID){
     for(int i = 0; i < database->amountOfProviders; i++){
-        if(strcmp(database->providers[i]->name, providerName) == 0){
+        if(database->providers[i]->providerID == providerID){
             Provider* result = database->providers[i];
             for (int j = i; j < database->amountOfProviders; j++){
                 database->providers[j] = database->providers[j+1];
@@ -170,9 +183,9 @@ int removeProvider(DataBase* database,char* providerName){
  * Description: searches a product on the DataBase and deletes it if found
  * Return: returns 1 if found and deleted, 0 if not found
  */
-int removeProduct(DataBase *database, char *productName){
+int removeProduct(DataBase *database, int productID){
     for(int i = 0; i < database->amountOfProducts; i++){
-        if(strcmp(database->products[i]->name, productName) == 0){
+        if(database->products[i]->productID == productID){
             Product* result = database->products[i];
             for (int j = i; j < database->amountOfProducts; j++){
                 database->products[j] = database->products[j+1];
@@ -189,11 +202,9 @@ int removeProduct(DataBase *database, char *productName){
  * Description: checks if a Manufacturer is in the DataBase
  * Return: 1 if it has been found in the DataBase, 0 if not
  */
-int manufacturerExist(DataBase* database, char* manufacturerName){
+int manufacturerExist(DataBase* database, int manufacturerID){
     for(int i = 0; i < database->amountOfManufacturers; i++){
-        if(strcmp(manufacturerName,database->manufacturers[i]->name) == 0){
-            return 1;
-        }
+        if(manufacturerID == database->manufacturers[i]->manufacturerID) return 1;
     }
     return 0;
 }
@@ -202,11 +213,9 @@ int manufacturerExist(DataBase* database, char* manufacturerName){
  * Description: checks if a Provider is in the DataBase
  * Return: 1 if it has been found in the DataBase, 0 if not
  */
-int providerExist(DataBase* database, char* providerName){
+int providerExist(DataBase* database, int providerID){
     for(int i = 0; i < database->amountOfProviders; i++){
-        if(strcmp(providerName,database->providers[i]->name) == 0){
-            return 1;
-        }
+        if(providerID == database->providers[i]->providerID) return 1;
     }
     return 0;
 }
@@ -215,11 +224,9 @@ int providerExist(DataBase* database, char* providerName){
  * Description: checks if an Appliance is in the DataBase
  * Return: 1 if it has been found in the DataBase, 0 if not
  */
-int productExist(DataBase *database, char *productName){
+int productExist(DataBase *database, int productID){
     for(int i = 0; i < database->amountOfProducts; i++){
-        if(strcmp(productName,database->products[i]->name) == 0){
-            return 1;
-        }
+        if(productID == database->products[i]->providerID) return 1;
     }
     return 0;
 }

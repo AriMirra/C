@@ -7,10 +7,11 @@ typedef struct Provider{
     char* address;
     char* city;
     char* telephoneNumber;
-    char* web;
+    char* country;
+    int providerID;
 }Provider;
 
 //functions
-Provider* createProvider(char* name, char* description, char* address, char* city, char* telephoneNumber, char* web);
+Provider* createProvider(char* name, char* description, char* address, char* city, char* telephoneNumber, char* country);
 void destroyProvider(Provider* provider);
 #endif //CFROMJAVA_PROVIDER_H

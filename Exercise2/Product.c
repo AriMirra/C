@@ -10,17 +10,19 @@
  * Description: Creates a new product with the details passed.
  * Returns: a Product pointer
  */
-Product* createProduct(int productID, char *name, ProductType productType,
+Product* createProduct(char *name, ProductType productType,
                        int manufacturerID, int providerID,int price){
     Product* result = malloc(sizeof(Product));
     result->price = price;
-    result->productID = productID;
     result->name = malloc(sizeof(char)*(strlen(name)+1));
     strcpy(result->name, name);
     result->productType = productType;
     result->manufacturerID = manufacturerID;
     result->providerID = providerID;
     return result;
+}
+void setID(Product* product, int id){
+    product->productID = id;
 }
 
 void setManufacturerID(Product* product, int manufacturerID){
