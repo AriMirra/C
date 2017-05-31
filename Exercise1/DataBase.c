@@ -104,7 +104,7 @@ void addManufacturer(DataBase* database, Manufacturer* manufacturer){
  * Return: void
  */
 void addProvider(DataBase* database, Provider* provider){
-    if(database->amountOfProviders != database->applianceMaxCapacity){
+    if(database->amountOfProviders != database->providerMaxCapacity){
         database->providers[database->amountOfProviders] = provider;
         database->amountOfProviders++;
     }else{
