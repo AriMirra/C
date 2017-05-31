@@ -15,10 +15,11 @@ typedef struct Camera{
     int zoom;
     int ldcDisplay;
     CameraType cameraType;
+    int price;
     StaticList* accessoryList;
 }Camera;
 
-Camera* createCamera(char *name, int megaPixels, int zoom, int ldcDisplay, CameraType cameraType);
+Camera* createCamera(char *name, int megaPixels, int zoom, int ldcDisplay, CameraType cameraType, int price);
 void addCameraAccessory(Camera* camera, int accessoryID);
 void removeCameraAccessory(Camera* camera, int accessoryID);
 void destroyCamera(Camera* camera);

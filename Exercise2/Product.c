@@ -11,7 +11,7 @@
  * Returns: a Product pointer
  */
 Product* createProduct(char *name, ProductType productType,
-                       int manufacturerID, int providerID,int price){
+                       int manufacturerID, int providerID, int productID, int price){
     Product* result = malloc(sizeof(Product));
     result->price = price;
     result->name = malloc(sizeof(char)*(strlen(name)+1));
@@ -19,18 +19,8 @@ Product* createProduct(char *name, ProductType productType,
     result->productType = productType;
     result->manufacturerID = manufacturerID;
     result->providerID = providerID;
+    result->productID = productID;
     return result;
-}
-void setID(Product* product, int id){
-    product->productID = id;
-}
-
-void setManufacturerID(Product* product, int manufacturerID){
-    product->manufacturerID = manufacturerID;
-}
-
-void setProviderID(Product* product, int providerID){
-    product->providerID = providerID;
 }
 
 /*

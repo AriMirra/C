@@ -2,14 +2,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 /*
- * Description: creates a ShoppingCartLine
- * Returns: the ShoppingCartLine created
+ * Description: creates a CartLine
+ * Returns: CartLine pointer
  */
-CartLine* createCartLine(Appliance* appliance, int units){
+CartLine* createCartLine(Product* product, int units){
     CartLine* result = malloc(sizeof(CartLine));
-    result->appliance = malloc(sizeof(Appliance));
+    result->product = malloc(sizeof(Product));
 
-    result->appliance = appliance;
+    result->product = product;
     result->units = units;
     return result;
 }
@@ -19,6 +19,6 @@ CartLine* createCartLine(Appliance* appliance, int units){
  * Return: void
  */
 void destroyCartLine(CartLine* cartLine){
-    destroyAppliance(cartLine->appliance);
+    destroyProduct(cartLine->product);
     free(cartLine);
 }

@@ -14,10 +14,14 @@ DataBase* setup(){
                                    "Av. Córdoba 783","CABA","0810-122-3345", "dhl.com");
     addProvider(database, dhl);
 
-    // todo create camera accessory and add them to the database
+    Camera* sonyCamera = createCamera("best sony camera",35,60,4,DSLR,5000);
+    Accessory* accessory = createAccessory("sonyLens","a bigger more expensive lens",1000);
+    addCamera(database,sonyCamera,0,0);
+    addAccessory(database,accessory,0,0);
     return database;
 }
 
+// todo add client menu
 int main() {
     DataBase* database = setup();
     while(1) {

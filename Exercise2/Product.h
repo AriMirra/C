@@ -17,9 +17,6 @@ typedef struct Product{
 }Product;
 
 Product* createProduct(char *name, ProductType productType,
-                       int manufacturerID, int providerID, int price);
-void setManufacturerID(Product* product, int manufacturerID);
-void setProviderID(Product* product, int providerID);
-void setID(Product* product, int id);
+                       int manufacturerID, int providerID, int productID, int price);
 void destroyProduct(Product* product);
 #endif //CFROMJAVA_PRODUCT_H

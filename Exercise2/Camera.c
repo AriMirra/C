@@ -10,7 +10,7 @@
  * Description: creates a new Camera from the given data.
  * Returns: void
  */
-Camera* createCamera(char *name, int megaPixels, int zoom, int ldcDisplay, CameraType cameraType){
+Camera* createCamera(char *name, int megaPixels, int zoom, int ldcDisplay, CameraType cameraType, int price){
     Camera* result = malloc(sizeof(Camera));
     result->name = malloc(sizeof(char)*(strlen(name)+1));
     strcpy(result->name, name);
@@ -18,6 +18,7 @@ Camera* createCamera(char *name, int megaPixels, int zoom, int ldcDisplay, Camer
     result->zoom = zoom;
     result->ldcDisplay = ldcDisplay;
     result->cameraType = cameraType;
+    result->price = price;
     result->accessoryList = createStaticList(3);
     return result;
 }

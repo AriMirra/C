@@ -10,10 +10,10 @@ Cart* createCart(char* id){
     Cart* result = malloc(sizeof(Cart));
     result->id = malloc(sizeof(char)*strlen(id)+1);
     result->capacity = 10;
-    result->appliances = malloc(sizeof(Appliance*)*result->capacity);
+    result->products = malloc(sizeof(Product*)*result->capacity);
 
     result->id = id;
-    result->appliancesAmount = 0;
+    result->productsAmount = 0;
     return result;
 }
 
@@ -21,29 +21,29 @@ Cart* createCart(char* id){
  * Description: adds an Appliance to the cart
  * Returns: void
  */
-void addApplianceToCart(Cart *cart, Appliance *appliance, int amount){
+void addApplianceToCart(Cart *cart, Product *product, int amount){
     if (isFull(cart)) grow(cart);
-    cart->appliances[cart->appliancesAmount] = createCartLine(appliance,amount);
-    cart->appliancesAmount++;
+    cart->products[cart->productsAmount] = createCartLine(product,amount);
+    cart->productsAmount++;
 }
 
 /*
- * Description: removes an Appliance from the cart
+ * Description: removes a product from the cart
  * Returns: void
  */
-void removeApplianceFromCart(Cart *cart, char* applianceName){
+void removeApplianceFromCart(Cart *cart, int productID){
     int applianceFoundAndRemoved = 0;
-    for (int i = 0; i < cart->appliancesAmount; i++){
-        if(strcmp(cart->appliances[i]->appliance->name, applianceName) == 0){
-            CartLine* result = cart->appliances[i];
-            for (int j = i; j < cart->appliancesAmount; j++){
-                cart->appliances[j] = cart->appliances[j+1];
+    for (int i = 0; i < cart->productsAmount; i++){
+        if(cart->products[i]->product->productID == productID){
+            CartLine* result = cart->products[i];
+            for (int j = i; j < cart->productsAmount; j++){
+                cart->products[j] = cart->products[j+1];
             }
             applianceFoundAndRemoved = 1;
             break;
         }
     }
-    if (applianceFoundAndRemoved) cart->appliancesAmount--;
+    if (applianceFoundAndRemoved) cart->productsAmount--;
 }
 
 /*
@@ -51,7 +51,7 @@ void removeApplianceFromCart(Cart *cart, char* applianceName){
  * Returns: 1 if the cart is full, 0 if it's not
  */
 int isFull(Cart* cart){
-    if(cart->appliancesAmount == sizeof(cart->appliances)) return 1;
+    if(cart->productsAmount == sizeof(cart->products)) return 1;
     return 0;
 }
 
@@ -61,7 +61,7 @@ int isFull(Cart* cart){
  */
 void grow(Cart* cart) {
     cart->capacity = cart->capacity*2;
-    cart->appliances = realloc(cart->appliances, sizeof(Appliance*)*cart->capacity);
+    cart->products = realloc(cart->products, sizeof(Product*)*cart->capacity);
 }
 
 /*
@@ -70,8 +70,8 @@ void grow(Cart* cart) {
  */
 int total(Cart* cart){
     int result = 0;
-    for(int i = 0;i< cart->appliancesAmount;i++){
-        result += ((cart->appliances[i]->appliance->price)*cart->appliances[i]->units);
+    for(int i = 0;i< cart->productsAmount;i++){
+        result += ((cart->products[i]->product->price)*cart->products[i]->units);
     }
     return result;
 }
@@ -81,10 +81,10 @@ int total(Cart* cart){
  * Returns: void
  */
 void emptyCart(Cart* cart) {
-    int j = cart->appliancesAmount;
+    int j = cart->productsAmount;
     for (int i = 0; i < j; i++) {
-        destroyCartLine(cart->appliances[i]);
-        cart->appliancesAmount--;
+        destroyCartLine(cart->products[i]);
+        cart->productsAmount--;
     }
 }
 
@@ -93,6 +93,6 @@ void emptyCart(Cart* cart) {
  * Return: void
  */
 void destroyCart(Cart* cart){
-    emptyCart(shoppingCart);
-    free(shoppingCart->id);
+    emptyCart(cart);
+    free(cart->id);
 }

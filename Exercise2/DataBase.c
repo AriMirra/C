@@ -15,9 +15,17 @@ DataBase* createDataBase(){
     result->providerMaxCapacity = initialSize;
     result->products = malloc(sizeof(Product*) * initialSize);
     result->productMaxCapacity = initialSize;
+    result->cameras = malloc(sizeof(Camera*)*initialSize);
+    result->cameraMaxCapacity = initialSize;
+    result->accessories = malloc(sizeof(Accessory*)*initialSize);
     result->amountOfManufacturers = 0;
     result->amountOfProviders = 0;
     result->amountOfProducts = 0;
+    result->amountOfCameras = 0;
+    result->amountOfAccessories = 0;
+    result->manufacturerIDGenerator = 0;
+    result->providerIDGenerator = 0;
+    result->productIDGenerator = 0;
     return result;
 }
 
@@ -76,12 +84,30 @@ void growProvider(DataBase* database){
 }
 
 /*
- * Description: expands the Appliance array inside the DataBase
+ * Description: expands the product array inside the DataBase
  * Return: void
  */
 void growProduct(DataBase* database){
     database->products = realloc(database->products, sizeof(Product*) * database->productMaxCapacity * 2);
     database->productMaxCapacity *= 2;
+}
+
+/*
+ * Description: expands the Camera array inside the DataBase
+ * Return: void
+ */
+void growCamera(DataBase* database){
+    database->cameras = realloc(database->cameras, sizeof(Camera*) * database->cameraMaxCapacity* 2);
+    database->cameraMaxCapacity *= 2;
+}
+
+/*
+ * Description: expands the Accessory array inside the DataBase
+ * Return: void
+ */
+void growAccessory(DataBase* database){
+    database->accessories= realloc(database->accessories, sizeof(Accessory*) * database->accessoryMaxCapacity* 2);
+    database->accessoryMaxCapacity *= 2;
 }
 
 int nextManufacturerID(DataBase* dataBase){
@@ -125,14 +151,14 @@ void addProvider(DataBase* database, Provider* provider){
 }
 
 /*
- * Description: adds an Appliance to the DataBase and sets it's manufacturer and provider
+ * Description: adds a product to the DataBase and sets it's manufacturer and provider
  * Return: void
  */
 void addProduct(DataBase *database, Product *product, int manufacturerID, int providerID){
     if(database->amountOfProducts != database->productMaxCapacity){
         product->productID = nextProductID(database);
-        setManufacturerID(product,manufacturerID);
-        setProviderID(product, providerID);
+        product->manufacturerID = manufacturerID;
+        product->providerID = providerID;
         database->products[database->amountOfProducts] = product;
         database->amountOfProducts++;
     }else{
@@ -142,6 +168,53 @@ void addProduct(DataBase *database, Product *product, int manufacturerID, int pr
 }
 
 /*
+ * Description: adds a camera to the DataBase and sets it's manufacturer and provider
+ * Return: void
+ */
+void addCamera(DataBase* database, Camera* camera, int manufacturerID, int providerID){
+    if(database->amountOfCameras != database->cameraMaxCapacity && database->amountOfProducts != database->productMaxCapacity){
+        //create a product with the camera
+        Product* product = createProduct(camera->name,CAMERA,manufacturerID,providerID,nextProductID(database),camera->price);
+        //set it's manufacturer and provider
+        product->manufacturerID = manufacturerID;
+        product->providerID = providerID;
+        //add it to the database
+        database->products[database->amountOfProducts] = product;
+        database->amountOfProducts++;
+        //add the camera too
+        database->cameras[database->amountOfCameras] = camera;
+        database->amountOfCameras++;
+    }else{
+        growProduct(database);
+        growCamera(database);
+    }
+}
+
+/*
+ * Description: adds an accessory to the DataBase and sets it's manufacturer and provider
+ * Return: void
+ */
+void addAccessory(DataBase* database, Accessory* accessory, int manufacturerID, int providerID){
+    if(database->amountOfProducts != database->productMaxCapacity && database->amountOfAccessories != database->accessoryMaxCapacity){
+        //create a product with the accessory
+        Product* product = createProduct(accessory->name,CAMERA,manufacturerID,providerID,nextProductID(database),accessory->price);
+        //set it's manufacturer and provider
+        product->manufacturerID = manufacturerID;
+        product->providerID = providerID;
+        //add it to the database
+        database->products[database->amountOfProducts] = product;
+        database->amountOfProducts++;
+        //add the accessory too
+        database->accessories[database->amountOfAccessories] = accessory;
+        database->amountOfAccessories++;
+    }else{
+        growProduct(database);
+        growAccessory(database);
+    }
+}
+
+
+/*
  * Description: searches a Manufacturer on the DataBase and deletes it if found
  * Return: returns 1 if found and deleted, 0 if not found
  */
@@ -149,7 +222,7 @@ int removeManufacturer(DataBase* database,int manufacturerID){
     for(int i = 0; i < database->amountOfManufacturers; i++){
         if(database->manufacturers[i]->manufacturerID == manufacturerID){
             Manufacturer* result = database->manufacturers[i];
-            for (int j = i; j < database->amountOfManufacturers; j++){
+            for (int j = i; j < database->amountOfManufacturers-1; j++){
                 database->manufacturers[j] = database->manufacturers[j+1];
             }
             destroyManufacturer(result);
@@ -168,7 +241,7 @@ int removeProvider(DataBase* database, int providerID){
     for(int i = 0; i < database->amountOfProviders; i++){
         if(database->providers[i]->providerID == providerID){
             Provider* result = database->providers[i];
-            for (int j = i; j < database->amountOfProviders; j++){
+            for (int j = i; j < database->amountOfProviders-1; j++){
                 database->providers[j] = database->providers[j+1];
             }
             destroyProvider(result);
@@ -187,7 +260,7 @@ int removeProduct(DataBase *database, int productID){
     for(int i = 0; i < database->amountOfProducts; i++){
         if(database->products[i]->productID == productID){
             Product* result = database->products[i];
-            for (int j = i; j < database->amountOfProducts; j++){
+            for (int j = i; j < database->amountOfProducts-1; j++){
                 database->products[j] = database->products[j+1];
             }
             destroyProduct(result);

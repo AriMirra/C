@@ -3,14 +3,14 @@
 #include "InvoiceLine.h"
 /*
  * Description: creates an InvoiceLine
- * Returns: the InvoiceLine created
+ * Returns: a pointer to the InvoiceLine created
  */
-InvoiceLine* createInvoiceLine(ShoppingCartLine* cartLine){
+InvoiceLine* createInvoiceLine(CartLine* cartLine){
     InvoiceLine* result = malloc(sizeof(InvoiceLine));
-    result->applianceName = malloc(sizeof(char)*strlen(cartLine->appliance->name)+1);
-    strcpy(result->applianceName, cartLine->appliance->name);
+    result->applianceName = malloc(sizeof(char)*strlen(cartLine->product->name)+1);
+    strcpy(result->applianceName, cartLine->product->name);
     result->units = cartLine->units;
-    result->priceOfAppliance = cartLine->appliance->price;
+    result->priceOfAppliance = cartLine->product->price;
     return result;
 }
 

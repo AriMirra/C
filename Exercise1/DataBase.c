@@ -137,7 +137,7 @@ int removeManufacturer(DataBase* database,char* manufacturerName){
     for(int i = 0; i < database->amountOfManufacturers; i++){
         if(strcmp(database->manufacturers[i]->name, manufacturerName) == 0){
             Manufacturer* result = database->manufacturers[i];
-            for (int j = i; j < database->amountOfManufacturers; j++){
+            for (int j = i; j < database->amountOfManufacturers-1; j++){
                 database->manufacturers[j] = database->manufacturers[j+1];
             }
             destroyManufacturer(result);
@@ -156,7 +156,7 @@ int removeProvider(DataBase* database,char* providerName){
     for(int i = 0; i < database->amountOfProviders; i++){
         if(strcmp(database->providers[i]->name, providerName) == 0){
             Provider* result = database->providers[i];
-            for (int j = i; j < database->amountOfProviders; j++){
+            for (int j = i; j < database->amountOfProviders-1; j++){
                 database->providers[j] = database->providers[j+1];
             }
             destroyProvider(result);
@@ -175,7 +175,7 @@ int removeAppliance(DataBase* database,char* applianceName){
     for(int i = 0; i < database->amountOfAppliances; i++){
         if(strcmp(database->appliances[i]->name, applianceName) == 0){
             Appliance* result = database->appliances[i];
-            for (int j = i; j < database->amountOfAppliances; j++){
+            for (int j = i; j < database->amountOfAppliances-1; j++){
                 database->appliances[j] = database->appliances[j+1];
             }
             destroyAppliance(result);

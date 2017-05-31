@@ -1,7 +1,7 @@
 #ifndef CFROMJAVA_INVOICELINE_H
 #define CFROMJAVA_INVOICELINE_H
 
-#include "ShoppingCartLine.h"
+#include "CartLine.h"
 
 typedef struct InvoiceLine{
     char* applianceName;
@@ -10,6 +10,6 @@ typedef struct InvoiceLine{
 }InvoiceLine;
 
 //functions
-InvoiceLine* createInvoiceLine(ShoppingCartLine* cartLine);
+InvoiceLine* createInvoiceLine(CartLine* cartLine);
 void destroyInvoiceLine(InvoiceLine* invoiceLine);
 #endif //CFROMJAVA_INVOICELINE_H

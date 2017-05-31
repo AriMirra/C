@@ -8,7 +8,7 @@
 
 /*
  * Description: The DataBase holds the information of the hole system,
- *              is where manufacturers, providers and appliances are added, consulted or deleted
+ *              is where manufacturers, providers and products are added, consulted or deleted
  */
 typedef struct DataBase{
     Manufacturer** manufacturers;
@@ -29,12 +29,10 @@ typedef struct DataBase{
     Camera** cameras;
     int amountOfCameras;
     int cameraMaxCapacity;
-    int cameraIDGenerator;
 
     Accessory** accessories;
-    int amountOfaccessories;
+    int amountOfAccessories;
     int accessoryMaxCapacity;
-    int accessoryIDGenerator;
 
 }DataBase;
 
@@ -43,9 +41,13 @@ DataBase* createDataBase();
 void growManufacturer(DataBase* database);
 void growProvider(DataBase* database);
 void growProduct(DataBase* database);
+void growCamera(DataBase* database);
+void growAccessory(DataBase* database);
 void addManufacturer(DataBase* database, Manufacturer* manufacturer);
 void addProvider(DataBase* database, Provider* provider);
-void addProduct(DataBase *database, Product *appliance, int manufacturerID, int providerID);
+void addProduct(DataBase *database, Product *product, int manufacturerID, int providerID);
+void addCamera(DataBase* database, Camera* camera, int manufacturerID, int providerID);
+void addAccessory(DataBase* database, Accessory* accessory, int manufacturerID, int providerID);
 Manufacturer* getManufacturer(DataBase* database, int manufacturerID);
 Provider* getProvider(DataBase* database, int providerID);
 Product* getProduct(DataBase *database, int productID);

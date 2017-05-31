@@ -42,16 +42,22 @@ void addManufacturerMenu(DataBase* database){
     printf("Add Manufacturer:\n");
     printf("Name:\n");
     char* name = scanChar();
+    printf("\n");
     printf("Description:\n");
     char* description = scanChar();
+    printf("\n");
     printf("Address:\n");
     char* address = scanChar();
+    printf("\n");
     printf("City:\n");
     char* city = scanChar();
+    printf("\n");
     printf("Country:\n");
     char* country = scanChar();
+    printf("\n");
     printf("Phone:\n");
     char* phone = scanChar();
+    printf("\n");
     Manufacturer* manufacturer = createManufacturer(name, description, address, city, phone, country);
     addManufacturer(database, manufacturer);
     free(name);
@@ -67,8 +73,10 @@ void addManufacturerMenu(DataBase* database){
  * Returns: void
  */
 void removeManufacturerMenu(DataBase *database){
-    printf("Name of the manufacturer to remove:\n");
-    if(removeManufacturer(database,scanChar())) printf("Manufacturer removed successfully\n");
+    printf("Manufacturers in the system: :");
+    listManufacturers(database);
+    printf("\n ID of the manufacturer to remove:\n");
+    if(removeManufacturer(database,scanInt())) printf("Manufacturer removed successfully\n");
     else printf("Manufacturer not found\n");
 }
 /*
@@ -111,29 +119,37 @@ void addProviderMenu(DataBase *database){
     printf("Add provider:\n");
     printf("Name:\n");
     char* name = scanChar();
+    printf("\n");
     printf("Description:\n");
     char* description = scanChar();
+    printf("\n");
     printf("Address:\n");
     char* address = scanChar();
+    printf("\n");
     printf("City:\n");
     char* city = scanChar();
-    printf("Web:\n");
-    char* web = scanChar();
+    printf("\n");
+    printf("Country:\n");
+    char* country = scanChar();
+    printf("\n");
     printf("Phone:\n");
     char* phone = scanChar();
-    Provider* provider = createProvider(name, description, address, city, phone, web);
+    printf("\n");
+    Provider* provider = createProvider(name, description, address, city, phone, country);
     addProvider(database, provider);
     free(name);
     free(description);
     free(address);
     free(city);
-    free(web);
+    free(country);
     free(phone);
 }
 
 void removeProviderMenu(DataBase* database){
-    printf("Name of the provider to remove:\n");
-    if(removeProvider(database,scanChar())) printf("Provider removed successfully\n");
+    printf("Providers in the system: :");
+    listProviders(database);
+    printf("\n ID of the provider to remove:\n");
+    if(removeProvider(database,scanInt())) printf("Provider removed successfully\n");
     else printf("Provider not found\n");
 }
 
@@ -213,7 +229,7 @@ void addProductMenu(DataBase* database){
     }
     printf("\n");
     //create the product and add it to the database
-    Product* product = createProduct(name,productType,manufacturer,provider,price);
+    Product* product = createProduct(name,productType,manufacturer,provider,nextProductID(database),price);
     addProduct(database, product, manufacturer, provider);
     //free variables used
     free(name);
@@ -223,7 +239,7 @@ void removeProductMenu(DataBase* database) {
     printf("Products in the system: \n");
     listProducts(database);
     printf("ID of the product you want to remove:\n");
-    if(removeProduct(database, scanInt())) printf("Appliance removed successfully\n");
+    if(removeProduct(database, scanInt())) printf("Product removed successfully\n");
     else printf("Product not found\n");
 }
 

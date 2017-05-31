@@ -1,17 +1,17 @@
 #include <afxres.h>
 #include "Invoice.h"
 /*
- * Description: creates an Invoice with the components on the ShoppingCart
- * Returns: the Invoice created
+ * Description: creates an Invoice with the components on the cart
+ * Returns: the pointer to Invoice created
  */
 Invoice* createInvoice(Cart* cart) {
     Invoice* result = malloc(sizeof(Invoice));
     result->toPay = total(cart);
-    result->invoiceLines = malloc(sizeof(InvoiceLine) * cart->appliancesAmount);
-    for(int i = 0; i < cart->appliancesAmount; i++){
-        result->invoiceLines[i] = createInvoiceLine(cart->appliances[i]);
+    result->invoiceLines = malloc(sizeof(InvoiceLine) * cart->productsAmount);
+    for(int i = 0; i < cart->productsAmount; i++){
+        result->invoiceLines[i] = createInvoiceLine(cart->products[i]);
     }
-    result->amountOfLines = cart->appliancesAmount;
+    result->amountOfLines = cart->productsAmount;
     return result;
 }
 

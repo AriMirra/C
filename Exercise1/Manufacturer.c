@@ -12,7 +12,7 @@
 Manufacturer* createManufacturer(char* name, char* description, char* address, char* city, char* telephoneNumber, char* web){
     Manufacturer* result = malloc(sizeof(Manufacturer));
     result->name = malloc(sizeof(char)*strlen(name)+1);
-    result->description = malloc(sizeof(char)*strlen(description+1));
+    result->description = malloc(sizeof(char)*strlen(description)+1);
     result->address = malloc(sizeof(char)*strlen(address)+1);
     result->city = malloc(sizeof(char)*strlen(city)+1);
     result->telephoneNumber = malloc(sizeof(char)*strlen(telephoneNumber)+1);
