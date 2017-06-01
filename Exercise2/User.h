@@ -15,6 +15,8 @@ typedef struct User{
 }User;
 
 //functions
-
+User* createUser(char* name,char* dni,char* address,char* telephone,
+                 char* city,char* province,char* country,char* postalCode);
+void destroyUser(User* user);
 
 #endif //CFROMJAVA_USER_H

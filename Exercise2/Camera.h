@@ -4,7 +4,7 @@
 #include "../Util/StaticList.h"
 
 /*
- * Description: Represents a camera
+ * Description: Represents a camera in the Camera Shop system.
  */
 typedef enum{DSLR, COMPACT} CameraType;
 

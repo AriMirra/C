@@ -21,7 +21,7 @@ Cart* createCart(char* id){
  * Description: adds an Appliance to the cart
  * Returns: void
  */
-void addApplianceToCart(Cart *cart, Product *product, int amount){
+    void addProductToCart(Cart *cart, Product *product, int amount){
     if (isFull(cart)) grow(cart);
     cart->products[cart->productsAmount] = createCartLine(product,amount);
     cart->productsAmount++;
@@ -31,7 +31,7 @@ void addApplianceToCart(Cart *cart, Product *product, int amount){
  * Description: removes a product from the cart
  * Returns: void
  */
-void removeApplianceFromCart(Cart *cart, int productID){
+void removeProductFromCart(Cart *cart, int productID){
     int applianceFoundAndRemoved = 0;
     for (int i = 0; i < cart->productsAmount; i++){
         if(cart->products[i]->product->productID == productID){
