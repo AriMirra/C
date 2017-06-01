@@ -48,6 +48,7 @@ void growProvider(DataBase* database);
 void growProduct(DataBase* database);
 void growCamera(DataBase* database);
 void growAccessory(DataBase* database);
+void growUser(DataBase* database);
 void addManufacturer(DataBase* database, Manufacturer* manufacturer);
 void addProvider(DataBase* database, Provider* provider);
 void addProduct(DataBase *database, Product *product, int manufacturerID, int providerID);
