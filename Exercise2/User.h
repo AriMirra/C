@@ -10,7 +10,6 @@ typedef struct User{
     char* province;
     char* country;
     char* postalCode;
-    //int rol;
 
 }User;
 

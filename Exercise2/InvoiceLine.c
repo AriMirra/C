@@ -7,8 +7,8 @@
  */
 InvoiceLine* createInvoiceLine(CartLine* cartLine){
     InvoiceLine* result = malloc(sizeof(InvoiceLine));
-    result->applianceName = malloc(sizeof(char)*strlen(cartLine->product->name)+1);
-    strcpy(result->applianceName, cartLine->product->name);
+    result->productName = malloc(sizeof(char)*strlen(cartLine->product->name)+1);
+    strcpy(result->productName, cartLine->product->name);
     result->units = cartLine->units;
     result->priceOfAppliance = cartLine->product->price;
     return result;
@@ -19,6 +19,6 @@ InvoiceLine* createInvoiceLine(CartLine* cartLine){
  * Return: void
  */
 void destroyInvoiceLine(InvoiceLine* invoiceLine){
-    free(invoiceLine->applianceName);
+    free(invoiceLine->productName);
     free(invoiceLine);
 }

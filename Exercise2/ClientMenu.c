@@ -31,8 +31,8 @@ void checkout(Cart *cart) {
         Invoice *invoice = createInvoice(cart);
         printf("Product name   price    amount\n");
         for (int i = 0; i < invoice->amountOfLines; i++) {
-            printf("%s    %d    %d\n", invoice->invoiceLines[i]->applianceName,
-                   invoice->invoiceLines[i]->priceOfAppliance, invoice->invoiceLines[i]->units);
+            printf("%s    %d    %d\n", invoice->invoiceLines[i]->productName,
+                   invoice->invoiceLines[i]->priceOfProduct, invoice->invoiceLines[i]->units);
         }
         printf("******************\n");
         printf("Total: $%d\n", invoice->toPay);
