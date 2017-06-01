@@ -5,6 +5,7 @@
 #include "Product.h"
 #include "Camera.h"
 #include "Accessory.h"
+#include "User.h"
 
 /*
  * Description: The DataBase holds the information of the hole system,
@@ -34,6 +35,10 @@ typedef struct DataBase{
     int amountOfAccessories;
     int accessoryMaxCapacity;
 
+    User** users;
+    int amountOfUsers;
+    int userMaxCapacity;
+
 }DataBase;
 
 //functions
@@ -48,12 +53,14 @@ void addProvider(DataBase* database, Provider* provider);
 void addProduct(DataBase *database, Product *product, int manufacturerID, int providerID);
 void addCamera(DataBase* database, Camera* camera, int manufacturerID, int providerID);
 void addAccessory(DataBase* database, Accessory* accessory, int manufacturerID, int providerID);
+void addUser(DataBase* database, User* user);
 Manufacturer* getManufacturer(DataBase* database, int manufacturerID);
 Provider* getProvider(DataBase* database, int providerID);
 Product* getProduct(DataBase *database, int productID);
 int removeManufacturer(DataBase* database,int manufacturerID);
 int removeProvider(DataBase* database, int providerID);
 int removeProduct(DataBase *database, int productID);
+int removeUser(DataBase* database, char* userName);
 int manufacturerExist(DataBase* database, int manufacturerID);
 int providerExist(DataBase* database, int providerID);
 int productExist(DataBase *database, int productID);

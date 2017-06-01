@@ -18,7 +18,7 @@ void addApplianceToCartMenu(DataBase* database, Cart* cart) {
         if (productExist(database, productID)) {
             printf("How many %s would you like to buy?: \n", getProduct(database,productID)->name);
             int amount = scanInt();
-            addApplianceToCart(cart, getProduct(database, productID), amount);
+            addProductToCart(cart, getProduct(database, productID), amount);
         } else {
             printf("Please enter a valid ID: \n");
             goto IDofAppliance;
@@ -53,7 +53,7 @@ void ManageCartMenu(Cart *cart) {
         int option = scanInt();
         if (option == 1) {
             printf("Enter the ID of the product you want to remove:\n");
-            removeApplianceFromCart(cart, scanInt());
+            removeProductFromCart(cart, scanInt());
             printf("\n");
         } else return;
     }else printf("You have no products in your cart");

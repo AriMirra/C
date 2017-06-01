@@ -29,3 +29,15 @@ User* createUser(char* name,char* dni,char* address,char* telephone,
 
     return result;
 }
+
+void destroyUser(User* user){
+    free(user->name);
+    free(user->dni);
+    free(user->address);
+    free(user->telephone);
+    free(user->city);
+    free(user->province);
+    free(user->country);
+    free(user->postalCode);
+    free(user);
+}

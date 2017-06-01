@@ -4,12 +4,13 @@
 #include "../Util/ScanUtil.h"
 void clientMenu(DataBase* database);
 void adminMenu(DataBase* database);
+void userMenu(DataBase* dataBase);
 
 DataBase* setup(){
     DataBase* database = createDataBase();
-    Manufacturer* samsung = createManufacturer("Samsung", "we also sell appliances",
-                                               "silicon valley", "California","03327 42-4377", "samsung.com");
-    addManufacturer(database, samsung);
+    Manufacturer* nikon = createManufacturer("Nikon", "we sell the best cameras",
+                                               "everywhere", "California","03327 42-4377", "nikon.com");
+    addManufacturer(database, nikon);
     Provider* dhl = createProvider("DHL Express","DHL Express provides international courier, parcel and express mail services. It´s the world's largest logistics company operating around the world",
                                    "Av. Córdoba 783","CABA","0810-122-3345", "dhl.com");
     addProvider(database, dhl);
@@ -21,11 +22,10 @@ DataBase* setup(){
     return database;
 }
 
-// todo add client menu
 int main() {
     DataBase* database = setup();
     while(1) {
-        printf("Enter as User (1) or Admin? (2)   to exit enter (-1)\n");
+        printf("Enter as User (1) or Admin? (2)\n if you want to create an Account, press (3)\n  to exit enter (-1)\n");
         int choice = scanInt();
         switch (choice) {
             case 1:
@@ -33,6 +33,9 @@ int main() {
                 break;
             case 2:
                 adminMenu(database);
+                break;
+            case 3:
+                userMenu(database);
                 break;
             case -1:
                 exit(0);

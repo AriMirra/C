@@ -18,11 +18,15 @@ DataBase* createDataBase(){
     result->cameras = malloc(sizeof(Camera*)*initialSize);
     result->cameraMaxCapacity = initialSize;
     result->accessories = malloc(sizeof(Accessory*)*initialSize);
+    result->accessoryMaxCapacity = initialSize;
+    result->users = malloc(sizeof(User*)* initialSize);
+    result->userMaxCapacity = initialSize;
     result->amountOfManufacturers = 0;
     result->amountOfProviders = 0;
     result->amountOfProducts = 0;
     result->amountOfCameras = 0;
     result->amountOfAccessories = 0;
+    result->amountOfUsers = 0;
     result->manufacturerIDGenerator = 0;
     result->providerIDGenerator = 0;
     result->productIDGenerator = 0;
@@ -108,6 +112,15 @@ void growCamera(DataBase* database){
 void growAccessory(DataBase* database){
     database->accessories= realloc(database->accessories, sizeof(Accessory*) * database->accessoryMaxCapacity* 2);
     database->accessoryMaxCapacity *= 2;
+}
+
+/*
+ * Description: expands the User array inside the DataBase
+ * Return: void
+ */
+void growUser(DataBase* database){
+    database->users = realloc(database->users, sizeof(User*) * database->userMaxCapacity* 2);
+    database->userMaxCapacity *= 2;
 }
 
 int nextManufacturerID(DataBase* dataBase){
@@ -213,6 +226,38 @@ void addAccessory(DataBase* database, Accessory* accessory, int manufacturerID, 
     }
 }
 
+/*
+ * Description: adds a user to the DataBase
+ * Return: void
+ */
+void addUser(DataBase* database, User* user){
+    if(database->amountOfUsers != database->userMaxCapacity){
+        database->users[database->amountOfUsers] = user;
+        database->amountOfUsers++;
+    }else{
+        growUser(database);
+        addUser(database,user);
+    }
+}
+
+/*
+ * Description: searches a user on the DataBase and deletes it if found
+ * Return: returns 1 if found and deleted, 0 if not found
+ */
+int removeUser(DataBase* database, char* userName){
+    for(int i = 0; i < database->amountOfUsers; i++){
+        if(strcmp(database->users[i]->name,userName) == 0){
+            User* result = database->users[i];
+            for (int j = i; j < database->amountOfUsers-1; j++){
+                database->users[j] = database->users[j+1];
+            }
+            destroyUser(result);
+            database->amountOfUsers--;
+            return 1;
+        }
+    }
+    return 0;
+}
 
 /*
  * Description: searches a Manufacturer on the DataBase and deletes it if found

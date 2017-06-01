@@ -23,6 +23,7 @@ void listProviders(DataBase* database) {
         printf("%s\n" "Description: %s\n ID: %d\n\n", provider->name,provider->description, provider->providerID);
     }
 }
+
 /*
  * Description: lists the Products in the database
  * Returns: void
@@ -34,6 +35,18 @@ void listProducts(DataBase* database) {
          else printf("accessory: %s\n", product->name);
     }
 }
+
+/*
+ * Description: lists the Users in the database
+ * Returns: void
+ */
+void listUsers(DataBase* database) {
+    for(int i = 0; i < database->amountOfUsers; i++){
+        User* user = database->users[i];
+        printf("User Name: %s\n", user->name);
+    }
+}
+
 /*
  * Description: asks for the details of a manufacturer, creates one and adds them to the database
  * Returns: void
@@ -271,6 +284,14 @@ void productsMenu(DataBase* database){
     }
 }
 
+void removeUsersMenu(DataBase* database){
+    printf("Users in the system: \n");
+    listUsers(database);
+    printf("\nname of the user you want to remove:\n");
+    if(removeUser(database, scanChar())) printf("User removed successfully\n");
+    else printf("User not found\n");
+}
+
 void adminMenu(DataBase* database){
     while(1) {
         printf("\n");
@@ -279,6 +300,7 @@ void adminMenu(DataBase* database){
         printf("1. Manufacturers\n");
         printf("2. Providers\n");
         printf("3. Products\n");
+        printf("4. remove Users\n");
         printf("-1. Exit\n");
         int choice = scanInt();
         switch (choice) {
@@ -291,6 +313,8 @@ void adminMenu(DataBase* database){
             case 3:
                 productsMenu(database);
                 break;
+            case 4:
+                removeUsersMenu(database);
             case -1:
                 return;
             default:
