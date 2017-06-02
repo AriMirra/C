@@ -2,7 +2,10 @@
 #include <malloc.h>
 #include <memory.h>
 #include <stdio.h>
-
+/*
+ * Description: creates a Client
+ * Returns: Client pointer
+ */
 Client* new_Client(char* name, char* surname, int id) {
 
     Client* client = malloc(sizeof(Client));

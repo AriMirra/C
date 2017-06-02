@@ -1,7 +1,10 @@
 #include "Admin.h"
 #include <malloc.h>
 #include <stdio.h>
-
+/*
+ * Description: creates an Admin
+ * Returns: Admin pointer
+ */
 Admin* new_Admin() {
 
     Admin* admin = malloc(sizeof(Admin));

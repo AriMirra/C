@@ -3,6 +3,10 @@
 #include <memory.h>
 #include <stdio.h>
 
+/*
+ * Description: creates a Receptionist
+ * Returns: Receptionist pointer
+ */
 Receptionist* new_Receptionist(char* name, char* surname, int id) {
 
     Receptionist* receptionist = malloc(sizeof(Receptionist));

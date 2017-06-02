@@ -4,9 +4,10 @@
 #include "Receptionist.h"
 #include "Client.h"
 #include "Reservation.h"
-
-typedef struct admin Admin;
-struct admin {
+/*
+ * Description:
+ */
+typedef struct Admin{
     Receptionist* receptionistsList[50];     // There can be a maximum of 50 receptionist at a time
     Client* clientsList[500];                // There can be a maximum of 500 clients in the hotel at a time
     Reservation* reservationsList[500];      // 500 reservations can be generated in total
@@ -15,7 +16,7 @@ struct admin {
     int clientsCounter;
     int reservationCounter;
     int invoiceCounter;
-};
+}Admin;
 
 Admin* new_Admin();
 void freeAdmin(Admin* admin);

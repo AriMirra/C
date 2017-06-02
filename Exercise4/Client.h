@@ -5,15 +5,16 @@
 #include "Reservation.h"
 #include "Hotel.h"
 #include "Invoice.h"
-
-typedef struct client Client;
-struct client {
+/*
+ * Description:
+ */
+typedef struct Client{
     char* name;
     char* surname;
     int id;
     Invoice* invoice;
     double debt;
-};
+}Client;
 
 Client* new_Client(char* name, char* surname, int id);
 void freeClient(Client* client);

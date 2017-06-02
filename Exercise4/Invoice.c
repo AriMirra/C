@@ -4,6 +4,10 @@
 #include <time.h>
 #include <stdio.h>
 
+/*
+ * Description: creates an Invoice
+ * Returns: Invoice pointer
+ */
 Invoice* new_Invoice(char* hotelName, char* clientName, int clientId, double priceToPay) {
 
     Invoice* invoice = malloc(sizeof(Invoice));

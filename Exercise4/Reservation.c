@@ -2,6 +2,10 @@
 #include <malloc.h>
 #include <memory.h>
 
+/*
+ * Description: creates a Reservation
+ * Returns: Reservation pointer
+ */
 Reservation* new_Reservation(char* clientSurname, int clientId, int roomNumber) {
 
     Reservation* reservation = malloc(sizeof(Reservation));

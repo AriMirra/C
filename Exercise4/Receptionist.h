@@ -3,13 +3,14 @@
 
 #include "Hotel.h"
 #include "Admin.h"
-
-typedef struct receptionist Receptionist;
-struct receptionist {
+/*
+ * Description:
+ */
+typedef struct Receptionist {
     char* name;
     char* surname;
     int id;
-};
+}Receptionist;
 
 Receptionist* new_Receptionist(char* name, char* surname, int id);
 void freeReceptionist(Receptionist* receptionist);

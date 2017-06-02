@@ -1,12 +1,13 @@
 #ifndef CFROMJAVA_RESERVATION_H
 #define CFROMJAVA_RESERVATION_H
-
-typedef struct reservation Reservation;
-struct reservation {
+/*
+ * Description:
+ */
+typedef struct Reservation{
     char* clientSurname;
     int clientId;
     int roomNumber;
-};
+}Reservation;
 
 Reservation* new_Reservation(char* clientSurname, int clientId, int roomNumber);
 void freeReservation(Reservation* reservation);

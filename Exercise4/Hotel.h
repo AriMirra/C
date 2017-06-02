@@ -3,14 +3,15 @@
 
 #include "Room.h"
 #include "Client.h"
-
-typedef struct hotel Hotel;
-struct hotel {
+/*
+ * Description:
+ */
+typedef struct Hotel {
     char* name;
     Room* roomList[500];            // The hotel has a total of 500 rooms for lodging
     double basicRoomPrice;
     double deluxeRoomPrice;
-};
+}Hotel;
 
 Hotel* new_Hotel();
 void freeHotel(Hotel* hotel);

@@ -2,6 +2,10 @@
 #include <malloc.h>
 #include <memory.h>
 
+/*
+ * Description: creates a Hotel
+ * Returns: Hotel pointer
+ */
 Hotel* new_Hotel() {
 
     Hotel* hotel = malloc(sizeof(Hotel));

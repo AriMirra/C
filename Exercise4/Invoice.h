@@ -2,15 +2,16 @@
 #define CFROMJAVA_INVOICE_H
 
 #include "Client.h"
-
-typedef struct invoice Invoice;
-struct invoice {
+/*
+ * Description:
+ */
+typedef struct Invoice {
     int invoiceNumber;
     char* hotelName;
     char* clientName;
     int clientId;
     double priceToPay;
-};
+}Invoice;
 
 Invoice* new_Invoice(char* hotelName, char* clientName, int clientId, double priceToPay);
 void freeInvoice(Invoice* invoice);
