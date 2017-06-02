@@ -1,24 +1,20 @@
 #include "Room.h"
 #include <malloc.h>
-#include <memory.h>
 
-Room* new_Room(int roomNumber, char* roomType) {
+Room* new_Room(int number, int type) {
 
     Room* room = malloc(sizeof(Room));
 
-    room->roomNumber = roomNumber;
-    room->roomType = malloc(sizeof(char) * (strlen(roomType) + 1));
-
-    strcpy(room->roomType, roomType);
+    room->number = number;
+    room->type = type;
 
     return room;
 }
 
 void accommodateClient(Room* room, Client* client) {
-
+    room->client = client;
 }
 
 void freeRoom(Room* room) {
-    free(room->roomType);
     free(room);
 }

@@ -1,4 +1,4 @@
-set(SOURCE_FILES main.c Receptionist.c Receptionist.h Reservation.c Reservation.h Client.c Client.h Room.c Room.h Invoice.c Invoice.h)
+set(SOURCE_FILES main.c Receptionist.c Receptionist.h Reservation.c Reservation.h Client.c Client.h Room.c Room.h Invoice.c Invoice.h Admin.c Admin.h Hotel.c Hotel.h)
 add_executable(EXERCISE4_EXE main.c)
 add_library(EXERCISE4 ${SOURCE_FILES})
 target_link_libraries(EXERCISE4_EXE EXERCISE4)
