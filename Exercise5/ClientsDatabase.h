@@ -13,7 +13,6 @@ ClientsDatabase* new_ClientsDatabase();
 void freeClientsDatabase(ClientsDatabase* clientsDatabase);
 
 void addClient(ClientsDatabase* clientsDatabase, Client* client);
-void removeClient(ClientsDatabase* clientsDatabase, int position);
 void showClientsList(ClientsDatabase* clientsDatabase);
 
 #endif //CFROMJAVA_CLIENTSDATABASE_H

@@ -18,13 +18,6 @@ void addClient(ClientsDatabase* clientsDatabase, Client* client) {
     } else printf("Max capacity reached");
 }
 
-void removeClient(ClientsDatabase* clientsDatabase, int position) {
-    for (int i = position; i < clientsDatabase->counter; i++) {
-        clientsDatabase->clientsList[i] = clientsDatabase->clientsList[i + 1];
-    }
-    clientsDatabase->counter--;
-}
-
 void showClientsList(ClientsDatabase* clientsDatabase) {
     for (int i = 0; i < clientsDatabase->counter; i++) {
         printf("\n#%i", i);

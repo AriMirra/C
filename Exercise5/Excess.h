@@ -11,4 +11,7 @@ struct excess {
 Excess* new_Excess();
 void freeExcess(Excess* excess);
 
+void showRentedMoviesList(Excess* excess);
+void showTotalIncome(Excess* excess);
+
 #endif //CFROMJAVA_EXCESS_H

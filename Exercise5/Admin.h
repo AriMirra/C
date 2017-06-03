@@ -3,6 +3,9 @@
 
 #include "Client.h"
 #include "License.h"
+#include "Movie.h"
+#include "ClientsDatabase.h"
+#include "MoviesDatabase.h"
 
 typedef struct admin Admin;
 struct admin {
@@ -16,6 +19,7 @@ struct admin {
 Admin* new_Admin(char* name, char* surname, int id);
 void freeAdmin(Admin* admin);
 
-void registerClient(Admin* admin, Client* client);
+void registerClient(Admin* admin, Client* client, ClientsDatabase* clientsDatabase);
+void registerMovie(Movie* movie, MoviesDatabase* moviesDatabase);
 
 #endif //CFROMJAVA_ADMIN_H

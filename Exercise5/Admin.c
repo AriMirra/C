@@ -18,12 +18,17 @@ Admin* new_Admin(char* name, char* surname, int id) {
     return admin;
 }
 
-void registerClient(Admin* admin, Client* client) {
-    if (admin->licensesCounter < sizeof(admin->licensesList) / sizeof(admin->licensesList[0])) {
+void registerClient(Admin* admin, Client* client, ClientsDatabase* clientsDatabase) {
+    addClient(clientsDatabase, client);
+    if (admin->licensesCounter < 500) {
         License* license = new_License(client->id);
         admin->licensesList[admin->licensesCounter] = license;
         admin->licensesCounter++;
     } else printf("Max capacity reached");
+}
+
+void registerMovie(Movie* movie, MoviesDatabase* moviesDatabase) {
+    addMovie(moviesDatabase, movie);
 }
 
 void freeAdmin(Admin* admin) {

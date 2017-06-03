@@ -33,7 +33,7 @@ void rentMovie(Client* client, int days, MoviesDatabase* moviesDatabase, int pos
 
 void showMyMovies(Client* client) {
     for (int i = 0; i < client->moviesCounter; i++) {
-        printf("\n%s\n", client->moviesList[i]->name);
+        printf("\n#%s\n", client->moviesList[i]->name);
     }
 }
 

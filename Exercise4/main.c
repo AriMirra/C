@@ -201,7 +201,7 @@ int main() {
                                 }
                             }
                             if (admin->clientsCounter == 0) {
-                                printf("\nThe mail is not registered. Please, try again.\n\n");
+                                printf("\nThe ID is not registered. Please, try again.\n\n");
                             }
                             if (changed) break;
                         }
