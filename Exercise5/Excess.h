@@ -3,7 +3,8 @@
 
 typedef struct excess Excess;
 struct excess {
-    char* rentedMovies[500];                    // A total of 500 movies can be rented per day due to logistic limitations
+    char* rentedMovies[2000];                    // A total of 2000 movies can be rented per day due to logistic limitations
+    int rentedMoviesCounter;
     double income;
 };
 

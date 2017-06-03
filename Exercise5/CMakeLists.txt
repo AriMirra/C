@@ -1,4 +1,4 @@
-set(SOURCE_FILES main.c Client.c Client.h License.c License.h Admin.c Admin.h Rental.c Rental.h Excess.c Excess.h)
+set(SOURCE_FILES main.c Client.c Client.h License.c License.h Admin.c Admin.h Excess.c Excess.h ClientsDatabase.c ClientsDatabase.h MoviesDatabase.c MoviesDatabase.h Movie.c Movie.h)
 add_executable(EXERCISE5_EXE main.c)
 add_library(EXERCISE5 ${SOURCE_FILES})
 target_link_libraries(EXERCISE5_EXE EXERCISE5)

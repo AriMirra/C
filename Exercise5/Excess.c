@@ -6,6 +6,7 @@ Excess* new_Excess() {
     Excess* excess = malloc(sizeof(Excess));
 
     excess->income = 0;
+    excess->rentedMoviesCounter = 0;
 
     return excess;
 }
