@@ -1,9 +1,10 @@
 #ifndef CFROMJAVA_ADMIN_H
 #define CFROMJAVA_ADMIN_H
 
-#include "Receptionist.h"
 #include "Client.h"
 #include "Reservation.h"
+#include "Receptionist.h"
+
 /*
  * Description:
  */

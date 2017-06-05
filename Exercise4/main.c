@@ -131,7 +131,7 @@ int main() {
                     while (!canGoToMainMenu) {
                         option = scanInt();
                         if (option == 0) {
-                            showReservationsList(admin);
+                            showReservationList(admin);
                             printf("\nOperation successful\n");
                         } else if (option == 1) {
                             // continue to main menu
@@ -218,12 +218,12 @@ int main() {
                     while (!canGoToMainMenu) {
                         option = scanInt();
                         if (option == 0) {
-                            askForInfo(hotel);
+                            giveInfo(hotel);
                             printf("\nOperation successful\n");
                             printf("\nReturning to Main Menu\n");
                             canGoToMainMenu = 1;
                         } else if (option == 1) {
-                            printf("\nSelect your choice of room");
+                            printf("\nSelect your choice of room:");
                             printf("\n0. Basic Room");
                             printf("\n1. Deluxe Room\n\n");
                             int roomOption;

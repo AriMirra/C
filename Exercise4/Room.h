@@ -2,6 +2,7 @@
 #define CFROMJAVA_ROOM_H
 
 #include "Client.h"
+
 /*
  * Description:
  */

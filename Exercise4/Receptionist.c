@@ -25,7 +25,7 @@ void giveInfo(Hotel* hotel) {
     for (int i = 0; i < 400; i++) {
         if (!hotel->roomList[i]->isOccupied) {
             printf("\nBasic Rooms: Available");
-            printf("\nPrice: %.2f", hotel->roomList[i]->price);
+            printf("\nPrice: $%.2f\n", hotel->roomList[i]->price);
             break;
         }
         if (i == 399) printf("\nThere are no basic rooms available at the moment");
@@ -33,15 +33,11 @@ void giveInfo(Hotel* hotel) {
     for (int i = 400; i < sizeof(hotel->roomList) / sizeof(hotel->roomList[0]); i++) {
         if (!hotel->roomList[i]->isOccupied) {
             printf("\nDeluxe Rooms: Available");
-            printf("\nPrice: %.2f\n\n", hotel->roomList[i]->price);
+            printf("\nPrice: $%.2f\n\n", hotel->roomList[i]->price);
             break;
         }
         if (i == sizeof(hotel->roomList) / sizeof(hotel->roomList[0]) - 1) printf("\nThere are no deluxe rooms available at the moment\n\n");
     }
-}
-
-void showReservationsList(Admin* admin) {
-    showReservationList(admin);
 }
 
 void freeReceptionist(Receptionist* receptionist) {

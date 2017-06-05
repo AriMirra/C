@@ -27,16 +27,12 @@ Invoice* new_Invoice(char* hotelName, char* clientName, int clientId, double pri
     return invoice;
 }
 
-void payForRoom(Invoice* invoice, Client* client) {
-    client->debt += invoice->priceToPay;
-}
-
 void printInvoice(Invoice* invoice) {
     printf("\nInvoice number: %i", invoice->invoiceNumber);
     printf("\nHotel name: %s", invoice->hotelName);
     printf("\nClient name: %s", invoice->clientName);
     printf("\nClient ID: %i", invoice->clientId);
-    printf("\nTotal to pay: %.2f\n\n", invoice->priceToPay);
+    printf("\nTotal to pay: $%.2f\n\n", invoice->priceToPay);
 }
 
 void freeInvoice(Invoice* invoice) {
