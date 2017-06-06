@@ -2,8 +2,9 @@
 #define CFROMJAVA_RECEPTIONIST_H
 
 #include "Hotel.h"
+
 /*
- * Description:
+ * Description: The Receptionist structure contains the information about the receptionist, such as his name, surname, and ID
  */
 typedef struct Receptionist {
     char* name;
@@ -11,6 +12,7 @@ typedef struct Receptionist {
     int id;
 }Receptionist;
 
+// Functions
 Receptionist* new_Receptionist(char* name, char* surname, int id);
 void freeReceptionist(Receptionist* receptionist);
 

@@ -4,7 +4,8 @@
 #include "Client.h"
 
 /*
- * Description:
+ * Description: The Room structure contains information about the room, its number, type, its availability status, price, and, 
+ * if it is occupied, the Client in it
  */
 typedef struct Room{
     int number;
@@ -14,6 +15,7 @@ typedef struct Room{
     double price;
 }Room;
 
+// Functions
 Room* new_Room(int number, int type);
 void freeRoom(Room* room);
 

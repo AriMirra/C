@@ -4,6 +4,14 @@
 #include <stdio.h>
 #include <time.h>
 
+/*
+ * Description: Contains the functions related to the Loan structure
+ */
+
+/*
+ * Description: Creates a Loan
+ * Returns: The Loan created
+ */
 Loan* new_Loan(Person* person, Material* material, int rentDays) {
 
     Loan* loan = malloc(sizeof(Loan));
@@ -19,10 +27,18 @@ Loan* new_Loan(Person* person, Material* material, int rentDays) {
     return loan;
 }
 
+/*
+ * Description: Fees the person who rented a material
+ * Returns: Void
+ */
 void fee(Loan* loan) {
     loan->person->debt += loan->material->costPerDay * loan->rentDays;
 }
 
+/*
+ * Description: Prints the Invoice
+ * Returns: Void
+ */
 void showInvoice(Loan* loan) {
     printf("\n/Loan/");
     printf("\nCode of transaction: %i", loan->code);
@@ -46,6 +62,10 @@ void showInvoice(Loan* loan) {
     printf("\nDays rented: %i\n", loan->rentDays);
 }
 
+/*
+ * Description: Frees the space of memory assigned for a loan and all its components
+ * Returns: Void
+ */
 void freeLoan(Loan* loan) {
     free(loan);
 }

@@ -2,6 +2,9 @@
 #include "Admin.h"
 #include "../Util/ScanUtil.h"
 
+/*
+ * Description: Executes the simulation
+ */
 int main() {
 
     Admin* admin = new_Admin();
@@ -19,7 +22,9 @@ int main() {
         printf("\n2. Client");
         printf("\n3. Exit\n\n");
         user = scanInt();
+        
         if (user == 0) {
+            
             // Admin
             printf("\n0. Set hotel name");
             printf("\n1. Show receptionists list");
@@ -28,14 +33,20 @@ int main() {
             int adminChoice;
             while (!canGoToMainMenu) {
                 adminChoice = scanInt();
+                
                 if (adminChoice == 0) {
+                    
+                    // Set hotel name
                     printf("\nEnter the new hotel name here: ");
                     char* hotelName = scanChar();
                     setHotelName(hotel, hotelName);
                     printf("\nOperation successful\n");
                     printf("\nReturning to Main Menu\n");
                     canGoToMainMenu = 1;
+                    
                 } else if (adminChoice == 1) {
+                    
+                    // Show receptionists list
                     if (admin->receptionistsCounter == 0) {
                         printf("\nThere are not any receptionists registered\n");
                     } else {
@@ -44,7 +55,10 @@ int main() {
                     }
                     printf("\nReturning to Main Menu\n");
                     canGoToMainMenu = 1;
+                    
                 } else if (adminChoice == 2) {
+                    
+                    // Show clients list
                     if (admin->clientsCounter == 0) {
                         printf("\nThere are not any clients registered\n");
                     } else {
@@ -53,10 +67,17 @@ int main() {
                     }
                     printf("\nReturning to Main Menu\n");
                     canGoToMainMenu = 1;
-                } else if (adminChoice == 3) canGoToMainMenu = 1;
+                    
+                } else if (adminChoice == 3) {
+                    
+                    // Go back to main menu
+                    canGoToMainMenu = 1;
+                }
                 else printf("\nPlease enter a valid option\n");
             }
+            
         } else if (user == 1) {
+            
             // Receptionist
             printf("\n0. Sign Up");
             printf("\n1. Log In");
@@ -64,7 +85,10 @@ int main() {
             int enteringReceptionistAccount;
             while (!canGoToMainMenu) {
                 enteringReceptionistAccount = scanInt();
+                
                 if (enteringReceptionistAccount == 0) {
+                    
+                    // Sign up
                     printf("\nEnter the following information about you: \n");
                     printf("\nName: ");
                     char* receptionistName = scanChar();
@@ -93,7 +117,10 @@ int main() {
                     printf("\nOperation successful\n");
                     printf("\nReturning to Main Menu\n");
                     break;
+                    
                 } else if (enteringReceptionistAccount == 1) {
+                    
+                    // Log in
                     printf("\nEnter your ID, or press '1' to return to the main menu\n\n");
                     int receptionistLocation = 0;
                     int changed = 0;
@@ -139,10 +166,17 @@ int main() {
                         printf("\nReturning to Main Menu\n");
                         canGoToMainMenu = 1;
                     }
-                } else if (enteringReceptionistAccount == 2) canGoToMainMenu = 1;
+                    
+                } else if (enteringReceptionistAccount == 2) {
+                    
+                    // Go back to main menu
+                    canGoToMainMenu = 1;
+                }
                 else printf("\nPlease enter a valid option\n\n");
             }
+            
         } else if (user == 2) {
+            
             // Client
             printf("\n0. Sign Up");
             printf("\n1. Log In");
@@ -150,7 +184,10 @@ int main() {
             int enteringClientAccount;
             while (!canGoToMainMenu) {
                 enteringClientAccount = scanInt();
+                
                 if (enteringClientAccount == 0) {
+                    
+                    // Sign up
                     printf("\nEnter the following information about you: \n");
                     printf("\nName: ");
                     char *clientName = scanChar();
@@ -179,7 +216,10 @@ int main() {
                     printf("\nOperation successful\n");
                     printf("\nReturning to Main Menu\n");
                     break;
+                    
                 } else if (enteringClientAccount == 1) {
+                    
+                    // Log in
                     printf("\nEnter your ID, or press '1' to return to the main menu\n\n");
                     int clientLocation = 0;
                     int changed = 0;
@@ -217,19 +257,28 @@ int main() {
                     int option;
                     while (!canGoToMainMenu) {
                         option = scanInt();
+                        
                         if (option == 0) {
+                            
+                            // Ask for information
                             giveInfo(hotel);
                             printf("\nOperation successful\n");
                             printf("\nReturning to Main Menu\n");
                             canGoToMainMenu = 1;
+                            
                         } else if (option == 1) {
+                            
+                            // Generate reservation
                             printf("\nSelect your choice of room:");
                             printf("\n0. Basic Room");
                             printf("\n1. Deluxe Room\n\n");
                             int roomOption;
                             while (!canGoToMainMenu) {
                                 roomOption = scanInt();
+                                
                                 if (roomOption == 0) {
+                                    
+                                    // Basic room
                                     addReservation(admin, bookBasicRoom(loggedClient, hotel));
                                     Invoice* invoice = new_Invoice(hotel->name, loggedClient->name, loggedClient->id, hotel->basicRoomPrice);
                                     addInvoice(admin, invoice);
@@ -250,7 +299,10 @@ int main() {
                                     printf("\nOperation successful\n");
                                     printf("\nReturning to Main Menu\n");
                                     canGoToMainMenu = 1;
+                                    
                                 } else if (roomOption == 1) {
+                                    
+                                    // Deluxe room
                                     addReservation(admin, bookDeluxeRoom(loggedClient, hotel));
                                     Invoice* invoice = new_Invoice(hotel->name, loggedClient->name, loggedClient->id, hotel->deluxeRoomPrice);
                                     addInvoice(admin, invoice);
@@ -273,18 +325,27 @@ int main() {
                                     canGoToMainMenu = 1;
                                 } else printf("\nPlease enter a valid option\n");
                             }
+                            
                         } else if (option == 2) {
+                            
+                            // Show clients debt
                             printf("\nYour total debt is: %.2f\n\n", loggedClient->debt);
                             printf("\nReturning to Main Menu\n");
                             canGoToMainMenu = 1;
                         } else printf("\nPlease enter a valid option\n");
                     }
+                    
                 } else if (enteringClientAccount == 2) {
+                    
+                    // Go back to main menu
                     printf("\nReturning to Main Menu\n");
                     canGoToMainMenu = 1;
                 } else printf("\nPlease enter a valid option\n");
             }
+            
         } else if (user == 3) {
+            
+            // Exit
             for (int i = 0; i < admin->receptionistsCounter; i++) {
                 freeReceptionist(admin->receptionistsList[i]);
             }

@@ -7,6 +7,10 @@
 #include "ClientsDatabase.h"
 #include "MoviesDatabase.h"
 
+/*
+ * Description: The Admin structure contains information related to an admin, like his name, surname, ID, and he also has a 
+ * list of all the licenses
+ */
 typedef struct admin Admin;
 struct admin {
     char* name;
@@ -16,6 +20,7 @@ struct admin {
     int licensesCounter;
 };
 
+// Functions
 Admin* new_Admin(char* name, char* surname, int id);
 void freeAdmin(Admin* admin);
 

@@ -2,6 +2,9 @@
 #include "Admin.h"
 #include "../Util/ScanUtil.h"
 
+/*
+ * Description: Executes the simulation
+ */
 int main() {
 
     ClientsDatabase* clientsDatabase = new_ClientsDatabase();
@@ -21,7 +24,9 @@ int main() {
         printf("\n1. Client");
         printf("\n2. Exit\n\n");
         user = scanInt();
+        
         if (user == 0) {
+            
             // Admin
             Admin *admin = NULL;
             if (!adminAlreadyLoggedIn) {
@@ -49,7 +54,10 @@ int main() {
             int adminAction;
             while (!canGoToMainMenu) {
                 adminAction = scanInt();
+                
                 if (adminAction == 0) {
+                    
+                    // Register client
                     printf("\nEnter the next information about the client to register: \n");
                     printf("\nName: ");
                     char* clientName = scanChar();
@@ -78,7 +86,10 @@ int main() {
                     printf("\nOperation successful\n");
                     printf("\nReturning to Main Menu\n");
                     break;
+                    
                 } else if (adminAction == 1) {
+                    
+                    // Register movie
                     printf("\nEnter the next information about the movie to register: \n");
                     printf("\nName: ");
                     char* movieName = scanChar();
@@ -92,7 +103,10 @@ int main() {
                     printf("\nOperation successful\n");
                     printf("\nReturning to Main Menu\n");
                     canGoToMainMenu = 1;
+                    
                 } else if (adminAction == 2) {
+                    
+                    // Show clients list
                     if (clientsDatabase->counter == 0) {
                         printf("\nThere are not any clients registered.\n");
                     } else {
@@ -101,7 +115,10 @@ int main() {
                     }
                     printf("\nReturning to Main Menu\n");
                     canGoToMainMenu = 1;
+                    
                 } else if (adminAction == 3) {
+                    
+                    // Show available movies list
                     if (moviesDatabase->counter == 0) {
                         printf("\nThere are not any movies registered.\n");
                     } else {
@@ -110,7 +127,10 @@ int main() {
                     }
                     printf("\nReturning to Main Menu\n");
                     canGoToMainMenu = 1;
+                    
                 } else if (adminAction == 4) {
+                    
+                    // Show rented movies list
                     if (excess->rentedMoviesCounter == 0) {
                         printf("\nNo movie was rented yet.\n");
                     } else {
@@ -119,23 +139,34 @@ int main() {
                     }
                     printf("\nReturning to Main Menu\n");
                     canGoToMainMenu = 1;
+                    
                 } else if (adminAction == 5) {
+                    
+                    // Show total income
                     showTotalIncome(excess);
                     printf("\nOperation successful\n");
                     printf("\nReturning to Main Menu\n");
                     canGoToMainMenu = 1;
+                    
                 } else if (adminAction == 6) {
+                    
+                    // Go back to the main menu
                     canGoToMainMenu = 1;
                 } else printf("\nPlease enter a valid option.\n");
             }
+            
         } else if (user == 1) {
+            
             // Client
             printf("\n0. Log In");
             printf("\n1. Go back to main menu\n\n");
             int loggingIn;
             while (!canGoToMainMenu) {
                 loggingIn = scanInt();
+                
                 if (loggingIn == 0) {
+                    
+                    // Log in
                     printf("\nEnter your ID, or press '1' to return to the main menu");
                     printf("\nTo register a new ID, contact an Admin\n\n");
                     int clientLocation = 0;
@@ -174,7 +205,10 @@ int main() {
                     int option;
                     while (!canGoToMainMenu) {
                         option = scanInt();
+                        
                         if (option == 0) {
+                            
+                            // Rent movie
                             if (moviesDatabase->counter == 0) {
                                 printf("\nThere are not any movies available at the moment.\n");
                             } else {
@@ -204,7 +238,10 @@ int main() {
                             }
                             printf("\nReturning to Main Menu\n");
                             canGoToMainMenu = 1;
+                            
                         } else if (option == 1) {
+                            
+                            // Show the client movies
                             if (loggedClient->moviesCounter == 0) {
                                 printf("\nYou have not rented any movies yet.\n");
                             } else {
@@ -213,18 +250,26 @@ int main() {
                             }
                             printf("\nReturning to Main Menu\n");
                             canGoToMainMenu = 1;
+                            
                         } else if (option == 2) {
+                            
+                            // Shows the client total debt
                             showTotalDebt(loggedClient);
                             printf("\nOperation successful\n");
                             printf("\nReturning to Main Menu\n");
                             canGoToMainMenu = 1;
                         } else printf("\nPlease enter a valid option.\n");
                     }
+                    
                 } else if (loggingIn == 1) {
+                    
+                    // Go back to the main menu
                     canGoToMainMenu = 1;
                 } else printf("\nPlease enter a valid option.\n");
             }
+            
         } else if (user == 2) {
+            
             // Exit
             for (int i = 0; i < clientsDatabase->counter; i++) {
                 freeClient(clientsDatabase->clientsList[i]);

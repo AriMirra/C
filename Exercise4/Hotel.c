@@ -4,8 +4,12 @@
 #include <stdio.h>
 
 /*
- * Description: creates a Hotel
- * Returns: Hotel pointer
+ * Description: Contains the functions related to the Hotel structure
+ */
+
+/*
+ * Description: Creates a Hotel
+ * Returns: The Hotel created
  */
 Hotel* new_Hotel() {
 
@@ -32,11 +36,19 @@ Hotel* new_Hotel() {
     return hotel;
 }
 
+/*
+ * Description: Sets the name for the Hotel
+ * Returns: Void
+ */
 void setHotelName(Hotel* hotel, char* name) {
     hotel->name = malloc(sizeof(char) * (strlen(name) + 1));
     strcpy(hotel->name, name);
 }
 
+/*
+ * Description: Books a Basic room
+ * Returns: A reservation for the Basic room
+ */
 Reservation* bookBasicRoom(Client* client, Hotel* hotel) {
     Reservation* reservation = NULL;
     for (int i = 0; i < 400; i++) {
@@ -50,6 +62,10 @@ Reservation* bookBasicRoom(Client* client, Hotel* hotel) {
     return reservation;
 }
 
+/*
+ * Description: Books a Deluxe room
+ * Returns: A reservation for the Deluxe room
+ */
 Reservation* bookDeluxeRoom(Client* client, Hotel* hotel) {
     Reservation* reservation =  NULL;
     for (int i = 400; i < sizeof(hotel->roomList) / sizeof(hotel->roomList[0]); i++) {
@@ -63,6 +79,10 @@ Reservation* bookDeluxeRoom(Client* client, Hotel* hotel) {
     return reservation;
 }
 
+/*
+ * Description: Frees the space of memory assigned for a hotel and all its components
+ * Returns: Void
+ */
 void freeHotel(Hotel* hotel) {
     free(hotel);
 }

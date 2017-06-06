@@ -3,8 +3,12 @@
 #include <memory.h>
 
 /*
- * Description: creates a Client
- * Returns: Client pointer
+ * Description: Contains the functions related to the Client structure
+ */
+
+/*
+ * Description: Creates a Client
+ * Returns: The Client created
  */
 Client* new_Client(char* name, char* surname, int id) {
 
@@ -21,10 +25,18 @@ Client* new_Client(char* name, char* surname, int id) {
     return client;
 }
 
+/*
+ * Description: Pays for the hotel room
+ * Returns: Void
+ */
 void payForRoom(Invoice* invoice, Client* client) {
     client->debt += invoice->priceToPay;
 }
 
+/*
+ * Description: Frees the space of memory assigned for a client and all its components
+ * Returns: 
+ */
 void freeClient(Client* client) {
     free(client->name);
     free(client->surname);

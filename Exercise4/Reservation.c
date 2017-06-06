@@ -3,8 +3,12 @@
 #include <memory.h>
 
 /*
- * Description: creates a Reservation
- * Returns: Reservation pointer
+ * Description: Contains the functions related to the Reservation structure
+ */
+
+/*
+ * Description: Creates a Reservation
+ * Returns: The Reservation created
  */
 Reservation* new_Reservation(char* clientSurname, int clientId, int roomNumber) {
 
@@ -19,6 +23,10 @@ Reservation* new_Reservation(char* clientSurname, int clientId, int roomNumber) 
     return reservation;
 }
 
+/*
+ * Description: Frees the space of memory assigned to a reservation and all its components
+ * Returns: Void
+ */
 void freeReservation(Reservation* reservation) {
     free(reservation->clientSurname);
     free(reservation);

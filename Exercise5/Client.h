@@ -5,6 +5,10 @@
 #include "MoviesDatabase.h"
 #include "Excess.h"
 
+/*
+ * Description: The Client structure contains information about a client, specifically, his name, surname, ID, current debt, 
+ * and a list of movies in his possession
+ */
 typedef struct client Client;
 struct client {
     char* name;
@@ -15,6 +19,7 @@ struct client {
     int moviesCounter;
 };
 
+// Functions
 Client* new_Client(char* name, char* surname, int id);
 void freeClient(Client* client);
 

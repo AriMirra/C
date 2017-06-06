@@ -1,10 +1,13 @@
+#ifndef EXERCISE3_LIBRARY_H
+#define EXERCISE3_LIBRARY_H
+
 #include "Material.h"
 #include "Person.h"
 #include "Loan.h"
 
-#ifndef EXERCISE3_LIBRARY_H
-#define EXERCISE3_LIBRARY_H
-
+/*
+ * Description: The Library structure holds the information for a Library, the lists for its materials, people and loans
+ */
 typedef struct library Library;
 struct library {
     Material* materials[100];   // The library can contain 100 materials at a time
@@ -17,6 +20,7 @@ struct library {
     int auxIndex;
 };
 
+// Functions
 Library* new_Library();
 void freeLibrary(Library* library);
 

@@ -1,8 +1,13 @@
-#include "Material.h"
-
 #ifndef EXERCISE3_PERSON_H
 #define EXERCISE3_PERSON_H
 
+#include "Material.h"
+
+/*
+ * Description: The Person structure holds information about a person, such as its profession, name, surname, mail, phone number,
+ * debt, a list of materials in his possession, and, in case he is a student, its registration number, but if he is a teacher,
+ * its employee number
+ */
 typedef struct person Person;
 struct person {
     char* personType;
@@ -17,6 +22,7 @@ struct person {
     int materialsCounter;
 };
 
+// Functions
 Person* new_Person(char* name, char* surname, char* mail, int phoneNumber, int isStudent);
 void freePerson(Person* person);
 

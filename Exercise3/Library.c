@@ -3,6 +3,14 @@
 #include <stdio.h>
 #include <memory.h>
 
+/*
+ * Description: Contains the functions related to the Library structure
+ */
+
+/*
+ * Description: Creates a Library
+ * Returns: The Library created
+ */
 Library* new_Library() {
 
     Library* library = malloc(sizeof(Library));
@@ -16,6 +24,10 @@ Library* new_Library() {
     return library;
 }
 
+/*
+ * Description: Loads materials to the library
+ * Returns: Void
+ */
 void loadMaterial(Library* library, Material* material) {
     if (library->materialsCounter < sizeof(library->materials) / sizeof(library->materials[0])) {
         library->materials[library->materialsCounter] = material;
@@ -23,6 +35,10 @@ void loadMaterial(Library* library, Material* material) {
     } else printf("Max capacity reached");
 }
 
+/*
+ * Description: Prints the materials list of the library
+ * Returns: Void
+ */
 void printMaterialsList(Library* library, int index) {
     printf("\n#%i", library->auxIndex);
     library->auxIndex++;
@@ -36,6 +52,10 @@ void printMaterialsList(Library* library, int index) {
     printf("\nStatus: %s\n", library->materials[index]->status);
 }
 
+/*
+ * Description: Prints the list of all the materials
+ * Returns: Void
+ */
 void showAllMaterials(Library* library) {
     library->auxIndex = 0;
     for (int i = 0; i < library->materialsCounter; i++) {
@@ -43,6 +63,10 @@ void showAllMaterials(Library* library) {
     }
 }
 
+/*
+ * Description: Prints th list of only the available materials
+ * Returns: Void
+ */
 void showAvailableMaterials(Library* library) {
     library->auxIndex = 0;
     for (int i = 0; i < library->materialsCounter; i++) {
@@ -50,6 +74,10 @@ void showAvailableMaterials(Library* library) {
     }
 }
 
+/*
+ * Description: Calculates how many available materials are available
+ * Returns: Void
+ */
 void getAvailableMaterials(Library* library) {
     library->availableMaterials = 0;
     for (int i = 0; i < library->materialsCounter; i++) {
@@ -57,6 +85,10 @@ void getAvailableMaterials(Library* library) {
     }
 }
 
+/*
+ * Description: Deletes a material from the library
+ * Returns: Void
+ */
 void deleteMaterial(Library* library, int position) {
     library->materials[position] = 0;
     library->materialsCounter--;
@@ -65,6 +97,10 @@ void deleteMaterial(Library* library, int position) {
     }
 }
 
+/*
+ * Description: Loads a person to the library
+ * Returns: Void
+ */
 void loadPerson(Library* library, Person* person) {
     if (library->peopleCounter < sizeof(library->people) / sizeof(library->people[0])) {
         library->people[library->peopleCounter] = person;
@@ -72,6 +108,10 @@ void loadPerson(Library* library, Person* person) {
     } else printf("Max capacity reached");
 }
 
+/*
+ * Description: Prints the people list of the library
+ * Returns: Void
+ */
 void printPeopleList(Library* library) {
     for (int i = 0; i < library->peopleCounter; i++) {
         printf("\n#%i", i);
@@ -87,6 +127,10 @@ void printPeopleList(Library* library) {
     }
 }
 
+/*
+ * Description: Loads a loan to the Library
+ * Returns: Void
+ */
 void loadLoan(Library* library, Loan* loan) {
     if (library->loanCounter < sizeof(library->loan) / sizeof(library->loan[0])) {
         library->loan[library->loanCounter] = loan;
@@ -94,6 +138,10 @@ void loadLoan(Library* library, Loan* loan) {
     } else printf("Max capacity reached");
 }
 
+/*
+ * Description: Frees the space of memory assigned for a Library and all its components
+ * Returns: Void
+ */
 void freeLibrary(Library* library) {
     free(library);
 }

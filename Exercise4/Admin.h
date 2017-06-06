@@ -6,7 +6,8 @@
 #include "Receptionist.h"
 
 /*
- * Description:
+ * Description: The Admin structure holds information about the management, such as lists of receptionists, clients, reservations, 
+ * and invoices
  */
 typedef struct Admin{
     Receptionist* receptionistsList[50];     // There can be a maximum of 50 receptionist at a time
@@ -19,6 +20,7 @@ typedef struct Admin{
     int invoiceCounter;
 }Admin;
 
+// Functions
 Admin* new_Admin();
 void freeAdmin(Admin* admin);
 

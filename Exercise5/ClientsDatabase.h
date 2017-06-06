@@ -3,12 +3,16 @@
 
 #include "Client.h"
 
+/*
+ * Description: The ClientsDatabase struct contains a list of registered clients
+ */
 typedef struct clientsDatabase ClientsDatabase;
 struct clientsDatabase {
     Client* clientsList[500];               // A maximum of 500 clients can be in the system at a time
     int counter;
 };
 
+// Functions
 ClientsDatabase* new_ClientsDatabase();
 void freeClientsDatabase(ClientsDatabase* clientsDatabase);
 

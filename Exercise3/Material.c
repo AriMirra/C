@@ -2,6 +2,14 @@
 #include <malloc.h>
 #include <memory.h>
 
+/*
+ * Description: Contains the functions related to the Material structure
+ */
+
+/*
+ * Description: Creates a Material
+ * Returns: The Material Created
+ */
 Material* new_Material(char* code, char* author, char* title, int year, int isBook, int isAvailable, double costPerDay) {
 
     Material* material = malloc(sizeof(Material));
@@ -41,6 +49,10 @@ Material* new_Material(char* code, char* author, char* title, int year, int isBo
     return material;
 }
 
+/*
+ * Description: Changes the material availability status
+ * Returns: Void
+ */
 void changeMaterialStatus(Material* material) {
     if (material->isAvailable) {
         material->isAvailable = 0;
@@ -52,6 +64,10 @@ void changeMaterialStatus(Material* material) {
     }
 }
 
+/*
+ * Description: Frees the space of memory related to a material and all its components
+ * Returns: Void
+ */
 void freeMaterial(Material* material) {
     free(material->materialType);
     free(material->code);

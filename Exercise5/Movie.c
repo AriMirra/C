@@ -2,6 +2,14 @@
 #include <malloc.h>
 #include <memory.h>
 
+/*
+ * Description: Contains the functions of the Movie struct
+ */
+
+/*
+ * Description: Creates a Movie
+ * Returns: The Movie created
+ */
 Movie* new_Movie(char* name, double price) {
 
     Movie* movie = malloc(sizeof(Movie));
@@ -14,6 +22,10 @@ Movie* new_Movie(char* name, double price) {
     return movie;
 }
 
+/*
+ * Description: Frees the space of memory assigned for a movie and all its components
+ * Returns: Void
+ */
 void freeMovie(Movie* movie) {
     free(movie->name);
     free(movie);

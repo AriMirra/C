@@ -4,6 +4,9 @@
 #include "Library.h"
 #include "../Util/ScanUtil.h"
 
+/*
+ * Description: Executes the simulation
+ */
 int main() {
 
     Library* library = new_Library();
@@ -18,7 +21,9 @@ int main() {
         printf("\n1. Customer");
         printf("\n2. Exit\n\n");
         user = scanInt();
+
         if (user == 0) {
+
             // Admin
             printf("\n0. Upload new material");
             printf("\n1. Modify an already existing one");
@@ -28,7 +33,10 @@ int main() {
             int adminChoice;
             while (!canGoToMainMenu) {
                 adminChoice = scanInt();
+
                 if (adminChoice == 0) {
+
+                    // Upload a new material
                     printf("\nUpload");
                     printf("\n0. Magazine");
                     printf("\n1. Book\n\n");
@@ -36,10 +44,16 @@ int main() {
                     char* editorial = 0;
                     while (1) {
                         materialType = scanInt();
+
                         if (materialType == 0) {
+
+                            // Magazine
                             printf("\nFill in the next information about the magazine: \n\n");
                             break;
+
                         } else if (materialType == 1) {
+
+                            // Book
                             printf("\nFill in the next information about the book: \n");
                             printf("\nEditorial: ");
                             editorial = scanChar();
@@ -83,7 +97,10 @@ int main() {
                     printf("\nOperation successful\n");
                     printf("\nReturning to Main Menu\n");
                     canGoToMainMenu = 1;
+
                 } else if (adminChoice == 1) {
+
+                    // Modify an already existing material
                     if (library->materialsCounter == 0) {
                         printf("\nThere are not any materials registered.\n");
                     } else {
@@ -98,16 +115,25 @@ int main() {
                         }
                         printf("\n0. Delete the material");
                         printf("\n1. Change its status");
-                        printf("\n2. Change rental cost");
+                        printf("\n2. Change its rental cost");
                         printf("\n3. Go back to main menu\n\n");
                         int modifyOption;
                         while (!canGoToMainMenu) {
                             modifyOption = scanInt();
+
                             if (modifyOption == 0) {
+
+                                // Delete the material
                                 deleteMaterial(library, materialOption);
+
                             } else if (modifyOption == 1) {
+
+                                // Change its status
                                 changeMaterialStatus(library->materials[materialOption]);
+
                             } else if (modifyOption == 2) {
+
+                                // Change its rental cost
                                 printf("\nEnter the new price: $");
                                 int newPrice;
                                 while (1) {
@@ -127,7 +153,10 @@ int main() {
                     }
                     printf("\nReturning to Main Menu\n");
                     canGoToMainMenu = 1;
+
                 } else if (adminChoice == 2) {
+
+                    // Show list of materials
                     if (library->materialsCounter == 0) {
                         printf("\nThere are not any materials registered.\n");
                     } else {
@@ -136,7 +165,10 @@ int main() {
                     }
                     printf("\nReturning to Main Menu\n");
                     canGoToMainMenu = 1;
+
                 } else if (adminChoice == 3) {
+
+                    // Show list of people
                     if (library->peopleCounter == 0) {
                         printf("\nThere are not any customers registered.\n");
                     } else {
@@ -145,10 +177,15 @@ int main() {
                     }
                     printf("\nReturning to Main Menu\n");
                     canGoToMainMenu = 1;
+                    
                 } else if (adminChoice == 4) canGoToMainMenu = 1;
+                    
+                    // Go back to main menu
                 else printf("\nPlease, enter a valid option.\n\n");
             }
+            
         } else if (user == 1) {
+            
             // Customer
             printf("\n0. Sign Up");
             printf("\n1. Log In");
@@ -156,7 +193,10 @@ int main() {
             int enteringAccount;
             while (!canGoToMainMenu) {
                 enteringAccount = scanInt();
+                
                 if (enteringAccount == 0) {
+                    
+                    // Sign Up
                     printf("\nEnter the following information about you: \n");
                     printf("\nName: ");
                     char* personName = scanChar();
@@ -211,7 +251,10 @@ int main() {
                     printf("\nOperation successful\n");
                     printf("\nReturning to Main Menu\n");
                     break;
+                    
                 } else if (enteringAccount == 1) {
+                    
+                    // Log In
                     printf("\nEnter your mail, or press '1' to go back to the main menu\n\n");
                     int personLocation = 0;
                     int changed = 0;
@@ -249,7 +292,10 @@ int main() {
                     int option;
                     while (!canGoToMainMenu) {
                         option = scanInt();
+                        
                         if (option == 0) {
+                            
+                            // Take new material
                             if (library->materialsCounter == 0) {
                                 printf("\nThere are not any materials available for you to take at the moment.\n");
                             } else {
@@ -297,7 +343,10 @@ int main() {
                             }
                             printf("\nReturning to Main Menu\n");
                             canGoToMainMenu = 1;
+                            
                         } else if (option == 1) {
+                            
+                            // Show my materials
                             if (loggedPerson->materialsCounter == 0) {
                                 printf("\nYou do not have any material at the moment.\n");
                                 printf("\nReturning to Main Menu\n");
@@ -307,7 +356,10 @@ int main() {
                                 printf("\nReturning to Main Menu\n");
                             }
                             canGoToMainMenu = 1;
+                            
                         } else if (option == 2) {
+                            
+                            // Show my total debt
                             printf("\n$%.2f\n", loggedPerson->debt);
                             printf("\nOperation successful\n");
                             printf("\nReturning to Main Menu\n");
@@ -315,10 +367,18 @@ int main() {
                         }
                         else printf("\nPlease, enter a valid option.\n\n");
                     }
-                } else if (enteringAccount == 2) canGoToMainMenu = 1;
+                    
+                } else if (enteringAccount == 2) {
+                    
+                    // Go back to main menu
+                    canGoToMainMenu = 1;
+                }
                 else printf("\nPlease, enter a valid option.\n\n");
             }
+            
         } else if (user == 2) {
+            
+            // Exit
             for (int i = 0; i < library->materialsCounter; i++) {
                 freeMaterial(library->materials[i]);
             }

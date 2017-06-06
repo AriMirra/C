@@ -5,8 +5,12 @@
 #include <stdio.h>
 
 /*
- * Description: creates an Invoice
- * Returns: Invoice pointer
+ * Description: Contains the functions related to the Invoice structure
+ */
+
+/*
+ * Description: Creates an Invoice
+ * Returns: The Invoice created
  */
 Invoice* new_Invoice(char* hotelName, char* clientName, int clientId, double priceToPay) {
 
@@ -27,6 +31,10 @@ Invoice* new_Invoice(char* hotelName, char* clientName, int clientId, double pri
     return invoice;
 }
 
+/*
+ * Description: Prints the invoice
+ * Returns: Void
+ */
 void printInvoice(Invoice* invoice) {
     printf("\nInvoice number: %i", invoice->invoiceNumber);
     printf("\nHotel name: %s", invoice->hotelName);
@@ -35,6 +43,10 @@ void printInvoice(Invoice* invoice) {
     printf("\nTotal to pay: $%.2f\n\n", invoice->priceToPay);
 }
 
+/*
+ * Description: Frees the space of memory assigned for an invoice and all its components
+ * Returns: Void
+ */
 void freeInvoice(Invoice* invoice) {
     free(invoice->hotelName);
     free(invoice->clientName);

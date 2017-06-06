@@ -3,6 +3,14 @@
 #include <memory.h>
 #include <stdio.h>
 
+/*
+ * Description: Contains the functions related to the Person structure
+ */
+
+/*
+ * Description: Creates a Person
+ * Returns: The Person created
+ */
 Person* new_Person(char* name, char* surname, char* mail, int phoneNumber, int isStudent) {
 
     Person* person = malloc(sizeof(Person));
@@ -27,6 +35,10 @@ Person* new_Person(char* name, char* surname, char* mail, int phoneNumber, int i
     return person;
 }
 
+/*
+ * Description: Takes a material from the library
+ * Returns: Void
+ */
 void takeMaterial(Person* person, Material* material) {
     if (person->materialsCounter < sizeof(person->materials) / sizeof(person->materials[0])) {
         person->materials[person->materialsCounter] = material;
@@ -34,6 +46,10 @@ void takeMaterial(Person* person, Material* material) {
     } else printf("Max capacity reached");
 }
 
+/*
+ * Description: Prints a list of materials in possession of a given person
+ * Returns: Void
+ */
 void showMyMaterials(Person* person) {
     for (int i = 0; i < person->materialsCounter; i++) {
         printf("\n#%i", i);
@@ -47,6 +63,10 @@ void showMyMaterials(Person* person) {
     }
 }
 
+/*
+ * Description: Frees the space of memory assigned to a person and all its components
+ * Returns: Void
+ */
 void freePerson(Person* person) {
     free(person->personType);
     free(person->name);

@@ -5,7 +5,8 @@
 #include "Reservation.h"
 
 /*
- * Description:
+ * Description: The Hotel structure contains the information about the hotel, such as its name, a list of all its rooms, and both 
+ * the price for the Basic and the Deluxe rooms
  */
 typedef struct Hotel {
     char* name;
@@ -15,6 +16,7 @@ typedef struct Hotel {
     double deluxeRoomPrice;
 }Hotel;
 
+// Functions
 Hotel* new_Hotel();
 void freeHotel(Hotel* hotel);
 

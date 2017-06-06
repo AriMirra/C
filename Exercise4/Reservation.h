@@ -1,7 +1,9 @@
 #ifndef CFROMJAVA_RESERVATION_H
 #define CFROMJAVA_RESERVATION_H
+
 /*
- * Description:
+ * Description: The Reservation structure contains information about the reservation, specifically, the surname of the client, 
+ * his ID, and the booked room number
  */
 typedef struct Reservation{
     char* clientSurname;
@@ -9,6 +11,7 @@ typedef struct Reservation{
     int roomNumber;
 }Reservation;
 
+// Functions
 Reservation* new_Reservation(char* clientSurname, int clientId, int roomNumber);
 void freeReservation(Reservation* reservation);
 

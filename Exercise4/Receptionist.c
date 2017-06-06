@@ -4,8 +4,12 @@
 #include <stdio.h>
 
 /*
- * Description: creates a Receptionist
- * Returns: Receptionist pointer
+ * Description: Contains the functions related to the Receptionist structure
+ */
+
+/*
+ * Description: Creates a Receptionist
+ * Returns: The Receptionist created
  */
 Receptionist* new_Receptionist(char* name, char* surname, int id) {
 
@@ -21,6 +25,10 @@ Receptionist* new_Receptionist(char* name, char* surname, int id) {
     return receptionist;
 }
 
+/*
+ * Description: Gives information about the room availability status and its price per night
+ * Returns: Void
+ */
 void giveInfo(Hotel* hotel) {
     for (int i = 0; i < 400; i++) {
         if (!hotel->roomList[i]->isOccupied) {
@@ -40,6 +48,10 @@ void giveInfo(Hotel* hotel) {
     }
 }
 
+/*
+ * Description: Frees the space of memory assigned to a receptionist and all its components
+ * Returns: Void
+ */
 void freeReceptionist(Receptionist* receptionist) {
     free(receptionist->name);
     free(receptionist->surname);

@@ -1,9 +1,14 @@
 #include "Admin.h"
 #include <malloc.h>
 #include <stdio.h>
+
 /*
- * Description: creates an Admin
- * Returns: Admin pointer
+ * Description: Contains the functions related to the Admin struct
+ */
+
+/*
+ * Description: Creates an Admin
+ * Returns: The Admin Created
  */
 Admin* new_Admin() {
 
@@ -17,6 +22,10 @@ Admin* new_Admin() {
     return admin;
 }
 
+/*
+ * Description: Adds a receptionist
+ * Returns: Void
+ */
 void addReceptionist(Admin* admin, Receptionist* receptionist) {
     if (admin->receptionistsCounter < sizeof(admin->receptionistsList) / sizeof(admin->receptionistsList[0])) {
         admin->receptionistsList[admin->receptionistsCounter] = receptionist;
@@ -24,6 +33,10 @@ void addReceptionist(Admin* admin, Receptionist* receptionist) {
     } else printf("Max capacity reached");
 }
 
+/*
+ * Description: Prints the list of receptionists
+ * Returns: Void
+ */
 void showReceptionistsList(Admin* admin) {
     for (int i = 0; i < admin->receptionistsCounter; i++) {
         printf("\n#%i", i);
@@ -33,6 +46,10 @@ void showReceptionistsList(Admin* admin) {
     }
 }
 
+/*
+ * Description: Adds a client to the system
+ * Returns: Void
+ */
 void addClient(Admin* admin, Client* client) {
     if (admin->clientsCounter < sizeof(admin->clientsList) / sizeof(admin->clientsList[0])) {
         admin->clientsList[admin->clientsCounter] = client;
@@ -40,6 +57,10 @@ void addClient(Admin* admin, Client* client) {
     } else printf("Max capacity reached");
 }
 
+/*
+ * Description: Shows the list of clients
+ * Returns: Void
+ */
 void showClientsList(Admin* admin) {
     for (int i = 0; i < admin->clientsCounter; i++) {
         printf("\n#%i", i);
@@ -50,6 +71,10 @@ void showClientsList(Admin* admin) {
     }
 }
 
+/*
+ * Description: Adds a reservation to a list
+ * Returns: Void
+ */
 void addReservation(Admin* admin, Reservation* reservation) {
     if (admin->reservationCounter < sizeof(admin->reservationsList) / sizeof(admin->reservationsList[0])) {
         admin->reservationsList[admin->reservationCounter] = reservation;
@@ -57,6 +82,10 @@ void addReservation(Admin* admin, Reservation* reservation) {
     } else printf("Max capacity reached");
 }
 
+/*
+ * Description: Prints the reservations list
+ * Returns: Void
+ */
 void showReservationList(Admin* admin) {
     for (int i = 0; i < admin->reservationCounter; i++) {
         printf("\n#%i", i);
@@ -67,6 +96,10 @@ void showReservationList(Admin* admin) {
     }
 }
 
+/*
+ * Description: Adds an invoice to a list
+ * Returns: Void
+ */
 void addInvoice(Admin* admin, Invoice* invoice) {
     if (admin->invoiceCounter < sizeof(admin->invoicesList) / sizeof(admin->invoicesList[0])) {
         admin->invoicesList[admin->invoiceCounter] = invoice;
@@ -74,6 +107,10 @@ void addInvoice(Admin* admin, Invoice* invoice) {
     } else printf("Max capacity reached");
 }
 
+/*
+ * Description: Frees the space of memory assigned to an admin and all its components
+ * Returns: Void
+ */
 void freeAdmin(Admin* admin) {
     free(admin);
 }
