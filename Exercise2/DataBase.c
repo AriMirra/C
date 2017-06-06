@@ -210,7 +210,7 @@ void addCamera(DataBase* database, Camera* camera, int manufacturerID, int provi
 void addAccessory(DataBase* database, Accessory* accessory, int manufacturerID, int providerID){
     if(database->amountOfProducts != database->productMaxCapacity && database->amountOfAccessories != database->accessoryMaxCapacity){
         //create a product with the accessory
-        Product* product = createProduct(accessory->name,CAMERA,manufacturerID,providerID,nextProductID(database),accessory->price);
+        Product* product = createProduct(accessory->name,ACCESSORY,manufacturerID,providerID,nextProductID(database),accessory->price);
         //set it's manufacturer and provider
         product->manufacturerID = manufacturerID;
         product->providerID = providerID;

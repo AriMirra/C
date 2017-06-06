@@ -119,8 +119,10 @@ void addProvider(DataBase* database, Provider* provider){
  */
 void addAppliance(DataBase* database, Appliance* appliance, char* manufacturerName, char* providerName){
     if(database->amountOfAppliances != database->applianceMaxCapacity){
-        setManufacturer(appliance,manufacturerName);
-        setProvider(appliance,providerName);
+        appliance->manufacturerName = malloc(sizeof(char)*(strlen(manufacturerName)+1));
+        appliance->providerName = malloc(sizeof(char)*(strlen(providerName)+1));
+        strcpy(appliance->manufacturerName, manufacturerName);
+        strcpy(appliance->providerName, providerName);
         database->appliances[database->amountOfAppliances] = appliance;
         database->amountOfAppliances++;
     }else{

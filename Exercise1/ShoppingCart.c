@@ -84,7 +84,6 @@ int total(ShoppingCart* cart){
 void emptyShoppingCart(ShoppingCart* cart) {
     int j = cart->appliancesAmount;
     for (int i = 0; i < j; i++) {
-        destroyShoppingCartLine(cart->appliances[i]);
         cart->appliancesAmount--;
     }
 }

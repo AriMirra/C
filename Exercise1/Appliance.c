@@ -21,22 +21,6 @@ Appliance* createAppliance(char* name, char* model, int price, char* id) {
 }
 
 /*
- * Description: sets the Manufacturer of an Appliance
- * Returns: void
- */
-void setManufacturer(Appliance* appliance, char* manufacturerName){
-    appliance->manufacturerName = manufacturerName;
-}
-
-/*
- * Description: sets the Provider of an Appliance
- * Returns: void
- */
-void setProvider(Appliance* appliance, char* providerName){
-    appliance->providerName = providerName;
-}
-
-/*
  * Description: Deallocates memory assigned for an Appliance and all its components
  * Return: void
  */

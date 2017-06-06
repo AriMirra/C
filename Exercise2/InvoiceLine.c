@@ -10,7 +10,7 @@ InvoiceLine* createInvoiceLine(CartLine* cartLine){
     result->productName = malloc(sizeof(char)*strlen(cartLine->product->name)+1);
     strcpy(result->productName, cartLine->product->name);
     result->units = cartLine->units;
-    result->priceOfAppliance = cartLine->product->price;
+    result->priceOfProduct= cartLine->product->price;
     return result;
 }
 
